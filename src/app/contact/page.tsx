@@ -14,6 +14,7 @@ export default function ContactPage() {
   const [errors, setErrors] = useState<{ [key: string]: string }>({});
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [success, setSuccess] = useState(false);
+  const [submitError, setSubmitError] = useState<string | null>(null);
 
   const projectOptions = [
     "SaaS Dashboard",
@@ -58,21 +59,27 @@ export default function ContactPage() {
     if (!validate()) return;
 
     setIsSubmitting(true);
+    setSubmitError(null);
 
-    // MOCK EMAIL DELIVERY
-    // To plug in a real email backend:
-    // 1. Install resend: `npm install resend`
-    // 2. Create a Next.js Server Action in `src/app/actions.ts`
-    // 3. Import and call the action here: `await sendEmail(formData)`
-    // Example SMTP integration:
-    // fetch('/api/contact', { method: 'POST', body: JSON.stringify(formData) })
-    
     try {
-      await new Promise((resolve) => setTimeout(resolve, 1500)); // Simulate API roundtrip
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
+
+      const result = await response.json();
+      if (!response.ok) {
+        throw new Error(result.error || "Failed to send message.");
+      }
+
       setSuccess(true);
       setFormData({ name: "", email: "", projectType: "SaaS Dashboard", message: "" });
-    } catch (err) {
+    } catch (err: any) {
       console.error("Failed to send message:", err);
+      setSubmitError(err.message || "Failed to send message. Please try again later or email me directly.");
     } finally {
       setIsSubmitting(false);
     }
@@ -266,6 +273,13 @@ export default function ContactPage() {
                     </>
                   )}
                 </button>
+
+                {submitError && (
+                  <div className="text-xs text-red-400 flex items-center gap-1.5 mt-2 bg-red-950/20 border border-red-900/30 p-3 rounded-lg">
+                    <AlertCircle className="h-4 w-4 shrink-0" />
+                    <span>{submitError}</span>
+                  </div>
+                )}
 
               </form>
             )}
