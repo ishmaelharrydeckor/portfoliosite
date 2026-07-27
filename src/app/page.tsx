@@ -59,8 +59,11 @@ export default function Home() {
     { scope: containerRef }
   );
 
-  // Take the 4 featured projects
+  // Filter visual/motion-craft showcase projects
   const featuredProjects = projects.filter((p) => p.isFeatured);
+
+  // Filter functional client-style and portal projects
+  const otherProjects = projects.filter((p) => !p.isFeatured);
 
   // Group certifications by issuer
   const udemyCertifications = certifications.filter((c) => c.issuer === "Udemy").slice(0, 3);
@@ -69,23 +72,23 @@ export default function Home() {
   // Value props mapping with icons
   const valueProps = [
     {
-      title: "Speed without shortcuts.",
-      desc: "AI-accelerated builds mean your site launches in days, not months — without cutting corners on design or performance.",
-      icon: Clock,
-    },
-    {
-      title: "Real technical grounding.",
-      desc: "Certified training in AI, machine learning, and Python means I understand what I'm building, not just prompting blindly.",
-      icon: ShieldCheck,
-    },
-    {
-      title: "Design that converts.",
-      desc: "Every site is built with intentional typography, spacing, and motion — the details that separate 'looks fine' from 'looks premium.'",
+      title: "Design Precision",
+      desc: "Every interface is crafted with tight typography, generous negative space, and micro-animations that feel premium.",
       icon: Zap,
     },
     {
-      title: "Reliable delivery.",
-      desc: "Operations and leadership experience across multiple organizations means clear communication and on-time delivery, every project.",
+      title: "Technical Grounding",
+      desc: "Certified in AI, machine learning, and Python. I understand the underlying mechanics of modern systems, not just prompting.",
+      icon: ShieldCheck,
+    },
+    {
+      title: "AI-Powered Speed",
+      desc: "Leveraging AI as a productivity multiplier to build and ship production-ready applications in days, not months.",
+      icon: Clock,
+    },
+    {
+      title: "Reliable Operations",
+      desc: "Leadership and operations experience across multiple organizations ensures transparent communication and on-time shipping.",
       icon: Award,
     },
   ];
@@ -103,14 +106,14 @@ export default function Home() {
             Open for Select Q3-Q4 Projects
           </span>
           <h1 className="hero-title mt-8 font-display text-4xl font-extrabold tracking-tight text-foreground sm:text-6xl lg:text-7xl opacity-0 leading-[1.05]">
-            I build premium, <br className="hidden sm:inline" />
+            Building premium, <br className="hidden sm:inline" />
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-accent via-amber-400 to-accent">
-              AI-accelerated
+              high-performance
             </span>{" "}
-            websites — fast, polished, and built to convert.
+            web experiences.
           </h1>
           <p className="hero-subtitle mt-8 font-sans text-lg sm:text-xl text-foreground-muted leading-relaxed max-w-2xl mx-auto opacity-0">
-            From concept to a live, production-ready site in days, not months. Backed by real technical training, not guesswork.
+            I combine thoughtful interface design with AI-accelerated workflows to ship polished, high-conversion applications at scale.
           </p>
           <div className="hero-cta mt-10 flex flex-wrap justify-center gap-4 opacity-0">
             <Link
@@ -136,17 +139,17 @@ export default function Home() {
           <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6">
             <div>
               <h2 className="font-display text-xs font-semibold uppercase tracking-widest text-accent">
-                Case Studies
+                Selected Work
               </h2>
               <p className="mt-3 font-display text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
-                Featured Projects
+                Showcase Work
               </p>
             </div>
             <Link
               href="/projects"
               className="group flex items-center gap-1.5 text-sm font-semibold text-accent hover:text-accent/80 transition-colors"
             >
-              View all 12 projects
+              View all 16 projects
               <ArrowUpRight className="h-4 w-4 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
             </Link>
           </div>
@@ -197,6 +200,62 @@ export default function Home() {
                       <ArrowUpRight className="h-4 w-4 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
                     </Link>
                   </div>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Other Projects / Client Work Section */}
+      <section className="scroll-section border-t border-zinc-900 bg-zinc-950/20 py-32 px-6 lg:px-8">
+        <div className="mx-auto max-w-7xl">
+          <div className="mb-16">
+            <h2 className="font-display text-xs font-semibold uppercase tracking-widest text-accent">
+              SaaS & Web Applications
+            </h2>
+            <p className="mt-3 font-display text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
+              Other Selected Work
+            </p>
+            <p className="mt-4 text-base text-foreground-muted max-w-3xl leading-relaxed">
+              A collection of functional client solutions, administrative portals, learning systems, and dashboards built with robust state management and responsive styling.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {otherProjects.map((project, idx) => (
+              <motion.div
+                key={project.slug}
+                initial={{ opacity: 0, y: 12 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.4, delay: idx * 0.05 }}
+                className="group relative overflow-hidden rounded-xl border border-zinc-850 bg-[#0c0c0d] p-6 hover:border-accent/25 hover:-translate-y-0.5 transition-all duration-300 flex flex-col justify-between h-full"
+              >
+                <div>
+                  <div className="flex items-center justify-between gap-4">
+                    <span className="text-[10px] font-bold text-accent uppercase tracking-wider bg-accent-glow px-2.5 py-0.5 rounded border border-accent/10">
+                      {project.category}
+                    </span>
+                    <span className="text-[10px] text-foreground-muted font-mono">
+                      {project.techStack.slice(0, 2).join(" · ")}
+                    </span>
+                  </div>
+                  <h3 className="mt-4 font-display text-base font-bold text-foreground group-hover:text-accent transition-colors">
+                    {project.name}
+                  </h3>
+                  <p className="mt-2.5 text-xs text-foreground-muted leading-relaxed">
+                    {project.summary}
+                  </p>
+                </div>
+                <div className="mt-6 pt-4 border-t border-zinc-900/50 flex items-center justify-between">
+                  <Link
+                    href={`/projects/${project.slug}`}
+                    className="inline-flex items-center gap-1.5 text-xs font-semibold text-foreground hover:text-accent transition-colors"
+                  >
+                    View Details
+                    <ArrowUpRight className="h-3.5 w-3.5" />
+                  </Link>
                 </div>
               </motion.div>
             ))}

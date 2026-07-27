@@ -25,7 +25,7 @@ export default function Footer() {
               ISHMAEL HARRY-DECKOR
             </Link>
             <p className="text-sm text-foreground-muted leading-relaxed">
-              AI-accelerated frontend builder. Building premium, production-ready web experiences at lightspeed.
+              Web Developer & AI Product Builder. Designing and engineering high-performance web experiences.
             </p>
           </div>
 
@@ -71,7 +71,7 @@ export default function Footer() {
         <div className="mt-12 pt-8 border-t border-zinc-900 flex flex-col sm:flex-row sm:justify-between items-center gap-4 text-xs text-foreground-muted">
           <p>© {new Date().getFullYear()} Ishmael Harry-Deckor. All rights reserved.</p>
           <p className="flex items-center gap-1.5">
-            Designed & Built with <span className="text-accent">●</span> AI Acceleration
+            Designed & Built with <span className="text-accent">●</span> Technical Precision
           </p>
         </div>
       </div>

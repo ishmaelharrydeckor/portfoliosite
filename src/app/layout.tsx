@@ -16,21 +16,21 @@ const outfit = Outfit({
 
 export const metadata: Metadata = {
   title: {
-    default: "Ishmael Harry-Deckor | AI-Accelerated Frontend Developer",
+    default: "Ishmael Harry-Deckor | Web Developer & AI Product Builder",
     template: "%s | Ishmael Harry-Deckor"
   },
-  description: "Ishmael Harry-Deckor builds fast, premium websites by combining serious technical training with AI as a genuine engineering tool.",
+  description: "Portfolio of Ishmael Harry-Deckor, building premium, high-performance web experiences that combine thoughtful design with modern engineering.",
   openGraph: {
-    title: "Ishmael Harry-Deckor | AI-Accelerated Frontend Developer",
-    description: "Sleek, high-converting websites built at agency standards with AI speed and engineering precision.",
+    title: "Ishmael Harry-Deckor | Web Developer & AI Product Builder",
+    description: "Sleek, high-converting websites built to premium standards with technical depth and modern AI workflows.",
     url: "https://ishmaelharrydeckor.dev",
     siteName: "Ishmael Harry-Deckor Portfolio",
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Ishmael Harry-Deckor | AI-Accelerated Frontend Developer",
-    description: "Sleek, high-converting websites built at agency standards with AI speed and engineering precision.",
+    title: "Ishmael Harry-Deckor | Web Developer & AI Product Builder",
+    description: "Sleek, high-converting websites built to premium standards with technical depth and modern AI workflows.",
   }
 };
 
