@@ -53,7 +53,7 @@ export default function AboutPage() {
             {/* Verbatim Bio Paragraphs */}
             <div className="font-sans text-base text-foreground-muted leading-relaxed space-y-6">
               <p>
-                I'm Ishmael Harry-Deckor, a software developer and the founder of Sena Academy, where we're helping the next generation of builders learn AI and software development by creating real projects—not just watching tutorials.
+                I'm Ishmael Harry-Deckor, a software developer and the founder of Sena Academy, where we're helping the next generation of builders learn AI and software development by creating real projects—not just watching tutorials. To power this vision, I personally engineered our custom, live <Link href="/projects/sena-academy-lms" className="text-accent hover:underline font-semibold">Sena Academy LMS</Link> platform from the ground up, serving as the core infrastructure for our student hub.
               </p>
               <p>
                 I build modern, high-performance web applications that combine thoughtful design with AI-powered development workflows. To me, AI isn't a shortcut—it's a productivity multiplier that allows me to build faster while maintaining quality.
