@@ -28,7 +28,7 @@ export default function ProjectsPage() {
             Selected Works
           </p>
           <p className="mt-4 text-base text-foreground-muted leading-relaxed">
-            Explore 12 real-world sites built using AI-accelerated frontend systems. From data-heavy analytics dashboards to high-conversion waitlists, each project highlights design precision and speed.
+            Explore 16 real-world sites built using AI-accelerated frontend systems. From data-heavy analytics dashboards to high-conversion waitlists, each project highlights design precision and speed.
           </p>
         </div>
 

@@ -16,7 +16,7 @@ export const projects: Project[] = [
     slug: "ember-and-oak",
     name: "Ember & Oak",
     url: "https://restaurant-pi-lemon.vercel.app/",
-    category: "Hospitality / Visual Showcase",
+    category: "Booking & Portal",
     summary: "A premium, moody visual showcase and scroll-scrubbed interactive landing experience built for a high-end fictional fine-dining restaurant.",
     problem: "Hospitality websites often look generic and fail to communicate the premium craftsmanship, mood, and unhurried pacing of an upscale dining brand.",
     approach: "Crafted a dark, high-contrast serif design system paired with an Apple-style scroll-scrubbed hero using preloaded image sequences rendered on a canvas for stutter-free performance.",
@@ -43,7 +43,7 @@ export const projects: Project[] = [
     category: "Booking & Portal",
     summary: "An intuitive guest check-in and experience management portal designed to streamline onboarding and hospitality communication.",
     problem: "Traditional hospitality check-in flows rely on physical paperwork or cumbersome email threads, creating friction and delay during guest arrivals.",
-    approach: "Designed a clean, mobile-first portal with simple forms, digital check-in flows, and instant verification updates to guide users step-by-step.",
+    approach: "Designed a mobile-first portal with simple forms, digital check-in flows, and instant verification updates to guide users step-by-step.",
     outcome: "Eliminated check-in delays entirely, creating a self-service entry flow that guests can access easily on their smartphones before arrival.",
     techStack: ["React", "Tailwind CSS", "TypeScript", "GSAP"],
     isFeatured: false
@@ -58,7 +58,7 @@ export const projects: Project[] = [
     approach: "Structured a dashboard layout with visual milestone tracking, clear course categorizations, and smooth navigation animations using Framer Motion.",
     outcome: "Delivered an appealing educational dashboard that visualizes course progression cleanly, encouraging students to stay on track.",
     techStack: ["Next.js", "Tailwind CSS", "TypeScript", "Framer Motion"],
-    isFeatured: true
+    isFeatured: false
   },
   {
     slug: "sena-waitlist",
@@ -94,7 +94,7 @@ export const projects: Project[] = [
     approach: "Engineered a grid-based dashboard with modular card displays, dynamic charts, and asynchronous status queries.",
     outcome: "Provided administrators with a central control panel that summarizes sales figures and user growth in real-time.",
     techStack: ["React", "Tailwind CSS", "Recharts", "TypeScript"],
-    isFeatured: true
+    isFeatured: false
   },
   {
     slug: "ksp",
@@ -166,6 +166,42 @@ export const projects: Project[] = [
     approach: "Engineered a professional dashboard displaying key performance metrics (Win Rate, Profit Factor, Net P&L) using custom charts and real-time feed updates.",
     outcome: "Enabled traders to diagnose their strategies and view AI-assisted insights based on actual transaction histories.",
     techStack: ["Next.js", "Tailwind CSS", "Recharts", "TypeScript", "Framer Motion"],
+    isFeatured: false
+  },
+  {
+    slug: "aether-studio",
+    name: "Aether Studio",
+    url: "https://boutique-two-silk.vercel.app/",
+    category: "Booking & Portal",
+    summary: "A premium boutique creative and technology agency website showcasing experimental web builds.",
+    problem: "Creative agencies need a digital presence that proves their layout design capabilities and technical mastery in real-time, not just in bullet points.",
+    approach: "Structured a high-contrast agency page highlighting past case studies, core capability descriptions, and mouse-displacement glow vectors.",
+    outcome: "Established a highly credible, taste-driven studio hub that validates engineering precision and aesthetic command to prospective enterprise clients.",
+    techStack: ["Next.js", "Tailwind CSS", "TypeScript", "Framer Motion", "GSAP"],
+    isFeatured: true
+  },
+  {
+    slug: "aura-audio",
+    name: "AURA Audio",
+    url: "https://aura-audio-1krb.vercel.app/",
+    category: "Waitlist & Landing",
+    summary: "A premium, Scandinavian-inspired wireless audio product showcase focusing on multi-directional sound engineering.",
+    problem: "Hardware landing pages often fail to represent the spatial quality and material craftsmanship of high-end consumer electronics through flat design.",
+    approach: "Designed a minimalist visual showcase emphasizing oak and aluminum elements, paired with fluid scroll entrances and clear acoustic specifications grids.",
+    outcome: "Delivered an elegant product display page that successfully builds brand positioning, converting visitor curiosity into pre-orders.",
+    techStack: ["Next.js", "Tailwind CSS", "TypeScript", "GSAP"],
+    isFeatured: true
+  },
+  {
+    slug: "gym-livid",
+    name: "Kinetic Lab",
+    url: "https://gym-livid-five.vercel.app/",
+    category: "Booking & Portal",
+    summary: "A high-intensity boutique fitness training lab showcase utilizing skewed layout grids and dark athletic branding.",
+    problem: "Fitness websites often feel generic, utilizing low-contrast templates that fail to capture the intense energy and discipline of an athletic facility.",
+    approach: "Engineered a dynamic athletic brand interface featuring bold italics, high-contrast toxic lime highlights, and interactive scheduling grids.",
+    outcome: "Created a powerful studio landing experience that drives visitor bookings for free metabolic conditioning and Olympic lifting trial passes.",
+    techStack: ["Next.js", "Tailwind CSS", "TypeScript", "GSAP"],
     isFeatured: true
   }
 ];
