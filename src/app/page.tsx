@@ -149,7 +149,7 @@ export default function Home() {
               href="/projects"
               className="group flex items-center gap-1.5 text-sm font-semibold text-accent hover:text-accent/80 transition-colors"
             >
-              View all 16 projects
+              View all {projects.length} projects
               <ArrowUpRight className="h-4 w-4 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
             </Link>
           </div>
@@ -177,10 +177,21 @@ export default function Home() {
                 </div>
 
                 <div className="p-8 flex flex-col flex-grow">
-                  <div className="flex items-center justify-between">
-                    <span className="text-xs font-medium text-accent uppercase tracking-wider bg-accent-glow px-2.5 py-1 rounded">
-                      {project.category}
-                    </span>
+                  <div className="flex flex-wrap items-center justify-between gap-3">
+                    <div className="flex flex-wrap items-center gap-2">
+                      <span className="text-xs font-medium text-accent uppercase tracking-wider bg-accent-glow px-2.5 py-1 rounded">
+                        {project.category}
+                      </span>
+                      {project.projectType === "live-client" ? (
+                        <span className="text-[10px] font-semibold tracking-wider text-emerald-400 bg-emerald-500/10 border border-emerald-500/25 px-2 py-0.5 rounded uppercase">
+                          Live Client Work
+                        </span>
+                      ) : (
+                        <span className="text-[10px] font-semibold tracking-wider text-zinc-400 bg-zinc-900 border border-zinc-800 px-2 py-0.5 rounded uppercase">
+                          Concept Build
+                        </span>
+                      )}
+                    </div>
                     <span className="text-xs text-foreground-muted">
                       {project.techStack.slice(0, 3).join(" · ")}
                     </span>
@@ -233,10 +244,21 @@ export default function Home() {
                 className="group relative overflow-hidden rounded-xl border border-zinc-850 bg-[#0c0c0d] p-6 hover:border-accent/25 hover:-translate-y-0.5 transition-all duration-300 flex flex-col justify-between h-full"
               >
                 <div>
-                  <div className="flex items-center justify-between gap-4">
-                    <span className="text-[10px] font-bold text-accent uppercase tracking-wider bg-accent-glow px-2.5 py-0.5 rounded border border-accent/10">
-                      {project.category}
-                    </span>
+                  <div className="flex flex-wrap items-center justify-between gap-3">
+                    <div className="flex flex-wrap items-center gap-1.5">
+                      <span className="text-[10px] font-bold text-accent uppercase tracking-wider bg-accent-glow px-2 py-0.5 rounded border border-accent/10">
+                        {project.category}
+                      </span>
+                      {project.projectType === "live-client" ? (
+                        <span className="text-[9px] font-bold tracking-wider text-emerald-400 bg-emerald-500/10 border border-emerald-500/25 px-1.5 py-0.5 rounded uppercase">
+                          Live Client
+                        </span>
+                      ) : (
+                        <span className="text-[9px] font-bold tracking-wider text-zinc-400 bg-zinc-900 border border-zinc-800 px-1.5 py-0.5 rounded uppercase">
+                          Concept
+                        </span>
+                      )}
+                    </div>
                     <span className="text-[10px] text-foreground-muted font-mono">
                       {project.techStack.slice(0, 2).join(" · ")}
                     </span>

@@ -60,10 +60,21 @@ export default function ProjectDetailPage({ params }: PageProps) {
             {/* Sidebar Column (Metadata) */}
             <div className="flex flex-col gap-8 lg:sticky lg:top-24 h-fit">
               <div>
-                <span className="text-xs font-bold text-accent uppercase tracking-widest bg-accent-glow px-3 py-1 rounded border border-accent/20">
-                  {project.category}
-                </span>
-                <h1 className="mt-6 font-display text-3xl font-extrabold tracking-tight text-foreground sm:text-4xl leading-tight">
+                <div className="flex flex-wrap items-center gap-2 mb-4">
+                  <span className="text-xs font-bold text-accent uppercase tracking-widest bg-accent-glow px-3 py-1 rounded border border-accent/20">
+                    {project.category}
+                  </span>
+                  {project.projectType === "live-client" ? (
+                    <span className="text-xs font-bold tracking-wider text-emerald-400 bg-emerald-500/10 border border-emerald-500/25 px-2.5 py-1 rounded uppercase">
+                      Live Client Work
+                    </span>
+                  ) : (
+                    <span className="text-xs font-bold tracking-wider text-zinc-400 bg-zinc-900 border border-zinc-800 px-2.5 py-1 rounded uppercase">
+                      Concept Build
+                    </span>
+                  )}
+                </div>
+                <h1 className="font-display text-3xl font-extrabold tracking-tight text-foreground sm:text-4xl leading-tight">
                   {project.name}
                 </h1>
               </div>

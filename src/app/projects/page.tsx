@@ -8,13 +8,26 @@ import { ArrowUpRight } from "lucide-react";
 import { projects } from "@/data/projects";
 
 export default function ProjectsPage() {
-  const [activeCategory, setActiveCategory] = useState("All");
+  const [activeFilter, setActiveFilter] = useState("All");
 
-  const categories = ["All", "SaaS Dashboard", "Education & LMS", "Booking & Portal", "Waitlist & Landing"];
+  const filterOptions = [
+    "All",
+    "Live Client Work",
+    "Concept Builds",
+    "SaaS Dashboard",
+    "Education & LMS",
+    "Booking & Portal",
+    "Waitlist & Landing",
+    "Real Estate & Architecture",
+    "Personal Brand & Advisory"
+  ];
 
-  const filteredProjects = activeCategory === "All"
-    ? projects
-    : projects.filter(p => p.category === activeCategory);
+  const filteredProjects = projects.filter((p) => {
+    if (activeFilter === "All") return true;
+    if (activeFilter === "Live Client Work") return p.projectType === "live-client";
+    if (activeFilter === "Concept Builds") return p.projectType === "concept";
+    return p.category === activeFilter;
+  });
 
   return (
     <div className="min-h-screen bg-background py-24 px-6 lg:px-8">
@@ -28,23 +41,23 @@ export default function ProjectsPage() {
             Selected Works
           </p>
           <p className="mt-4 text-base text-foreground-muted leading-relaxed">
-            Explore 16 real-world sites built using AI-accelerated frontend systems. From data-heavy analytics dashboards to high-conversion waitlists, each project highlights design precision and speed.
+            Explore {projects.length} live client productions and self-directed concept showcases built with high-velocity frontend architecture. Filter by client deployment or explore by product vertical.
           </p>
         </div>
 
         {/* Filter Tabs */}
         <div className="flex flex-wrap items-center gap-2 mb-12 pb-4 border-b border-zinc-900/60">
-          {categories.map((category) => (
+          {filterOptions.map((filter) => (
             <button
-              key={category}
-              onClick={() => setActiveCategory(category)}
+              key={filter}
+              onClick={() => setActiveFilter(filter)}
               className={`rounded-lg px-4 py-2 text-xs font-semibold uppercase tracking-wider transition-all duration-300 border ${
-                activeCategory === category
-                  ? "bg-accent text-zinc-950 border-accent"
+                activeFilter === filter
+                  ? "bg-accent text-zinc-950 border-accent font-bold"
                   : "bg-zinc-900/40 text-foreground-muted border-zinc-800 hover:border-accent/40 hover:text-foreground"
               }`}
             >
-              {category}
+              {filter}
             </button>
           ))}
         </div>
@@ -79,12 +92,23 @@ export default function ProjectsPage() {
                 </div>
 
                 <div className="p-6 flex flex-col flex-grow">
-                  <div className="flex items-center justify-between gap-4">
-                    <span className="text-[10px] font-bold text-accent uppercase tracking-wider bg-accent-glow px-2 py-0.5 rounded border border-accent/15">
-                      {project.category}
-                    </span>
+                  <div className="flex flex-wrap items-center justify-between gap-3">
+                    <div className="flex flex-wrap items-center gap-1.5">
+                      <span className="text-[10px] font-bold text-accent uppercase tracking-wider bg-accent-glow px-2 py-0.5 rounded border border-accent/15">
+                        {project.category}
+                      </span>
+                      {project.projectType === "live-client" ? (
+                        <span className="text-[9px] font-bold tracking-wider text-emerald-400 bg-emerald-500/10 border border-emerald-500/25 px-1.5 py-0.5 rounded uppercase">
+                          Live Client
+                        </span>
+                      ) : (
+                        <span className="text-[9px] font-bold tracking-wider text-zinc-400 bg-zinc-900 border border-zinc-800 px-1.5 py-0.5 rounded uppercase">
+                          Concept
+                        </span>
+                      )}
+                    </div>
                     <span className="text-[10px] text-foreground-muted truncate">
-                      {project.techStack.join(" · ")}
+                      {project.techStack.slice(0, 2).join(" · ")}
                     </span>
                   </div>
                   
