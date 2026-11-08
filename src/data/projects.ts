@@ -3,7 +3,8 @@ export type ProjectType = "live-client" | "concept" | "in-progress";
 export interface Project {
   slug: string;
   name: string;
-  url: string;
+  /** Live URL. Leave out for projects that are not hosted yet. */
+  url?: string;
   category: string;
   projectType: ProjectType;
   summary: string;
@@ -66,6 +67,18 @@ export const projects: Project[] = [
     approach: "Building a full marketplace: talent profiles, job posting and applications across 12 categories, ranked applicants for companies, and contract workrooms for milestone-based collaboration. Input is validated server-side, bots are filtered at sign-up, and the core flows are covered by automated tests.",
     outcome: "In progress. The marketplace core (profiles, roles, applications and workrooms) is built and live as a prototype. Payments, identity verification and email are still being completed before it opens to real users.",
     techStack: ["Next.js", "TypeScript", "Supabase", "Tailwind CSS"],
+    showcase: true
+  },
+  {
+    slug: "truecraft",
+    name: "TrueCraft",
+    category: "Web Agency",
+    projectType: "in-progress",
+    summary: "The website for TrueCraft, a web design and development studio: services, selected work, process and pricing, with a looping 3D hero. Built and ready, not hosted yet.",
+    problem: "A new web studio needed a credible home that explains what it does, shows its work and gives visitors a clear way to start a project.",
+    approach: "Designed and built a dark, editorial single-page site with a hero video, services, a selected-work gallery linking to case-study pages, process, pricing and a contact form. It is plain HTML, CSS and JavaScript with no framework, and includes fallbacks for video and Safari.",
+    outcome: "A finished build that is not hosted yet, so there is no live link. Screenshots are from the local build.",
+    techStack: ["HTML", "CSS", "JavaScript"],
     showcase: true
   },
   {

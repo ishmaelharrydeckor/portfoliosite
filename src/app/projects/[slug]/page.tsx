@@ -45,7 +45,7 @@ export default async function ProjectDetailPage({ params }: PageProps) {
 
           <div className="mt-10 flex flex-wrap gap-2">
             <Tag tone={project.projectType === "concept" ? "outline" : "accent"}>
-              {{ "live-client": "Live client work", "in-progress": "Client work · in progress", concept: "Concept build" }[project.projectType]}
+              {{ "live-client": "Live client work", "in-progress": "In progress", concept: "Concept build" }[project.projectType]}
             </Tag>
             <Tag>{project.category}</Tag>
           </div>
@@ -54,15 +54,22 @@ export default async function ProjectDetailPage({ params }: PageProps) {
           </h1>
           <p className="mt-6 max-w-2xl text-xl leading-relaxed text-body">{project.summary}</p>
 
-          <a
-            href={project.url}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="group mt-10 inline-flex items-center gap-3 rounded-md bg-accent px-6 py-4 text-base font-bold tracking-tight text-ink transition-colors hover:bg-ink hover:text-accent"
-          >
-            Visit live site
-            <ExternalLink className="h-5 w-5" aria-hidden="true" />
-          </a>
+          {!project.url && (
+            <p className="mt-10 inline-block rounded-md border border-ink/20 px-4 py-3 text-base text-body">
+              Not hosted yet. Screenshots are from the local build.
+            </p>
+          )}
+          {project.url && (
+            <a
+              href={project.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group mt-10 inline-flex items-center gap-3 rounded-md bg-accent px-6 py-4 text-base font-bold tracking-tight text-ink transition-colors hover:bg-ink hover:text-accent"
+            >
+              Visit live site
+              <ExternalLink className="h-5 w-5" aria-hidden="true" />
+            </a>
+          )}
 
           <div className="relative mt-16 aspect-[16/10] w-full overflow-hidden rounded-md bg-ink-soft">
             <Image

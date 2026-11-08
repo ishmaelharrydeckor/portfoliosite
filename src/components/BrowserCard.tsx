@@ -20,7 +20,7 @@ export default function BrowserCard({ project: p }: { project: Project }) {
             <i className="h-2.5 w-2.5 rounded-full bg-ink/20" />
             <i className="h-2.5 w-2.5 rounded-full bg-ink/20" />
           </span>
-          <span className="min-w-0 flex-1 truncate rounded-md bg-white px-3 py-1 text-xs text-body">{host(p.url)}</span>
+          <span className="min-w-0 flex-1 truncate rounded-md bg-white px-3 py-1 text-xs text-body">{p.url ? host(p.url) : "Not hosted yet"}</span>
           {status === "live-client" ? (
             <span className="flex shrink-0 items-center gap-1.5 text-xs font-bold text-emerald-700">
               <i className="h-2 w-2 rounded-full bg-emerald-500 motion-safe:animate-pulse" aria-hidden="true" /> Live
