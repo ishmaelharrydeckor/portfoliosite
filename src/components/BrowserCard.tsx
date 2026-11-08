@@ -10,7 +10,7 @@ const host = (url: string) => url.replace(/^https?:\/\//, "").replace(/\/$/, "")
  * users who prefer reduced motion).
  */
 export default function BrowserCard({ project: p }: { project: Project }) {
-  const live = p.projectType === "live-client";
+  const status = p.projectType;
   return (
     <Link href={`/projects/${p.slug}`} className="group block" aria-label={`${p.name}: read the case study`}>
       <div className="overflow-hidden rounded-xl bg-white shadow-[0_24px_50px_-30px_rgba(0,0,0,0.45)] ring-1 ring-ink/10 transition-shadow duration-300 group-hover:shadow-[0_30px_60px_-28px_rgba(0,0,0,0.55)]">
@@ -21,9 +21,13 @@ export default function BrowserCard({ project: p }: { project: Project }) {
             <i className="h-2.5 w-2.5 rounded-full bg-ink/20" />
           </span>
           <span className="min-w-0 flex-1 truncate rounded-md bg-white px-3 py-1 text-xs text-body">{host(p.url)}</span>
-          {live ? (
+          {status === "live-client" ? (
             <span className="flex shrink-0 items-center gap-1.5 text-xs font-bold text-emerald-700">
               <i className="h-2 w-2 rounded-full bg-emerald-500 motion-safe:animate-pulse" aria-hidden="true" /> Live
+            </span>
+          ) : status === "in-progress" ? (
+            <span className="flex shrink-0 items-center gap-1.5 text-xs font-bold text-amber-700">
+              <i className="h-2 w-2 rounded-full bg-amber-500" aria-hidden="true" /> In progress
             </span>
           ) : (
             <span className="shrink-0 text-xs font-bold text-body/70">Concept</span>

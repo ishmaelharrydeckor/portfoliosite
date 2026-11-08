@@ -7,7 +7,7 @@ import ContactSection from "@/components/ContactSection";
 import { showcaseProjects as projects, totalCount } from "@/data/projects";
 
 const categories = Array.from(new Set(projects.map((p) => p.category)));
-const filters = ["All", "Live Client Work", "Concept Builds", ...categories];
+const filters = ["All", "Live Client Work", "In Progress", "Concept Builds", ...categories];
 
 export default function ProjectsPage() {
   const [active, setActive] = useState("All");
@@ -15,6 +15,7 @@ export default function ProjectsPage() {
   const visible = projects.filter((p) => {
     if (active === "All") return true;
     if (active === "Live Client Work") return p.projectType === "live-client";
+    if (active === "In Progress") return p.projectType === "in-progress";
     if (active === "Concept Builds") return p.projectType === "concept";
     return p.category === active;
   });

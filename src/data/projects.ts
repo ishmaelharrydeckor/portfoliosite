@@ -1,4 +1,4 @@
-export type ProjectType = "live-client" | "concept";
+export type ProjectType = "live-client" | "concept" | "in-progress";
 
 export interface Project {
   slug: string;
@@ -53,6 +53,19 @@ export const projects: Project[] = [
     approach: "Engineered a Next.js 16 multi-page architecture with deep charcoal and bone cream contrast styling, dynamic syllabus route pages, and interactive FAQ modules.",
     outcome: "Delivered an authoritative personal brand platform that positions Paa Kwesi Folson as a top-tier B2B consultant and keynote speaker.",
     techStack: ["Next.js", "Tailwind CSS", "TypeScript", "GSAP", "Framer Motion"],
+    showcase: true
+  },
+  {
+    slug: "remotework-africa",
+    name: "RemoteWork Africa",
+    url: "https://rwa-tawny.vercel.app/",
+    category: "Marketplace",
+    projectType: "in-progress",
+    summary: "A remote-work marketplace connecting African professionals with companies hiring remotely, with job categories, applications and shared workrooms. Still in build.",
+    problem: "African professionals need a direct way to reach companies hiring remotely, and companies need a simple way to review applicants and agree work in milestones.",
+    approach: "Building a full marketplace: talent profiles, job posting and applications across 12 categories, ranked applicants for companies, and contract workrooms for milestone-based collaboration. Input is validated server-side, bots are filtered at sign-up, and the core flows are covered by automated tests.",
+    outcome: "In progress. The marketplace core (profiles, roles, applications and workrooms) is built and live as a prototype. Payments, identity verification and email are still being completed before it opens to real users.",
+    techStack: ["Next.js", "TypeScript", "Supabase", "Tailwind CSS"],
     showcase: true
   },
   {

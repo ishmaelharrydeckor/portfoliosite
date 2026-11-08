@@ -44,8 +44,8 @@ export default async function ProjectDetailPage({ params }: PageProps) {
           </Link>
 
           <div className="mt-10 flex flex-wrap gap-2">
-            <Tag tone={project.projectType === "live-client" ? "accent" : "outline"}>
-              {project.projectType === "live-client" ? "Live client work" : "Concept build"}
+            <Tag tone={project.projectType === "concept" ? "outline" : "accent"}>
+              {{ "live-client": "Live client work", "in-progress": "Client work · in progress", concept: "Concept build" }[project.projectType]}
             </Tag>
             <Tag>{project.category}</Tag>
           </div>
