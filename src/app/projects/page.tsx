@@ -6,7 +6,7 @@ import Image from "next/image";
 import { ArrowUpRight } from "lucide-react";
 import { Tag, Eyebrow } from "@/components/ui";
 import ContactSection from "@/components/ContactSection";
-import { projects } from "@/data/projects";
+import { showcaseProjects as projects, totalCount } from "@/data/projects";
 
 const categories = Array.from(new Set(projects.map((p) => p.category)));
 const filters = ["All", "Live Client Work", "Concept Builds", ...categories];
@@ -30,8 +30,7 @@ export default function ProjectsPage() {
             Selected <span className="serif-accent">work</span>
           </h1>
           <p className="mt-6 max-w-xl text-xl leading-relaxed text-body">
-            {projects.length} websites and web apps, from live client work to
-            self-directed concept builds.
+            {`A selection of ${projects.length} from the ${totalCount} websites and web apps I've built, across live client work and concept builds.`}
           </p>
 
           <div className="mt-12 flex flex-wrap gap-2" role="group" aria-label="Filter projects">

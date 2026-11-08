@@ -11,7 +11,8 @@ export interface Project {
   approach: string;
   outcome: string;
   techStack: string[];
-  isFeatured: boolean;
+  /** Shown on the home page and the Projects page. Hidden projects still count in the totals. */
+  showcase: boolean;
 }
 
 export const projects: Project[] = [
@@ -20,13 +21,13 @@ export const projects: Project[] = [
     name: "Solara Luxury Residences",
     url: "https://solara-three-gamma.vercel.app/",
     category: "Real Estate & Architecture",
-    projectType: "live-client",
-    summary: "A high-end residential developer web experience featuring an interactive floor finder, unit filtering, and investor ROI calculation simulator.",
+    projectType: "concept",
+    summary: "A self-directed concept for a high-end residential developer, featuring an interactive floor finder, unit filtering, and investor ROI calculation simulator.",
     problem: "Luxury property buyers and diaspora investors need dynamic unit exploration and transparent yield simulations without waiting on back-and-forth sales calls.",
     approach: "Engineered a Next.js interactive development portal with real-time floorplan filtering, 3D architectural showcases, and a dynamic ROI investment calculator.",
-    outcome: "Streamlined off-plan property discovery and qualified high-intent investor inquiries directly through interactive unit calculators.",
+    outcome: "A concept build showing how an off-plan developer could let buyers explore units and model returns on their own, instead of waiting on a sales call.",
     techStack: ["Next.js", "Tailwind CSS", "TypeScript", "Framer Motion"],
-    isFeatured: true
+    showcase: true
   },
   {
     slug: "paa-kwesi-folson",
@@ -39,7 +40,7 @@ export const projects: Project[] = [
     approach: "Engineered a Next.js 16 multi-page architecture with deep charcoal and bone cream contrast styling, dynamic syllabus route pages, and interactive FAQ modules.",
     outcome: "Delivered an authoritative personal brand platform that positions Paa Kwesi Folson as a top-tier B2B consultant and keynote speaker.",
     techStack: ["Next.js", "Tailwind CSS", "TypeScript", "GSAP", "Framer Motion"],
-    isFeatured: true
+    showcase: true
   },
   {
     slug: "sammy",
@@ -52,7 +53,7 @@ export const projects: Project[] = [
     approach: "Built an editorial, high-performance web platform featuring video showcase modules, credential breakdowns, and structured consultation booking flows.",
     outcome: "Established an elevated digital presence that increased consultation booking conversions and unified multimedia thought-leadership.",
     techStack: ["Next.js", "Tailwind CSS", "TypeScript", "Framer Motion"],
-    isFeatured: true
+    showcase: true
   },
   {
     slug: "aether-studio",
@@ -65,7 +66,7 @@ export const projects: Project[] = [
     approach: "Structured a high-contrast agency page highlighting case studies, core capability descriptions, and mouse-displacement glow vectors.",
     outcome: "Created a high-polish concept studio hub that validates engineering precision, 3D canvas rendering, and aesthetic command.",
     techStack: ["Next.js", "Tailwind CSS", "TypeScript", "Framer Motion", "GSAP"],
-    isFeatured: true
+    showcase: false
   },
   {
     slug: "aura-audio",
@@ -78,7 +79,7 @@ export const projects: Project[] = [
     approach: "Designed a minimalist visual showcase emphasizing oak and aluminum elements, paired with fluid scroll entrances and clear acoustic specifications grids.",
     outcome: "Delivered an elegant product display page that successfully builds brand positioning, converting visitor curiosity into pre-orders.",
     techStack: ["Next.js", "Tailwind CSS", "TypeScript", "GSAP", "Framer Motion"],
-    isFeatured: true
+    showcase: true
   },
   {
     slug: "gym-livid",
@@ -91,7 +92,7 @@ export const projects: Project[] = [
     approach: "Engineered a dynamic athletic brand interface featuring bold italics, high-contrast toxic lime highlights, and interactive scheduling grids.",
     outcome: "Created a powerful studio landing experience that drives visitor bookings for free metabolic conditioning and Olympic lifting trial passes.",
     techStack: ["Next.js", "Tailwind CSS", "TypeScript", "GSAP", "Framer Motion"],
-    isFeatured: true
+    showcase: false
   },
   {
     slug: "real-estate-catalog",
@@ -104,7 +105,7 @@ export const projects: Project[] = [
     approach: "Developed a clean, card-based layout featuring client-side filtering, fast search caching, and responsive media optimization for instant page loads.",
     outcome: "Achieved seamless property discovery with intuitive filters, resulting in high user engagement and near-instant load speeds across all screen sizes.",
     techStack: ["Next.js", "Tailwind CSS", "TypeScript", "Framer Motion", "GSAP"],
-    isFeatured: true
+    showcase: true
   },
   {
     slug: "sena-academy-lms",
@@ -117,7 +118,7 @@ export const projects: Project[] = [
     approach: "Designed and built a modular dashboard from scratch. Integrated progress gauges, responsive curriculum lanes, and client-side milestone tracking with optimized loading states to keep students engaged.",
     outcome: "Deployed as the proprietary platform running Sena Academy. It completely replaced third-party platforms, hosting student cohorts and tracking daily project submissions with zero downtime.",
     techStack: ["Next.js", "Tailwind CSS", "TypeScript", "Supabase"],
-    isFeatured: false
+    showcase: false
   },
   {
     slug: "sena-waitlist",
@@ -130,7 +131,7 @@ export const projects: Project[] = [
     approach: "Created a minimalist, lightning-fast landing page with sub-500ms load times. Utilized soft typography, high-contrast inputs, and Framer Motion micro-interactions to focus visitor intent on email capture.",
     outcome: "Successfully captured hundreds of pre-registrations for the initial Sena Academy cohort, maintaining high conversion rates and serving as our launch pad.",
     techStack: ["HTML5", "Vanilla CSS", "JavaScript"],
-    isFeatured: false
+    showcase: false
   },
   {
     slug: "acta-waitlist",
@@ -143,7 +144,7 @@ export const projects: Project[] = [
     approach: "Created a Linear-style landing page with glowing border inputs, clean typography, and a staggered GSAP header entrance.",
     outcome: "Established a professional web presence, securing sign-ups with a conversion-optimized form factor.",
     techStack: ["Next.js", "Tailwind CSS", "TypeScript", "GSAP", "Framer Motion"],
-    isFeatured: false
+    showcase: false
   },
   {
     slug: "smart-attendance-system",
@@ -156,7 +157,7 @@ export const projects: Project[] = [
     approach: "Built a tabular control panel that highlights daily registers, student login statuses, and analytics dashboards.",
     outcome: "Created a functional prototype that digitalizes attendance inputs and compiles instant summary reports.",
     techStack: ["React", "Tailwind CSS", "Vite"],
-    isFeatured: false
+    showcase: false
   },
   {
     slug: "guest-portal",
@@ -169,7 +170,7 @@ export const projects: Project[] = [
     approach: "Designed a mobile-first portal with simple forms, digital check-in flows, and instant verification updates to guide users step-by-step.",
     outcome: "Eliminated check-in delays entirely, creating a self-service entry flow that guests can access easily on their smartphones before arrival.",
     techStack: ["Next.js", "Tailwind CSS", "TypeScript", "SQLite"],
-    isFeatured: false
+    showcase: false
   },
   {
     slug: "ember-and-oak",
@@ -182,7 +183,7 @@ export const projects: Project[] = [
     approach: "Crafted a dark, high-contrast serif design system paired with an Apple-style scroll-scrubbed hero using preloaded image sequences rendered on a canvas for stutter-free performance.",
     outcome: "Delivered a luxurious, Michelin-caliber site with simulated reservations, a masonry atmosphere gallery, and smooth scroll animations.",
     techStack: ["Next.js", "Tailwind CSS", "TypeScript", "GSAP"],
-    isFeatured: true
+    showcase: false
   },
   {
     slug: "ksp",
@@ -195,6 +196,15 @@ export const projects: Project[] = [
     approach: "Combined registration schedules, student verification profiles, and portal links under a single responsive dashboard with tabbed layouts.",
     outcome: "Centralized event onboarding for hundreds of KNUST students, providing instant registration validation.",
     techStack: ["HTML5", "CSS3", "JavaScript"],
-    isFeatured: false
+    showcase: false
   }
 ];
+
+/** Every project I've built, including ones not shown on the site. Used for totals. */
+export const allProjects = projects;
+
+/** The curated set shown on the home page and the Projects page. */
+export const showcaseProjects = projects.filter((p) => p.showcase);
+
+export const totalCount = projects.length;
+export const liveClientCount = projects.filter((p) => p.projectType === "live-client").length;

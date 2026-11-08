@@ -5,13 +5,16 @@ import type { Project } from "@/data/projects";
 /** Wide hero: a tilted wall of project screenshots under a dark overlay. */
 export default function Hero({
   projects,
+  total,
   liveCount,
 }: {
   projects: Project[];
+  total: number;
   liveCount: number;
 }) {
   // Three columns of screenshots; each column is doubled so the drift loops.
-  const pool = projects.slice(0, 9);
+  // Repeat the showcase so the wall is always full, whatever the project count.
+  const pool = Array.from({ length: 9 }, (_, i) => projects[i % projects.length]);
   const columns = [pool.slice(0, 3), pool.slice(3, 6), pool.slice(6, 9)];
 
   return (
@@ -63,7 +66,7 @@ export default function Hero({
         <dl className="mt-16 flex flex-wrap gap-x-12 gap-y-4 border-t border-paper/15 pt-6">
           <div>
             <dt className="text-sm text-paper/60">Projects built</dt>
-            <dd className="text-3xl font-extrabold tracking-tight">{projects.length}</dd>
+            <dd className="text-3xl font-extrabold tracking-tight">{total}</dd>
           </div>
           <div>
             <dt className="text-sm text-paper/60">Live client sites</dt>

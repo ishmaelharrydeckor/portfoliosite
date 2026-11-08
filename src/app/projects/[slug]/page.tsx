@@ -5,7 +5,7 @@ import type { Metadata } from "next";
 import { ArrowLeft, ArrowRight, ExternalLink } from "lucide-react";
 import { Tag, Eyebrow } from "@/components/ui";
 import ContactSection from "@/components/ContactSection";
-import { projects } from "@/data/projects";
+import { showcaseProjects as projects } from "@/data/projects";
 
 interface PageProps {
   params: Promise<{ slug: string }>;

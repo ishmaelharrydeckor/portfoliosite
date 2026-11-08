@@ -1,5 +1,4 @@
 import Image from "next/image";
-import Link from "next/link";
 import type { Metadata } from "next";
 import { Tag, Eyebrow, Button } from "@/components/ui";
 import ContactSection from "@/components/ContactSection";
@@ -37,9 +36,9 @@ export default function AboutPage() {
             <div className="mt-10 space-y-6 text-xl leading-relaxed text-body">
               <p>
                 I&apos;m Ishmael Harry-Deckor, a software developer and the founder of Sena Academy, where we&apos;re helping the next generation of builders learn AI and software development by creating real projects, not just watching tutorials. I engineered our live{" "}
-                <Link href="/projects/sena-academy-lms" className="font-medium text-ink underline underline-offset-4">
+                <a href="https://sena-academy-lms-ten.vercel.app/" target="_blank" rel="noopener noreferrer" className="font-medium text-ink underline underline-offset-4">
                   Sena Academy LMS
-                </Link>{" "}
+                </a>{" "}
                 from the ground up as the core of our student hub.
               </p>
               <p>

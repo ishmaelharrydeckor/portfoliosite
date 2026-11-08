@@ -8,7 +8,7 @@ import Hero from "@/components/Hero";
 import ProjectGrid from "@/components/ProjectGrid";
 import ProjectStrip from "@/components/ProjectStrip";
 import ContactSection from "@/components/ContactSection";
-import { projects } from "@/data/projects";
+import { showcaseProjects, totalCount, liveClientCount } from "@/data/projects";
 import { stack } from "@/data/site";
 
 const services = [
@@ -79,14 +79,14 @@ const testimonials = [
 ];
 
 export default function Home() {
-  const featured = projects.filter((p) => p.isFeatured);
-  const others = projects.filter((p) => !p.isFeatured);
-  const liveCount = projects.filter((p) => p.projectType === "live-client").length;
+  // Only the curated showcase is displayed; totals count everything I've built.
+  const featured = showcaseProjects.slice(0, 6);
+  const others = showcaseProjects.slice(6);
   const h2 = "mt-5 text-4xl font-extrabold leading-[1.05] tracking-[-0.035em] sm:text-6xl";
 
   return (
     <>
-      <Hero projects={featured.length >= 9 ? featured : projects} liveCount={liveCount} />
+      <Hero projects={showcaseProjects} total={totalCount} liveCount={liveClientCount} />
 
       {/* STACK MARQUEE */}
       <section aria-label="Technologies I build with" className="border-b border-ink/15 py-8">
@@ -180,11 +180,15 @@ export default function Home() {
         </div>
 
         <div className="pb-24 pt-24">
-          <h3 className="mx-auto mb-10 max-w-[1440px] px-6 text-2xl font-extrabold tracking-tight lg:px-9">
-            More projects
-          </h3>
-          <ProjectStrip projects={others} />
-          <div className="mx-auto mt-14 max-w-[1440px] px-6 lg:px-9">
+          {others.length > 0 && (
+            <>
+              <h3 className="mx-auto mb-10 max-w-[1440px] px-6 text-2xl font-extrabold tracking-tight lg:px-9">
+                More projects
+              </h3>
+              <ProjectStrip projects={others} />
+            </>
+          )}
+          <div className={`mx-auto max-w-[1440px] px-6 lg:px-9 ${others.length > 0 ? "mt-14" : ""}`}>
             <Button href="/projects">View all projects</Button>
           </div>
         </div>
