@@ -5,9 +5,15 @@ export const site = {
   linkedin: "https://www.linkedin.com/in/ishmaelharrydeckor/",
   github: "https://github.com/ishmaelharrydeckor",
   twitter: "https://x.com/DeckorHarry",
+  // Set NEXT_PUBLIC_WHATSAPP (digits with country code, e.g. 233XXXXXXXXX) in the host's
+  // environment settings. It is deliberately not committed to this public repo.
+  whatsapp: (process.env.NEXT_PUBLIC_WHATSAPP ?? "").replace(/\D/g, ""),
 };
 
-// Tech shown in the marquee under the hero. Swap for client logos once available.
+export const whatsappLink = site.whatsapp
+  ? `https://wa.me/${site.whatsapp}?text=${encodeURIComponent("Hi Ishmael, I'd like a website for my business.")}`
+  : null;
+
 export const stack = [
   "Next.js",
   "React",

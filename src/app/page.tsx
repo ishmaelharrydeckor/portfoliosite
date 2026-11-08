@@ -1,50 +1,46 @@
 import Image from "next/image";
 import Link from "next/link";
 import { Quote } from "lucide-react";
-import { Eyebrow, Button } from "@/components/ui";
+import { Eyebrow, Button, Mark } from "@/components/ui";
 import Reveal from "@/components/Reveal";
 import Accordion from "@/components/Accordion";
-import Hero from "@/components/Hero";
-import ProjectGrid from "@/components/ProjectGrid";
-import ProjectStrip from "@/components/ProjectStrip";
+import BrowserCard from "@/components/BrowserCard";
+import HeroFrame from "@/components/HeroFrame";
+import LocalTime from "@/components/LocalTime";
+import ServicesShowcase from "@/components/ServicesShowcase";
 import ContactSection from "@/components/ContactSection";
 import { showcaseProjects, totalCount, liveClientCount } from "@/data/projects";
-import { stack } from "@/data/site";
+import { experience } from "@/data/experience";
+import { whatsappLink } from "@/data/site";
 
 const services = [
   {
     title: "Business websites",
     body: "Multi-page sites for businesses and personal brands. Clear messaging, fast loading, and a layout that turns visitors into enquiries.",
+    slug: "sammy",
+    projectName: "Samuel Mensah Advisory",
+    host: "sammy-drab.vercel.app",
   },
   {
     title: "Landing pages & waitlists",
-    body: "Focused single-page launches built to do one job: collect sign-ups, bookings or leads, and look credible while doing it.",
+    body: "Focused pages built to do one job: collect sign-ups, bookings or leads, and look credible while doing it.",
+    slug: "estateguard",
+    projectName: "EstateGuard",
+    host: "estateguard-azure.vercel.app",
   },
   {
     title: "Web apps & portals",
-    body: "Dashboards, learning platforms, booking flows and student or guest portals, when your business needs more than a brochure site.",
+    body: "Dashboards, booking flows and portals, for when your business needs more than a brochure site.",
+    slug: "checin",
+    projectName: "ChecIN",
+    host: "checin-6982.vercel.app",
   },
   {
     title: "Redesigns & rebuilds",
     body: "Already have a site that feels dated or slow? I rebuild it with a sharper look, better structure and modern performance.",
-  },
-];
-
-const process = [
-  {
-    n: "01",
-    title: "Discover",
-    body: "We talk through your business, your customers and what the site needs to achieve, then agree scope and timeline.",
-  },
-  {
-    n: "02",
-    title: "Design & build",
-    body: "I design and build together in Next.js, sharing a live preview as it takes shape so you see progress, not mock-ups.",
-  },
-  {
-    n: "03",
-    title: "Launch & support",
-    body: "The site is tested on phone and desktop, deployed, and handed over. I stay available for changes afterwards.",
+    slug: "paa-kwesi-folson",
+    projectName: "Paa Kwesi Folson",
+    host: "pkf-pink.vercel.app",
   },
 ];
 
@@ -71,195 +67,165 @@ const faqs = [
   },
 ];
 
-// Placeholders until real client feedback is available.
-const testimonials = [
-  { quote: "Your first client testimonial will go here.", name: "Client name", role: "Company" },
-  { quote: "A short quote about the project and the result.", name: "Client name", role: "Company" },
-  { quote: "Another happy client, swapped in when you have one.", name: "Client name", role: "Company" },
-];
-
 export default function Home() {
-  // Only the curated showcase is displayed; totals count everything I've built.
-  const featured = showcaseProjects.slice(0, 6);
-  const others = showcaseProjects.slice(6);
-  const h2 = "mt-5 text-4xl font-extrabold leading-[1.05] tracking-[-0.035em] sm:text-6xl";
+  const featured = showcaseProjects.slice(0, 4);
+  const h2 = "text-4xl font-extrabold leading-[1.05] tracking-[-0.03em] sm:text-6xl";
+
+  const stats = [
+    ["Projects built", String(totalCount)],
+    ["Live client sites", String(liveClientCount)],
+    ["Based in", "Kumasi, GH"],
+    ["Availability", "Open"],
+  ];
 
   return (
     <>
-      <Hero projects={showcaseProjects} total={totalCount} liveCount={liveClientCount} />
+      {/* HERO */}
+      <section className="overflow-hidden bg-ink text-paper">
+        <div className="mx-auto grid max-w-[1440px] lg:grid-cols-2">
+          <div className="flex flex-col justify-center px-6 py-16 lg:px-9 lg:py-28">
+            <p className="flex items-center gap-3 text-sm font-semibold uppercase tracking-[0.16em] text-paper/70">
+              <span className="h-2 w-2 rounded-full bg-accent motion-safe:animate-pulse" aria-hidden="true" />
+              Kumasi, Ghana · <LocalTime />
+            </p>
+            <h1 className="mt-6 text-[clamp(2.5rem,4.5vw,4.4rem)] font-extrabold leading-[1.04] tracking-[-0.035em]">
+              Hi, I&apos;m Ishmael.
+              <br />
+              I build websites
+              <br />
+              that <Mark>win customers</Mark>.
+            </h1>
+            <p className="mt-8 max-w-xl text-xl leading-relaxed text-paper/70">
+              Fast, credible websites for businesses, designed and built by one
+              person, from the first conversation to a live site.
+            </p>
+            <div className="mt-10 flex flex-wrap gap-4">
+              {whatsappLink ? (
+                <Button href={whatsappLink} external>Message me on WhatsApp</Button>
+              ) : (
+                <Button href="/#contact">Start a project</Button>
+              )}
+              <Button href="/projects" variant="ghost">View projects</Button>
+            </div>
+          </div>
 
-      {/* STACK MARQUEE */}
-      <section aria-label="Technologies I build with" className="border-b border-ink/15 py-8">
-        <div className="marquee overflow-hidden">
-          <div className="marquee-track" style={{ animationDuration: "30s" }}>
-            {[0, 1].map((copy) =>
-              stack.map((s) => (
-                <span
-                  key={`${copy}-${s}`}
-                  aria-hidden={copy === 1 || undefined}
-                  className="mr-14 text-xl font-bold uppercase tracking-[0.12em] text-ink/45 sm:mr-20"
-                >
-                  {s}
-                </span>
-              ))
-            )}
+          <div className="relative min-h-[520px] lg:min-h-[740px]">
+            <Image
+              src="/headshot.jpg"
+              alt="Portrait of Ishmael Harry-Deckor"
+              fill
+              priority
+              sizes="(max-width: 1024px) 100vw, 50vw"
+              className="object-cover object-top"
+            />
+            <div className="absolute inset-0 bg-gradient-to-r from-ink/50 via-transparent to-transparent" />
+            <HeroFrame slug="sammy" url="sammy-drab.vercel.app" />
           </div>
         </div>
       </section>
 
-      {/* ABOUT */}
-      <section className="bg-paper">
-        <div className="mx-auto grid max-w-[1440px] items-center gap-16 px-6 py-24 lg:grid-cols-[0.8fr_1.2fr] lg:px-9 lg:py-32">
-          <Reveal>
-            <div className="relative aspect-[4/5] w-full max-w-md overflow-hidden rounded-md bg-ink-soft">
-              <Image
-                src="/headshot.jpg"
-                alt="Portrait of Ishmael Harry-Deckor"
-                fill
-                sizes="(max-width: 1024px) 90vw, 440px"
-                className="object-cover object-top"
-              />
-            </div>
-          </Reveal>
-          <Reveal delay={0.1}>
-            <Eyebrow>About</Eyebrow>
-            <h2 className={h2}>
-              Hello, I&apos;m <span className="serif-accent">Ishmael</span>
-            </h2>
-            <p className="mt-6 max-w-xl text-xl leading-relaxed text-body">
-              I&apos;m a developer who builds modern websites for businesses and
-              personal brands. Every project is built to look credible, load
-              fast and make it easy for customers to get in touch.
-            </p>
-            <div className="mt-10 flex gap-4 border-l-4 border-accent pl-5">
-              <p className="max-w-lg text-2xl font-bold leading-snug tracking-tight">
-                Build technology that solves real problems, and empower others to do the same.
-              </p>
-            </div>
-            <div className="mt-10">
-              <Button href="/about" variant="dark">More about me</Button>
-            </div>
-          </Reveal>
+      {/* STATS */}
+      <section className="bg-mist">
+        <div className="mx-auto grid max-w-[1440px] gap-y-8 px-6 py-14 sm:grid-cols-2 lg:grid-cols-4 lg:px-9">
+          {stats.map(([k, v], i) => (
+            <Reveal key={k} delay={i * 0.06} className={`lg:pl-8 ${i ? "lg:border-l lg:border-ink/15" : ""}`}>
+              <p className="text-base text-body">{k}</p>
+              <p className="mt-2 font-display text-5xl font-extrabold tracking-[-0.03em]">{v}</p>
+            </Reveal>
+          ))}
         </div>
       </section>
 
       {/* SERVICES */}
-      <section id="services" className="scroll-mt-20 bg-mist">
-        <div className="mx-auto grid max-w-[1440px] gap-12 px-6 py-24 lg:grid-cols-2 lg:px-9 lg:py-32">
-          <Reveal>
-            <Eyebrow>Services</Eyebrow>
-            <h2 className={h2}>
-              Websites for <span className="serif-accent">your business</span>
-            </h2>
-            <p className="mt-6 max-w-md text-xl leading-relaxed text-body">
-              One person, start to finish: from the first conversation to a live
-              site you can send customers to.
-            </p>
+      <section id="services" className="scroll-mt-20 bg-paper">
+        <div className="mx-auto max-w-[1440px] px-6 py-24 lg:px-9 lg:py-32">
+          <Reveal className="mx-auto max-w-3xl text-center">
+            <h2 className={h2}>What I can build for your <Mark>business</Mark></h2>
           </Reveal>
-          <Reveal delay={0.1}>
-            <Accordion items={services} numbered />
+          <Reveal delay={0.1} className="mt-16">
+            <ServicesShowcase items={services} />
           </Reveal>
         </div>
       </section>
 
-      {/* PROJECTS */}
-      <section id="work" className="scroll-mt-20 bg-ink text-paper">
-        <div className="mx-auto max-w-[1440px] px-6 pt-24 lg:px-9 lg:pt-32">
-          <Reveal className="max-w-3xl">
-            <Eyebrow className="text-accent">Selected work</Eyebrow>
-            <h2 className={h2}>
-              Real sites, <span className="serif-accent text-accent">built to perform</span>
-            </h2>
-            <p className="mt-6 max-w-xl text-xl leading-relaxed text-paper/65">
-              Live client work and self-directed concept builds.
-            </p>
+      {/* SHOWCASE */}
+      <section id="work" className="scroll-mt-20 bg-mist">
+        <div className="mx-auto max-w-[1440px] px-6 py-24 lg:px-9 lg:py-32">
+          <Reveal className="flex flex-wrap items-end justify-between gap-6">
+            <div>
+              <Eyebrow>Selected work</Eyebrow>
+              <h2 className={`mt-5 ${h2}`}>My showcase</h2>
+              <p className="mt-4 max-w-md text-lg text-body">Hover a project to scroll through the real site.</p>
+            </div>
+            <Button href="/projects" variant="dark">View all projects</Button>
           </Reveal>
-          <div className="mt-16">
-            <ProjectGrid projects={featured} />
-          </div>
-        </div>
-
-        <div className="pb-24 pt-24">
-          {others.length > 0 && (
-            <>
-              <h3 className="mx-auto mb-10 max-w-[1440px] px-6 text-2xl font-extrabold tracking-tight lg:px-9">
-                More projects
-              </h3>
-              <ProjectStrip projects={others} />
-            </>
-          )}
-          <div className={`mx-auto max-w-[1440px] px-6 lg:px-9 ${others.length > 0 ? "mt-14" : ""}`}>
-            <Button href="/projects">View all projects</Button>
+          <div className="mt-14 grid gap-x-10 gap-y-14 md:grid-cols-2">
+            {featured.map((p, i) => (
+              <Reveal key={p.slug} className={i % 2 ? "md:mt-20" : ""}>
+                <BrowserCard project={p} />
+              </Reveal>
+            ))}
           </div>
         </div>
       </section>
 
-      {/* PROCESS */}
+      {/* BACKGROUND */}
+      <section className="bg-ink text-paper">
+        <div className="mx-auto max-w-[1440px] px-6 py-24 lg:px-9 lg:py-28">
+          <Reveal className="flex flex-wrap items-end justify-between gap-6">
+            <div>
+              <Eyebrow className="text-accent">Background</Eyebrow>
+              <h2 className={`mt-5 ${h2}`}>Building, leading, <Mark>delivering</Mark></h2>
+            </div>
+            <Link href="/about" className="text-base font-bold underline decoration-accent decoration-2 underline-offset-8 hover:text-accent">
+              Full background
+            </Link>
+          </Reveal>
+          <div className="mt-12 border-t border-paper/20">
+            {experience.slice(0, 4).map((r) => (
+              <div key={r.org} className="grid gap-2 border-b border-paper/20 py-6 md:grid-cols-[1.1fr_1.2fr_0.8fr] md:gap-8">
+                <div>
+                  <p className="text-xl font-bold tracking-tight">{r.org}</p>
+                  <p className="mt-1 text-base text-paper/70">{r.role}</p>
+                </div>
+                <p className="text-base leading-relaxed text-paper/65">{r.note}</p>
+                <p className="text-base text-paper/70 md:text-right">{r.dates}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* TESTIMONIAL (placeholder until there is a real quote) */}
       <section className="bg-paper">
         <div className="mx-auto max-w-[1440px] px-6 py-24 lg:px-9 lg:py-32">
-          <Reveal className="max-w-3xl">
-            <Eyebrow>How it works</Eyebrow>
-            <h2 className={h2}>
-              A clear process, <span className="serif-accent">first chat to launch</span>
-            </h2>
+          <Reveal className="text-center">
+            <h2 className={h2}>What clients <Mark>say</Mark></h2>
           </Reveal>
-          <div className="mt-16 grid gap-10 md:grid-cols-3">
-            {process.map((s, i) => (
-              <Reveal key={s.n} delay={i * 0.08}>
-                <div className="border-t-2 border-ink pt-6">
-                  <p className="text-6xl font-extrabold tracking-[-0.04em] text-accent [-webkit-text-stroke:1.5px_var(--color-ink)]">
-                    {s.n}
-                  </p>
-                  <h3 className="mt-6 text-2xl font-extrabold tracking-tight">{s.title}</h3>
-                  <p className="mt-3 text-lg leading-relaxed text-body">{s.body}</p>
-                </div>
-              </Reveal>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* TESTIMONIALS (placeholders) */}
-      <section className="bg-mist">
-        <div className="mx-auto max-w-[1440px] px-6 py-24 lg:px-9 lg:py-32">
-          <Reveal className="max-w-3xl">
-            <Eyebrow>Testimonials</Eyebrow>
-            <h2 className={h2}>
-              What <span className="serif-accent">clients</span> say
-            </h2>
-          </Reveal>
-          <div className="mt-14 grid gap-4 md:grid-cols-3">
-            {testimonials.map((t, i) => (
-              <Reveal key={i} delay={i * 0.08}>
-                <figure className="flex h-full flex-col justify-between rounded-md border border-dashed border-ink/30 p-8">
-                  <div>
-                    <Quote className="h-8 w-8 fill-ink/20 text-ink/20" aria-hidden="true" />
-                    <blockquote className="mt-4 text-2xl font-bold leading-snug tracking-tight">
-                      {t.quote}
-                    </blockquote>
-                  </div>
-                  <figcaption className="mt-10 flex items-center gap-3">
-                    <span className="h-11 w-11 rounded-sm bg-ink/10" aria-hidden="true" />
-                    <span>
-                      <span className="block text-base font-bold">{t.name}</span>
-                      <span className="block text-sm text-body">{t.role}</span>
-                    </span>
-                  </figcaption>
-                </figure>
-              </Reveal>
-            ))}
+          <div className="mt-14 grid items-center gap-10 md:grid-cols-[0.8fr_1.2fr] md:gap-16">
+            <Reveal>
+              <div className="mx-auto flex aspect-square w-full max-w-sm -rotate-3 items-center justify-center rounded-md border-2 border-dashed border-ink/25 bg-mist">
+                <span className="font-display text-7xl font-extrabold text-ink/20" aria-hidden="true">?</span>
+              </div>
+            </Reveal>
+            <Reveal delay={0.1}>
+              <Quote className="h-9 w-9 fill-ink/20 text-ink/20" aria-hidden="true" />
+              <blockquote className="mt-4 font-display text-3xl font-bold leading-snug tracking-[-0.02em] sm:text-4xl">
+                Your first client testimonial goes here. A couple of sentences on the project and the result.
+              </blockquote>
+              <p className="mt-6 text-base font-bold">Client name, Company</p>
+              <p className="mt-1 text-sm text-body">Placeholder: replace with a real quote and photo.</p>
+            </Reveal>
           </div>
         </div>
       </section>
 
       {/* FAQ */}
-      <section className="bg-paper">
+      <section className="bg-mist">
         <div className="mx-auto grid max-w-[1440px] gap-12 px-6 py-24 lg:grid-cols-2 lg:px-9 lg:py-32">
           <Reveal>
             <Eyebrow>FAQ</Eyebrow>
-            <h2 className={h2}>
-              Common <span className="serif-accent">questions</span>
-            </h2>
+            <h2 className={`mt-5 ${h2}`}>Common <Mark>questions</Mark></h2>
           </Reveal>
           <Reveal delay={0.1}>
             <Accordion items={faqs} />

@@ -17,6 +17,45 @@ export interface Project {
 
 export const projects: Project[] = [
   {
+    slug: "sammy",
+    name: "Samuel Mensah Advisory",
+    url: "https://sammy-drab.vercel.app/",
+    category: "Personal Brand & Advisory",
+    projectType: "live-client",
+    summary: "A high-impact personal brand and executive consulting platform built for business consultant Samuel Mensah.",
+    problem: "Corporate consulting clients required a clear presentation of advisory frameworks, client testimonials, media broadcasts, and frictionless consultation booking.",
+    approach: "Built an editorial, high-performance web platform featuring video showcase modules, credential breakdowns, and structured consultation booking flows.",
+    outcome: "Established an elevated digital presence that increased consultation booking conversions and unified multimedia thought-leadership.",
+    techStack: ["Next.js", "Tailwind CSS", "TypeScript", "Framer Motion"],
+    showcase: true
+  },
+  {
+    slug: "daniel",
+    name: "Daniel Avudzivi",
+    url: "https://ishmaelharrydeckor.github.io/Daniel/",
+    category: "Personal Brand & Advisory",
+    projectType: "live-client",
+    summary: "A personal-brand site for an oil and gas analyst, with his career timeline, projects and writing, plus an admin panel to update content.",
+    problem: "A busy professional needed a credible online home for his experience and writing, one he could keep current without a developer.",
+    approach: "Built a fast static site where content lives in simple files and an admin panel saves changes, rebuilding the site automatically.",
+    outcome: "A polished site hosted for free that he can update himself.",
+    techStack: ["HTML", "CSS", "JavaScript", "GitHub Pages"],
+    showcase: true
+  },
+  {
+    slug: "paa-kwesi-folson",
+    name: "Paa Kwesi Folson",
+    url: "https://pkf-pink.vercel.app/",
+    category: "Personal Brand & Advisory",
+    projectType: "live-client",
+    summary: "A complete multi-page brand rebuild, speaker catalog, and executive coaching advisory portal for Paa Kwesi Folson.",
+    problem: "The original single-page speaker site lacked layout depth, corporate styling for B2B offers, and unified cataloging for 10 distinct professional speaking and advisory training programs.",
+    approach: "Engineered a Next.js 16 multi-page architecture with deep charcoal and bone cream contrast styling, dynamic syllabus route pages, and interactive FAQ modules.",
+    outcome: "Delivered an authoritative personal brand platform that positions Paa Kwesi Folson as a top-tier B2B consultant and keynote speaker.",
+    techStack: ["Next.js", "Tailwind CSS", "TypeScript", "GSAP", "Framer Motion"],
+    showcase: true
+  },
+  {
     slug: "checin",
     name: "ChecIN",
     url: "https://checin-6982.vercel.app/",
@@ -43,19 +82,6 @@ export const projects: Project[] = [
     showcase: true
   },
   {
-    slug: "daniel",
-    name: "Daniel Avudzivi",
-    url: "https://ishmaelharrydeckor.github.io/Daniel/",
-    category: "Personal Brand & Advisory",
-    projectType: "live-client",
-    summary: "A personal-brand site for an oil and gas analyst, with his career timeline, projects and writing, plus an admin panel to update content.",
-    problem: "A busy professional needed a credible online home for his experience and writing, one he could keep current without a developer.",
-    approach: "Built a fast static site where content lives in simple files and an admin panel saves changes, rebuilding the site automatically.",
-    outcome: "A polished site hosted for free that he can update himself.",
-    techStack: ["HTML", "CSS", "JavaScript", "GitHub Pages"],
-    showcase: true
-  },
-  {
     slug: "solara",
     name: "Solara Luxury Residences",
     url: "https://solara-three-gamma.vercel.app/",
@@ -69,29 +95,29 @@ export const projects: Project[] = [
     showcase: true
   },
   {
-    slug: "paa-kwesi-folson",
-    name: "Paa Kwesi Folson",
-    url: "https://pkf-pink.vercel.app/",
-    category: "Personal Brand & Advisory",
-    projectType: "live-client",
-    summary: "A complete multi-page brand rebuild, speaker catalog, and executive coaching advisory portal for Paa Kwesi Folson.",
-    problem: "The original single-page speaker site lacked layout depth, corporate styling for B2B offers, and unified cataloging for 10 distinct professional speaking and advisory training programs.",
-    approach: "Engineered a Next.js 16 multi-page architecture with deep charcoal and bone cream contrast styling, dynamic syllabus route pages, and interactive FAQ modules.",
-    outcome: "Delivered an authoritative personal brand platform that positions Paa Kwesi Folson as a top-tier B2B consultant and keynote speaker.",
+    slug: "aura-audio",
+    name: "AURA Audio",
+    url: "https://aura-audio-1krb.vercel.app/",
+    category: "Waitlist & Landing",
+    projectType: "concept",
+    summary: "A self-directed concept showcase for a Scandinavian-inspired wireless audio product, focusing on spatial sound presentation and acoustic specs.",
+    problem: "Hardware landing pages often fail to represent the spatial quality and material craftsmanship of high-end consumer electronics through flat design.",
+    approach: "Designed a minimalist visual showcase emphasizing oak and aluminum elements, paired with fluid scroll entrances and clear acoustic specifications grids.",
+    outcome: "Delivered an elegant product display page that successfully builds brand positioning, converting visitor curiosity into pre-orders.",
     techStack: ["Next.js", "Tailwind CSS", "TypeScript", "GSAP", "Framer Motion"],
     showcase: true
   },
   {
-    slug: "sammy",
-    name: "Samuel Mensah Advisory",
-    url: "https://sammy-drab.vercel.app/",
-    category: "Personal Brand & Advisory",
-    projectType: "live-client",
-    summary: "A high-impact personal brand and executive consulting platform built for business consultant Samuel Mensah.",
-    problem: "Corporate consulting clients required a clear presentation of advisory frameworks, client testimonials, media broadcasts, and frictionless consultation booking.",
-    approach: "Built an editorial, high-performance web platform featuring video showcase modules, credential breakdowns, and structured consultation booking flows.",
-    outcome: "Established an elevated digital presence that increased consultation booking conversions and unified multimedia thought-leadership.",
-    techStack: ["Next.js", "Tailwind CSS", "TypeScript", "Framer Motion"],
+    slug: "real-estate-catalog",
+    name: "Real Estate Catalog",
+    url: "https://real-estate-jade-nine.vercel.app/",
+    category: "SaaS Catalog",
+    projectType: "concept",
+    summary: "A self-directed luxury real estate search and filter catalog concept featuring modern grid layouts and interactive property listings.",
+    problem: "Real estate browsing often suffers from sluggish performance and cluttered interfaces that overwhelm potential buyers looking for specific property attributes.",
+    approach: "Developed a clean, card-based layout featuring client-side filtering, fast search caching, and responsive media optimization for instant page loads.",
+    outcome: "Achieved seamless property discovery with intuitive filters, resulting in high user engagement and near-instant load speeds across all screen sizes.",
+    techStack: ["Next.js", "Tailwind CSS", "TypeScript", "Framer Motion", "GSAP"],
     showcase: true
   },
   {
@@ -108,19 +134,6 @@ export const projects: Project[] = [
     showcase: false
   },
   {
-    slug: "aura-audio",
-    name: "AURA Audio",
-    url: "https://aura-audio-1krb.vercel.app/",
-    category: "Waitlist & Landing",
-    projectType: "concept",
-    summary: "A self-directed concept showcase for a Scandinavian-inspired wireless audio product, focusing on spatial sound presentation and acoustic specs.",
-    problem: "Hardware landing pages often fail to represent the spatial quality and material craftsmanship of high-end consumer electronics through flat design.",
-    approach: "Designed a minimalist visual showcase emphasizing oak and aluminum elements, paired with fluid scroll entrances and clear acoustic specifications grids.",
-    outcome: "Delivered an elegant product display page that successfully builds brand positioning, converting visitor curiosity into pre-orders.",
-    techStack: ["Next.js", "Tailwind CSS", "TypeScript", "GSAP", "Framer Motion"],
-    showcase: true
-  },
-  {
     slug: "gym-livid",
     name: "Kinetic Lab",
     url: "https://gym-livid-five.vercel.app/",
@@ -132,19 +145,6 @@ export const projects: Project[] = [
     outcome: "Created a powerful studio landing experience that drives visitor bookings for free metabolic conditioning and Olympic lifting trial passes.",
     techStack: ["Next.js", "Tailwind CSS", "TypeScript", "GSAP", "Framer Motion"],
     showcase: false
-  },
-  {
-    slug: "real-estate-catalog",
-    name: "Real Estate Catalog",
-    url: "https://real-estate-jade-nine.vercel.app/",
-    category: "SaaS Catalog",
-    projectType: "concept",
-    summary: "A self-directed luxury real estate search and filter catalog concept featuring modern grid layouts and interactive property listings.",
-    problem: "Real estate browsing often suffers from sluggish performance and cluttered interfaces that overwhelm potential buyers looking for specific property attributes.",
-    approach: "Developed a clean, card-based layout featuring client-side filtering, fast search caching, and responsive media optimization for instant page loads.",
-    outcome: "Achieved seamless property discovery with intuitive filters, resulting in high user engagement and near-instant load speeds across all screen sizes.",
-    techStack: ["Next.js", "Tailwind CSS", "TypeScript", "Framer Motion", "GSAP"],
-    showcase: true
   },
   {
     slug: "sena-academy-lms",

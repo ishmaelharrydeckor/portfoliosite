@@ -1,18 +1,33 @@
 import Link from "next/link";
-import { site } from "@/data/site";
+import { site, whatsappLink } from "@/data/site";
 
 export default function Footer() {
+  const links = [
+    ["Work", "/projects"],
+    ["Services", "/#services"],
+    ["About", "/about"],
+    ["Contact", "/#contact"],
+  ] as const;
   return (
-    <footer className="bg-ink text-white/60">
-      <div className="mx-auto flex max-w-[1440px] flex-col gap-4 px-6 py-8 text-sm sm:flex-row sm:items-center sm:justify-between lg:px-9">
-        <p>© {new Date().getFullYear()} Ishmael Harry-Deckor. All rights reserved.</p>
-        <div className="flex flex-wrap gap-x-6 gap-y-2">
-          <Link href="/projects" className="hover:text-white">Work</Link>
-          <Link href="/about" className="hover:text-white">About</Link>
-          <a href={site.linkedin} target="_blank" rel="noopener noreferrer" className="hover:text-white">LinkedIn</a>
-          <a href={site.github} target="_blank" rel="noopener noreferrer" className="hover:text-white">GitHub</a>
-          <a href={`mailto:${site.email}`} className="hover:text-white">{site.email}</a>
+    <footer className="bg-ink text-paper/70">
+      <div className="mx-auto max-w-[1440px] px-6 lg:px-9">
+        <div className="flex flex-col gap-8 border-t border-white/15 py-10 md:flex-row md:items-center md:justify-between">
+          <Link href="/" className="font-display text-2xl font-extrabold tracking-tight text-paper">
+            Ishmael<span className="text-accent">.</span>
+          </Link>
+          <nav className="flex flex-wrap gap-x-8 gap-y-2 text-base" aria-label="Footer">
+            {links.map(([n, h]) => (
+              <Link key={n} href={h} className="hover:text-accent">{n}</Link>
+            ))}
+          </nav>
+          <div className="flex flex-wrap gap-x-6 gap-y-2 text-base">
+            <a href={site.linkedin} target="_blank" rel="noopener noreferrer" className="hover:text-accent">LinkedIn</a>
+            <a href={site.github} target="_blank" rel="noopener noreferrer" className="hover:text-accent">GitHub</a>
+            <a href={site.twitter} target="_blank" rel="noopener noreferrer" className="hover:text-accent">X</a>
+            {whatsappLink && <a href={whatsappLink} target="_blank" rel="noopener noreferrer" className="hover:text-accent">WhatsApp</a>}
+          </div>
         </div>
+        <p className="pb-8 text-sm text-paper/50">© {new Date().getFullYear()} Ishmael Harry-Deckor. All rights reserved.</p>
       </div>
     </footer>
   );

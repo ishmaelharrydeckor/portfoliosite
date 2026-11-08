@@ -1,6 +1,6 @@
 import Image from "next/image";
 import type { Metadata } from "next";
-import { Tag, Eyebrow, Button } from "@/components/ui";
+import { Tag, Eyebrow, Button, Mark } from "@/components/ui";
 import ContactSection from "@/components/ContactSection";
 import { certifications } from "@/data/certifications";
 import { skills } from "@/data/skills";
@@ -30,7 +30,7 @@ export default function AboutPage() {
           <div>
             <Eyebrow>About me</Eyebrow>
             <h1 className="mt-5 text-5xl font-extrabold leading-[1.02] tracking-[-0.035em] sm:text-7xl">
-              Ishmael <span className="serif-accent">Harry-Deckor</span>
+              Ishmael <Mark>Harry-Deckor</Mark>
             </h1>
             <p className="mt-3 text-xl text-body">Website builder · Founder, Sena Academy</p>
 
@@ -108,7 +108,7 @@ export default function AboutPage() {
         <div className="mx-auto max-w-[1440px] px-6 py-24 lg:px-9 lg:py-28">
           <Eyebrow className="text-accent">Background</Eyebrow>
           <h2 className="mt-5 text-4xl font-extrabold tracking-[-0.03em] sm:text-5xl">
-            Building, leading and <span className="serif-accent text-accent">delivering</span>
+            Building, leading and <Mark>delivering</Mark>
           </h2>
           <p className="mt-5 max-w-2xl text-xl leading-relaxed text-paper/65">
             I&apos;m a Petroleum Engineering student at KNUST. Outside class I

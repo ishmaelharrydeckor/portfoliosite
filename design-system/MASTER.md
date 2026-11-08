@@ -1,27 +1,26 @@
 # Design System — Portfolio
 
-Direction: dark, editorial hero over warm off-white and black sections, one yellow accent. Bold sans headlines (Manrope) with a single serif-italic accent word (Instrument Serif). Square-cornered buttons and tags. Section structure follows a consultancy-style landing page; deliberately **not** the circle/pill/dot-grid look of the Prolens template.
+Structure follows a developer-portfolio layout (split hero, stats band, services, showcase, experience table, contact). The identity is deliberately our own, built from these signature details:
+
+1. **Work over portrait.** The hero photo is overlapped by a live-site browser frame (`HeroFrame`) that drifts on scroll.
+2. **Hover-scroll project cards.** `BrowserCard` shows each project in a browser frame with its real URL; on hover the full-page screenshot (`public/projects/<slug>/full.jpg`) scrolls inside the frame.
+3. **Live / Concept markers.** Real client sites get a pulsing green "Live" dot; concept builds are labelled plainly.
+4. **Local identity.** Kumasi, Ghana with a live GMT clock (`LocalTime`).
+5. **Services tied to real work.** `ServicesShowcase` previews an actual project for each service.
+6. **Highlighter emphasis.** One phrase per headline gets a yellow marker (`Mark`).
 
 ## Colour (tokens in `src/app/globals.css`)
-| Token | Hex | Use |
-| :-- | :-- | :-- |
-| `paper` | `#f5f2ea` | Default page background |
-| `mist` | `#e8e4da` | Alternate sections, cards on paper |
-| `ink` | `#0e0e0d` | Hero, projects and contact sections; primary text |
-| `ink-soft` | `#1a1a18` | Image placeholders, raised dark surfaces |
-| `body` | `#4b4a45` | Body copy on light backgrounds |
-| `accent` | `#f2d230` | Primary buttons, live-client tag, one headline word per section |
+`paper #f5f2ea` · `mist #e8e4da` · `ink #0e0e0d` · `ink-soft #1a1a18` · `body #4b4a45` · `accent #f2d230` (buttons, marker, live-site highlights only).
 
 ## Type
-Manrope Variable (`@fontsource-variable/manrope`), weight 800 for headings with `-0.035em` tracking. `.serif-accent` applies Instrument Serif italic to one word per headline.
+Bricolage Grotesque (headings, via `h1,h2,h3`) and Manrope (body), both from `@fontsource-variable`.
 
-## Components (`src/components`)
-- `Hero`: tilted, slowly drifting wall of project screenshots under a left-to-right dark overlay.
-- `ui.tsx`: `Button` (flat, inline arrow), `Tag` (square, uppercase), `Eyebrow` (rule + small caps label).
-- `ProjectGrid`: rectangular screenshot cards; the first is a wide feature card. `ProjectStrip` scrolls the rest.
-- `Accordion` (services, FAQ), `ContactSection` + `ContactForm`, `Reveal` (fade-up, honours reduced motion).
+## Content & config
+- Projects: `src/data/projects.ts`. `showcase: true` projects are displayed (order = display order); all projects count in the totals.
+- Roles: `src/data/experience.ts`. Contact details: `src/data/site.ts`.
+- WhatsApp button appears only when `NEXT_PUBLIC_WHATSAPP` (digits with country code) is set in the host's environment. The number is intentionally not committed to this public repo.
+- Adding a project: add screenshots `desktop.png`, `mobile.png` and `full.jpg` (1000px wide, tall page capture) under `public/projects/<slug>/`.
 
 ## Rules
-- No circular image crops, orbit rings, dot grids or floating pills.
-- Accent yellow is for actions and one highlighted word, never large surfaces (except the "next project" band).
-- Contact details live in `src/data/site.ts`; projects in `src/data/projects.ts`.
+- Respect `prefers-reduced-motion` (cards, parallax and fades all fall back to static).
+- No invented stats, clients or testimonials; placeholders are labelled as such.

@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import "@fontsource-variable/manrope";
-import "@fontsource/instrument-serif/400-italic.css";
+import "@fontsource-variable/bricolage-grotesque";
 import "./globals.css";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";

@@ -82,3 +82,13 @@ export function Button({
     </Link>
   );
 }
+
+/** Highlighter-marker emphasis for one phrase in a headline. */
+export function Mark({ children }: { children: React.ReactNode }) {
+  return (
+    <span className="relative isolate whitespace-nowrap">
+      <span className="absolute -inset-x-1.5 inset-y-[0.1em] -z-10 -skew-x-6 bg-accent" aria-hidden="true" />
+      <span className="text-ink">{children}</span>
+    </span>
+  );
+}
