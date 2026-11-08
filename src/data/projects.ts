@@ -17,16 +17,16 @@ export interface Project {
 
 export const projects: Project[] = [
   {
-    slug: "sammy",
-    name: "Samuel Mensah Advisory",
-    url: "https://sammy-drab.vercel.app/",
+    slug: "samuel-adanuvo",
+    name: "Samuel Adanuvo",
+    url: "https://sammyadanuvo.com/",
     category: "Personal Brand & Advisory",
     projectType: "live-client",
-    summary: "A high-impact personal brand and executive consulting platform built for business consultant Samuel Mensah.",
-    problem: "Corporate consulting clients required a clear presentation of advisory frameworks, client testimonials, media broadcasts, and frictionless consultation booking.",
-    approach: "Built an editorial, high-performance web platform featuring video showcase modules, credential breakdowns, and structured consultation booking flows.",
-    outcome: "Established an elevated digital presence that increased consultation booking conversions and unified multimedia thought-leadership.",
-    techStack: ["Next.js", "Tailwind CSS", "TypeScript", "Framer Motion"],
+    summary: "A personal-brand site for Samuel Adanuvo, CEO of Outbrooks Consult, author and keynote speaker, covering consulting, speaking, events and booking.",
+    problem: "A founder, author and speaker needed one credible home that explains his consulting, speaking and events, and gives clients and event organisers an obvious way to book him.",
+    approach: "Built a bold, editorial site with a statement hero, his story, a structured consulting framework, speaking topics, events, a video section and clear booking calls to action throughout.",
+    outcome: "A single site that presents his work as a consultant, author and keynote speaker, with direct paths to book a strategy call or invite him to speak.",
+    techStack: ["Next.js", "Vercel"],
     showcase: true
   },
   {

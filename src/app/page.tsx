@@ -17,9 +17,9 @@ const services = [
   {
     title: "Business websites",
     body: "Multi-page sites for businesses and personal brands. Clear messaging, fast loading, and a layout that turns visitors into enquiries.",
-    slug: "sammy",
-    projectName: "Samuel Mensah Advisory",
-    host: "sammy-drab.vercel.app",
+    slug: "samuel-adanuvo",
+    projectName: "Samuel Adanuvo",
+    host: "sammyadanuvo.com",
   },
   {
     title: "Landing pages & waitlists",
@@ -119,7 +119,7 @@ export default function Home() {
               className="object-cover object-top"
             />
             <div className="absolute inset-0 bg-gradient-to-r from-ink/50 via-transparent to-transparent" />
-            <HeroFrame slug="sammy" url="sammy-drab.vercel.app" />
+            <HeroFrame slug="samuel-adanuvo" url="sammyadanuvo.com" />
           </div>
         </div>
       </section>
