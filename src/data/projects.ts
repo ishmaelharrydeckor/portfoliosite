@@ -17,6 +17,45 @@ export interface Project {
 
 export const projects: Project[] = [
   {
+    slug: "checin",
+    name: "ChecIN",
+    url: "https://checin-6982.vercel.app/",
+    category: "SaaS Product",
+    projectType: "concept",
+    summary: "Attendance software where a QR code on a tablet changes every 15 seconds, so check-ins can't be faked or shared.",
+    problem: "Paper timesheets and shared screenshots make attendance easy to fake and hard to trust, and managers lose time chasing records.",
+    approach: "Built a marketing site and web app with a rotating-QR kiosk, a live roster showing who is present, late, away or absent, plus shifts, leave and reports.",
+    outcome: "A working product that replaces timesheets with one live view of attendance, from the entrance kiosk to the manager's dashboard.",
+    techStack: ["TanStack Start", "React", "Tailwind CSS", "Firebase"],
+    showcase: true
+  },
+  {
+    slug: "estateguard",
+    name: "EstateGuard",
+    url: "https://estateguard-azure.vercel.app/",
+    category: "Housing & Fintech",
+    projectType: "concept",
+    summary: "A rental platform concept where verified government employees find approved homes and pay rent by approving a prompt on their phone.",
+    problem: "Renters face high upfront demands and unverified landlords, landlords struggle with late payment, and none of it is recorded.",
+    approach: "Designed the product story and built a landing page, plus a React prototype of the platform covering verified listings, digital tenancy agreements and receipts.",
+    outcome: "A clear pitch site and demo prototype that explain the idea to renters, landlords and stakeholders.",
+    techStack: ["HTML & CSS", "React", "TypeScript", "Vite"],
+    showcase: true
+  },
+  {
+    slug: "daniel",
+    name: "Daniel Avudzivi",
+    url: "https://ishmaelharrydeckor.github.io/Daniel/",
+    category: "Personal Brand & Advisory",
+    projectType: "live-client",
+    summary: "A personal-brand site for an oil and gas analyst, with his career timeline, projects and writing, plus an admin panel to update content.",
+    problem: "A busy professional needed a credible online home for his experience and writing, one he could keep current without a developer.",
+    approach: "Built a fast static site where content lives in simple files and an admin panel saves changes, rebuilding the site automatically.",
+    outcome: "A polished site hosted for free that he can update himself.",
+    techStack: ["HTML", "CSS", "JavaScript", "GitHub Pages"],
+    showcase: true
+  },
+  {
     slug: "solara",
     name: "Solara Luxury Residences",
     url: "https://solara-three-gamma.vercel.app/",

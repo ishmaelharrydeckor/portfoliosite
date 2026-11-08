@@ -4,6 +4,7 @@ import { Tag, Eyebrow, Button } from "@/components/ui";
 import ContactSection from "@/components/ContactSection";
 import { certifications } from "@/data/certifications";
 import { skills } from "@/data/skills";
+import { experience } from "@/data/experience";
 
 export const metadata: Metadata = {
   title: "About",
@@ -97,6 +98,32 @@ export default function AboutPage() {
                     </li>
                   ))}
                 </ul>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="bg-ink text-paper">
+        <div className="mx-auto max-w-[1440px] px-6 py-24 lg:px-9 lg:py-28">
+          <Eyebrow className="text-accent">Background</Eyebrow>
+          <h2 className="mt-5 text-4xl font-extrabold tracking-[-0.03em] sm:text-5xl">
+            Building, leading and <span className="serif-accent text-accent">delivering</span>
+          </h2>
+          <p className="mt-5 max-w-2xl text-xl leading-relaxed text-paper/65">
+            I&apos;m a Petroleum Engineering student at KNUST. Outside class I
+            run a company and lead teams, which is how I learned to deliver
+            for the people I build for.
+          </p>
+          <div className="mt-12 border-t border-paper/20">
+            {experience.map((r) => (
+              <div key={r.org} className="grid gap-2 border-b border-paper/20 py-6 md:grid-cols-[1.1fr_1.2fr_0.8fr] md:gap-8">
+                <div>
+                  <p className="text-xl font-bold tracking-tight">{r.org}</p>
+                  <p className="mt-1 text-base text-paper/70">{r.role}</p>
+                </div>
+                <p className="text-base leading-relaxed text-paper/65">{r.note}</p>
+                <p className="text-base text-paper/70 md:text-right">{r.dates}</p>
               </div>
             ))}
           </div>
