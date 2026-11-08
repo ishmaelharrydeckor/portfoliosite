@@ -1,64 +1,77 @@
 import Link from "next/link";
-import { ArrowRight } from "lucide-react";
+import { ArrowUpRight } from "lucide-react";
 
-/** Small rounded label used for section eyebrows and tags. */
-export function Pill({
+/** Small square-cornered tag. */
+export function Tag({
   children,
-  tone = "mist",
+  tone = "outline",
   className = "",
 }: {
   children: React.ReactNode;
-  tone?: "mist" | "sky" | "lime" | "grape" | "ink" | "paper";
+  tone?: "outline" | "solid" | "accent" | "light";
   className?: string;
 }) {
   const tones: Record<string, string> = {
-    mist: "bg-mist text-ink",
-    sky: "bg-sky text-white",
-    lime: "bg-lime text-ink",
-    grape: "bg-grape text-white",
-    ink: "bg-ink-soft text-white",
-    paper: "bg-paper text-ink",
+    outline: "border border-current/30",
+    solid: "bg-ink text-paper",
+    accent: "bg-accent text-ink",
+    light: "bg-paper text-ink",
   };
   return (
     <span
-      className={`inline-flex items-center rounded-full px-4 py-1.5 text-sm font-medium tracking-tight ${tones[tone]} ${className}`}
+      className={`inline-flex items-center rounded-sm px-2.5 py-1 text-xs font-semibold uppercase tracking-wider ${tones[tone]} ${className}`}
     >
       {children}
     </span>
   );
 }
 
-/** Black pill button with a white circular arrow, as in the reference. */
-export function ArrowButton({
+/** Section eyebrow: a short rule plus small caps label. */
+export function Eyebrow({
+  children,
+  className = "",
+}: {
+  children: React.ReactNode;
+  className?: string;
+}) {
+  return (
+    <p className={`flex items-center gap-3 text-sm font-semibold uppercase tracking-[0.18em] ${className}`}>
+      <span className="h-px w-8 bg-current" aria-hidden="true" />
+      {children}
+    </p>
+  );
+}
+
+/** Flat, square-cornered button with an inline arrow. */
+export function Button({
   href,
   children,
   external = false,
-  variant = "dark",
+  variant = "accent",
   className = "",
 }: {
   href: string;
   children: React.ReactNode;
   external?: boolean;
-  variant?: "dark" | "light";
+  variant?: "accent" | "dark" | "light" | "ghost";
   className?: string;
 }) {
-  const styles =
-    variant === "dark"
-      ? "bg-ink-soft text-white"
-      : "bg-paper text-ink";
-  const circle =
-    variant === "dark" ? "bg-white text-ink" : "bg-ink text-white";
+  const styles: Record<string, string> = {
+    accent: "bg-accent text-ink hover:bg-ink hover:text-accent",
+    dark: "bg-ink text-paper hover:bg-accent hover:text-ink",
+    light: "bg-paper text-ink hover:bg-accent",
+    ghost: "border border-current/40 hover:bg-paper hover:text-ink",
+  };
+  const cls = `group inline-flex items-center gap-3 rounded-md px-6 py-4 text-base font-bold tracking-tight transition-colors duration-200 ${styles[variant]} ${className}`;
   const inner = (
     <>
-      <span>{children}</span>
-      <span
-        className={`flex h-10 w-10 items-center justify-center rounded-full transition-transform duration-300 group-hover:translate-x-0.5 ${circle}`}
-      >
-        <ArrowRight className="h-5 w-5" aria-hidden="true" />
-      </span>
+      {children}
+      <ArrowUpRight
+        className="h-5 w-5 transition-transform duration-200 group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
+        aria-hidden="true"
+      />
     </>
   );
-  const cls = `group inline-flex items-center gap-6 rounded-full py-2 pl-6 pr-2 text-base font-medium tracking-tight transition-transform duration-300 hover:scale-[1.02] ${styles} ${className}`;
   return external ? (
     <a href={href} target="_blank" rel="noopener noreferrer" className={cls}>
       {inner}

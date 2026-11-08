@@ -8,12 +8,7 @@ export interface AccordionItem {
   body: string;
 }
 
-const DOTS = ["bg-mist", "bg-sky text-white", "bg-lime", "bg-grape text-white"];
-
-/**
- * One-open-at-a-time accordion. With `numbered`, each row gets a coloured
- * numbered dot (the Prolens look); without it, it's a plain FAQ list.
- */
+/** One-open-at-a-time accordion. `numbered` prefixes each row with 01, 02… */
 export default function Accordion({
   items,
   numbered = false,
@@ -24,9 +19,9 @@ export default function Accordion({
   tone?: "light" | "dark";
 }) {
   const [open, setOpen] = useState<number | null>(0);
-  const line = tone === "dark" ? "border-white/15" : "border-ink/15";
-  const text = tone === "dark" ? "text-white" : "text-ink";
-  const sub = tone === "dark" ? "text-white/70" : "text-body";
+  const line = tone === "dark" ? "border-white/15" : "border-ink/20";
+  const text = tone === "dark" ? "text-paper" : "text-ink";
+  const sub = tone === "dark" ? "text-paper/70" : "text-body";
 
   return (
     <div className={`border-t ${line}`}>
@@ -39,22 +34,20 @@ export default function Accordion({
                 type="button"
                 aria-expanded={isOpen}
                 onClick={() => setOpen(isOpen ? null : i)}
-                className={`flex w-full items-center gap-4 py-6 text-left ${text}`}
+                className={`flex w-full items-baseline gap-5 py-6 text-left ${text}`}
               >
                 {numbered && (
-                  <span
-                    className={`flex h-9 w-9 shrink-0 items-center justify-center rounded-full text-base ${DOTS[i % DOTS.length]}`}
-                  >
-                    {i + 1}
+                  <span className="w-8 shrink-0 text-sm font-semibold tabular-nums text-body">
+                    {String(i + 1).padStart(2, "0")}
                   </span>
                 )}
-                <span className="flex-1 text-2xl font-medium tracking-tight sm:text-3xl">
+                <span className="flex-1 text-xl font-bold tracking-tight sm:text-2xl">
                   {item.title}
                 </span>
                 {isOpen ? (
-                  <Minus className="h-5 w-5 shrink-0" aria-hidden="true" />
+                  <Minus className="h-5 w-5 shrink-0 self-center" aria-hidden="true" />
                 ) : (
-                  <Plus className="h-5 w-5 shrink-0" aria-hidden="true" />
+                  <Plus className="h-5 w-5 shrink-0 self-center" aria-hidden="true" />
                 )}
               </button>
             </h3>
@@ -64,11 +57,7 @@ export default function Accordion({
               }`}
             >
               <div className="overflow-hidden">
-                <p
-                  className={`max-w-xl pb-6 text-lg leading-relaxed ${sub} ${
-                    numbered ? "pl-[52px]" : ""
-                  }`}
-                >
+                <p className={`max-w-xl pb-6 text-lg leading-relaxed ${sub} ${numbered ? "pl-[52px]" : ""}`}>
                   {item.body}
                 </p>
               </div>

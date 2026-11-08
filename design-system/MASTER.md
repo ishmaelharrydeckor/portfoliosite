@@ -1,30 +1,27 @@
 # Design System — Portfolio
 
-Direction: light, editorial, confident. Large tight-tracked Geist headlines, rounded cards, alternating white / grey / near-black bands, and a faint dot grid. Palette and layout language are taken from the Prolens reference; section content structure from the Advisano reference.
+Direction: dark, editorial hero over warm off-white and black sections, one yellow accent. Bold sans headlines (Manrope) with a single serif-italic accent word (Instrument Serif). Square-cornered buttons and tags. Section structure follows a consultancy-style landing page; deliberately **not** the circle/pill/dot-grid look of the Prolens template.
 
 ## Colour (tokens in `src/app/globals.css`)
 | Token | Hex | Use |
 | :-- | :-- | :-- |
-| `paper` | `#ffffff` | Default page and card background |
-| `mist` | `#e8eaed` | Alternate section background, neutral pills |
-| `ink` | `#101010` | Dark sections, primary text |
-| `ink-soft` | `#191919` | Primary buttons |
-| `body` | `#3b3b3b` | Body copy |
-| `sky` `#96b7c8`, `lime` `#daea56`, `grape` `#885fa8` | | Tag pills and numbered dots only |
+| `paper` | `#f5f2ea` | Default page background |
+| `mist` | `#e8e4da` | Alternate sections, cards on paper |
+| `ink` | `#0e0e0d` | Hero, projects and contact sections; primary text |
+| `ink-soft` | `#1a1a18` | Image placeholders, raised dark surfaces |
+| `body` | `#4b4a45` | Body copy on light backgrounds |
+| `accent` | `#f2d230` | Primary buttons, live-client tag, one headline word per section |
 
 ## Type
-Geist (via the `geist` package), weight 500 for headings with tracking `-0.04em`; 400 for body. Hero name scales with `clamp(3.25rem, 8vw, 6.5rem)`.
+Manrope Variable (`@fontsource-variable/manrope`), weight 800 for headings with `-0.035em` tracking. `.serif-accent` applies Instrument Serif italic to one word per headline.
 
-## Components
-- `Pill` / `ArrowButton` (`src/components/ui.tsx`): tags and the black pill button with a white circle arrow.
-- `Accordion`: services (numbered coloured dots) and FAQ.
-- `ProjectStack`: full-width cards that stack on scroll via CSS `position: sticky`.
-- `ProjectStrip`: auto-scrolling strip of the remaining projects.
-- `ContactSection` + `ContactForm`: dark contact block posting to `/api/contact`.
-- `Reveal`: fade-up on scroll; disabled for `prefers-reduced-motion`.
+## Components (`src/components`)
+- `Hero`: tilted, slowly drifting wall of project screenshots under a left-to-right dark overlay.
+- `ui.tsx`: `Button` (flat, inline arrow), `Tag` (square, uppercase), `Eyebrow` (rule + small caps label).
+- `ProjectGrid`: rectangular screenshot cards; the first is a wide feature card. `ProjectStrip` scrolls the rest.
+- `Accordion` (services, FAQ), `ContactSection` + `ContactForm`, `Reveal` (fade-up, honours reduced motion).
 
 ## Rules
-- Accent colours are for pills and dots, never for large surfaces.
-- Alternate section backgrounds (white → grey → black) to create rhythm.
-- Motion is subtle (16px fade-ups, slow floats) and always respects reduced motion.
+- No circular image crops, orbit rings, dot grids or floating pills.
+- Accent yellow is for actions and one highlighted word, never large surfaces (except the "next project" band).
 - Contact details live in `src/data/site.ts`; projects in `src/data/projects.ts`.

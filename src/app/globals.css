@@ -1,18 +1,16 @@
 @import "tailwindcss";
 
-/* Palette sampled from the Prolens reference: white / cool grey / near-black,
-   with three soft tag colours used only for pills and dots. */
+/* Warm off-white / near-black with a single yellow accent. */
 @theme {
-  --color-paper: #ffffff;
-  --color-mist: #e8eaed;
-  --color-ink: #101010;
-  --color-ink-soft: #191919;
-  --color-body: #3b3b3b;
-  --color-sky: #96b7c8;
-  --color-lime: #daea56;
-  --color-grape: #885fa8;
+  --color-paper: #f5f2ea;
+  --color-mist: #e8e4da;
+  --color-ink: #0e0e0d;
+  --color-ink-soft: #1a1a18;
+  --color-body: #4b4a45;
+  --color-accent: #f2d230;
 
-  --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
+  --font-sans: "Manrope Variable", ui-sans-serif, system-ui, sans-serif;
+  --font-serif: "Instrument Serif", ui-serif, Georgia, serif;
 }
 
 html {
@@ -27,18 +25,16 @@ body {
 }
 
 ::selection {
-  background-color: var(--color-lime);
+  background-color: var(--color-accent);
   color: var(--color-ink);
 }
 
-/* Faint dot grid texture */
-.dot-grid {
-  background-image: radial-gradient(rgba(16, 16, 16, 0.16) 1px, transparent 1px);
-  background-size: 30px 30px;
-}
-.dot-grid-dark {
-  background-image: radial-gradient(rgba(255, 255, 255, 0.12) 1px, transparent 1px);
-  background-size: 30px 30px;
+/* One serif-italic word per headline */
+.serif-accent {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-weight: 400;
+  letter-spacing: -0.01em;
 }
 
 /* Infinite marquee */
@@ -55,19 +51,23 @@ body {
   animation-play-state: paused;
 }
 
-/* Gentle float for the hero tags */
-@keyframes float {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-8px); }
+/* Slow vertical drift for the hero screenshot wall */
+@keyframes drift-up {
+  from { transform: translateY(0); }
+  to { transform: translateY(-50%); }
 }
-.float-slow { animation: float 6s ease-in-out infinite; }
-.float-slower { animation: float 8s ease-in-out infinite; animation-delay: -2s; }
+@keyframes drift-down {
+  from { transform: translateY(-50%); }
+  to { transform: translateY(0); }
+}
+.drift-up { animation: drift-up 60s linear infinite; }
+.drift-down { animation: drift-down 70s linear infinite; }
 
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   .marquee-track,
-  .float-slow,
-  .float-slower {
+  .drift-up,
+  .drift-down {
     animation: none;
   }
 }

@@ -24,7 +24,7 @@ export default function Header() {
       >
         <Link
           href="/"
-          className="text-xl font-semibold tracking-tight text-ink"
+          className="text-xl font-extrabold tracking-tight text-ink"
           onClick={() => setOpen(false)}
         >
           Ishmael Harry-Deckor
@@ -38,8 +38,8 @@ export default function Header() {
                 key={item.name}
                 href={item.href}
                 aria-current={active ? "page" : undefined}
-                className={`text-lg tracking-tight transition-opacity hover:opacity-60 ${
-                  active ? "underline underline-offset-8" : ""
+                className={`text-base font-semibold tracking-tight transition-opacity hover:opacity-60 ${
+                  active ? "underline decoration-accent decoration-4 underline-offset-8" : ""
                 }`}
               >
                 {item.name}
@@ -67,7 +67,7 @@ export default function Header() {
                 key={item.name}
                 href={item.href}
                 onClick={() => setOpen(false)}
-                className="text-2xl font-medium tracking-tight"
+                className="text-2xl font-extrabold tracking-tight"
               >
                 {item.name}
               </Link>

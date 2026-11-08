@@ -4,7 +4,7 @@ import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { ArrowUpRight } from "lucide-react";
-import { Pill } from "@/components/ui";
+import { Tag, Eyebrow } from "@/components/ui";
 import ContactSection from "@/components/ContactSection";
 import { projects } from "@/data/projects";
 
@@ -23,11 +23,11 @@ export default function ProjectsPage() {
 
   return (
     <>
-      <section className="dot-grid bg-mist">
+      <section className="bg-paper">
         <div className="mx-auto max-w-[1440px] px-6 pb-24 pt-12 lg:px-9 lg:pt-20">
-          <Pill tone="paper">Projects</Pill>
-          <h1 className="mt-6 text-5xl font-medium leading-[1.02] tracking-[-0.04em] sm:text-7xl">
-            Selected work
+          <Eyebrow>Projects</Eyebrow>
+          <h1 className="mt-5 text-5xl font-extrabold leading-[1.02] tracking-[-0.035em] sm:text-7xl">
+            Selected <span className="serif-accent">work</span>
           </h1>
           <p className="mt-6 max-w-xl text-xl leading-relaxed text-body">
             {projects.length} websites and web apps, from live client work to
@@ -41,8 +41,8 @@ export default function ProjectsPage() {
                 type="button"
                 aria-pressed={active === f}
                 onClick={() => setActive(f)}
-                className={`rounded-full px-5 py-2 text-base font-medium tracking-tight transition-colors ${
-                  active === f ? "bg-ink-soft text-white" : "bg-paper text-ink hover:bg-ink/10"
+                className={`rounded-md px-4 py-2 text-sm font-bold tracking-tight transition-colors ${
+                  active === f ? "bg-ink text-paper" : "bg-mist text-ink hover:bg-accent"
                 }`}
               >
                 {f}
@@ -52,8 +52,8 @@ export default function ProjectsPage() {
 
           <div className="mt-12 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
             {visible.map((p, i) => (
-              <article key={p.slug} className="group flex flex-col overflow-hidden rounded-2xl bg-paper">
-                <Link href={`/projects/${p.slug}`} className="relative block aspect-[16/10] overflow-hidden bg-mist" aria-label={`Read the ${p.name} case study`}>
+              <article key={p.slug} className="group flex flex-col overflow-hidden rounded-md bg-mist">
+                <Link href={`/projects/${p.slug}`} className="relative block aspect-[16/10] overflow-hidden bg-ink-soft" aria-label={`Read the ${p.name} case study`}>
                   <Image
                     src={`/projects/${p.slug}/desktop.png`}
                     alt={`${p.name} website preview`}
@@ -65,14 +65,14 @@ export default function ProjectsPage() {
                 </Link>
                 <div className="flex flex-1 flex-col p-6">
                   <div className="flex flex-wrap gap-2">
-                    <Pill tone={p.projectType === "live-client" ? "lime" : "mist"} className="!text-sm !px-3 !py-1">
+                    <Tag tone={p.projectType === "live-client" ? "accent" : "outline"}>
                       {p.projectType === "live-client" ? "Live client" : "Concept"}
-                    </Pill>
-                    <Pill tone="mist" className="!text-sm !px-3 !py-1">{p.category}</Pill>
+                    </Tag>
+                    <Tag>{p.category}</Tag>
                   </div>
-                  <h2 className="mt-4 text-2xl font-medium tracking-tight">{p.name}</h2>
+                  <h2 className="mt-4 text-2xl font-extrabold tracking-tight">{p.name}</h2>
                   <p className="mt-2 flex-1 text-base leading-relaxed text-body">{p.summary}</p>
-                  <div className="mt-6 flex items-center justify-between border-t border-ink/10 pt-4 text-base font-medium">
+                  <div className="mt-6 flex items-center justify-between border-t border-ink/15 pt-4 text-base font-bold">
                     <Link href={`/projects/${p.slug}`} className="inline-flex items-center gap-1 hover:underline underline-offset-4">
                       Case study <ArrowUpRight className="h-4 w-4" aria-hidden="true" />
                     </Link>

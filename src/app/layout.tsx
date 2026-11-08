@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
-import { GeistSans } from "geist/font/sans";
+import "@fontsource-variable/manrope";
+import "@fontsource/instrument-serif/400-italic.css";
 import "./globals.css";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
@@ -33,7 +34,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${GeistSans.variable} h-full antialiased`}>
+    <html lang="en" className="h-full antialiased">
       <body className="min-h-full flex flex-col bg-paper text-ink">
         <Header />
         <main className="flex-grow flex flex-col">{children}</main>
