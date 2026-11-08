@@ -82,6 +82,18 @@ export const projects: Project[] = [
     showcase: true
   },
   {
+    slug: "eyecon",
+    name: "EyeCon",
+    category: "E-commerce",
+    projectType: "concept",
+    summary: "A redesign concept for an eyewear store in Ghana: a single-page shop with a scroll-driven hero, a lens picker, a frame gallery and a clickable cart and checkout. Not hosted. Photos belong to EyeCon.",
+    problem: "An eyewear store in Ghana wanted a clearer, more modern way to sell frames and blue-light lenses online, including helping shoppers choose the right lens.",
+    approach: "Designed and built a single-page concept with a full-bleed photo hero, word-by-word text reveals and parallax, a pinned sideways strip of frame shapes, a lens picker, a product grid of cut-out frames and customer photos, a cart drawer, a simulated checkout with add-ons and an upgrade offer, and a first-order discount pop-up.",
+    outcome: "A working, clickable concept. It is not the store's live site and is not connected to any store, payment or email system, so nothing is stored or sent. Product and customer photos belong to EyeCon.",
+    techStack: ["HTML", "CSS", "JavaScript"],
+    showcase: true
+  },
+  {
     slug: "checin",
     name: "ChecIN",
     url: "https://checin-6982.vercel.app/",
