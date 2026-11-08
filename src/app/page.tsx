@@ -5,7 +5,6 @@ import { Eyebrow, Button, Mark } from "@/components/ui";
 import Reveal from "@/components/Reveal";
 import Accordion from "@/components/Accordion";
 import BrowserCard from "@/components/BrowserCard";
-import HeroFrame from "@/components/HeroFrame";
 import LocalTime from "@/components/LocalTime";
 import ServicesShowcase from "@/components/ServicesShowcase";
 import ContactSection from "@/components/ContactSection";
@@ -119,7 +118,6 @@ export default function Home() {
               className="object-cover object-top"
             />
             <div className="absolute inset-0 bg-gradient-to-r from-ink/50 via-transparent to-transparent" />
-            <HeroFrame slug="samuel-adanuvo" url="sammyadanuvo.com" />
           </div>
         </div>
       </section>

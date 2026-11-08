@@ -2,12 +2,11 @@
 
 Structure follows a developer-portfolio layout (split hero, stats band, services, showcase, experience table, contact). The identity is deliberately our own, built from these signature details:
 
-1. **Work over portrait.** The hero photo is overlapped by a live-site browser frame (`HeroFrame`) that drifts on scroll.
-2. **Hover-scroll project cards.** `BrowserCard` shows each project in a browser frame with its real URL; on hover the full-page screenshot (`public/projects/<slug>/full.jpg`) scrolls inside the frame.
-3. **Live / Concept markers.** Real client sites get a pulsing green "Live" dot; concept builds are labelled plainly.
-4. **Local identity.** Kumasi, Ghana with a live GMT clock (`LocalTime`).
-5. **Services tied to real work.** `ServicesShowcase` previews an actual project for each service.
-6. **Highlighter emphasis.** One phrase per headline gets a yellow marker (`Mark`).
+1. **Hover-scroll project cards.** `BrowserCard` shows each project in a browser frame with its real URL; on hover the full-page screenshot (`public/projects/<slug>/full.jpg`) scrolls inside the frame.
+2. **Live / Concept markers.** Real client sites get a pulsing green "Live" dot; concept builds are labelled plainly.
+3. **Local identity.** Kumasi, Ghana with a live GMT clock (`LocalTime`).
+4. **Services tied to real work.** `ServicesShowcase` previews an actual project for each service.
+5. **Highlighter emphasis.** One phrase per headline gets a yellow marker (`Mark`).
 
 ## Colour (tokens in `src/app/globals.css`)
 `paper #f5f2ea` · `mist #e8e4da` · `ink #0e0e0d` · `ink-soft #1a1a18` · `body #4b4a45` · `accent #f2d230` (buttons, marker, live-site highlights only).
