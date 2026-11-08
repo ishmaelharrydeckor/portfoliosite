@@ -1,6 +1,6 @@
 # Personal Portfolio Website — Ishmael Harry-Deckor
 
-A premium, high-converting, minimal, and technically credible personal portfolio site built using Next.js 15, Tailwind CSS v4, GSAP, Framer Motion, and React Three Fiber (R3F).
+A portfolio for a developer who builds websites for businesses, built with Next.js, Tailwind CSS v4, Framer Motion and Geist. Visual direction is documented in [`design-system/MASTER.md`](design-system/MASTER.md).
 
 🌐 **Live Demo:** [https://portfoliosite-xi-one.vercel.app](https://portfoliosite-xi-one.vercel.app)
 

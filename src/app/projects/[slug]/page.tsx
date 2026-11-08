@@ -1,224 +1,135 @@
-"use client";
-
-import { use } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { notFound } from "next/navigation";
+import type { Metadata } from "next";
 import { ArrowLeft, ArrowRight, ExternalLink } from "lucide-react";
+import { Pill } from "@/components/ui";
+import ContactSection from "@/components/ContactSection";
 import { projects } from "@/data/projects";
 
 interface PageProps {
   params: Promise<{ slug: string }>;
 }
 
-export default function ProjectDetailPage({ params }: PageProps) {
-  // Resolve params promise
-  const resolvedParams = use(params);
-  const { slug } = resolvedParams;
+export function generateStaticParams() {
+  return projects.map((p) => ({ slug: p.slug }));
+}
 
-  const projectIndex = projects.findIndex((p) => p.slug === slug);
-  if (projectIndex === -1) {
-    notFound();
-  }
+export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
+  const { slug } = await params;
+  const project = projects.find((p) => p.slug === slug);
+  return project ? { title: project.name, description: project.summary } : {};
+}
 
-  const project = projects[projectIndex];
-  
-  // Calculate next project
-  const nextProjectIndex = (projectIndex + 1) % projects.length;
-  const nextProject = projects[nextProjectIndex];
+export default async function ProjectDetailPage({ params }: PageProps) {
+  const { slug } = await params;
+  const index = projects.findIndex((p) => p.slug === slug);
+  if (index === -1) notFound();
+
+  const project = projects[index];
+  const next = projects[(index + 1) % projects.length];
+
+  const sections = [
+    { label: "The problem", text: project.problem },
+    { label: "The approach", text: project.approach },
+    { label: "The outcome", text: project.outcome },
+  ];
 
   return (
-    <div className="min-h-screen bg-background">
-      {/* Back Button Bar */}
-      <div className="mx-auto max-w-7xl px-6 py-6 lg:px-8 border-b border-zinc-900/40">
-        <Link
-          href="/projects"
-          className="inline-flex items-center gap-2 text-sm font-semibold text-foreground-muted hover:text-accent transition-colors duration-200"
-        >
-          <ArrowLeft className="h-4 w-4" />
-          Back to all projects
-        </Link>
-      </div>
+    <>
+      <section className="dot-grid bg-mist">
+        <div className="mx-auto max-w-[1440px] px-6 pb-24 pt-8 lg:px-9">
+          <Link href="/projects" className="inline-flex items-center gap-2 text-lg hover:opacity-60">
+            <ArrowLeft className="h-5 w-5" aria-hidden="true" /> All projects
+          </Link>
 
-      {/* Hero Parallax Header */}
-      <div className="relative w-full aspect-[21/9] md:aspect-[32/10] bg-zinc-950 overflow-hidden border-b border-zinc-900">
-        <Image
-          src={`/projects/${project.slug}/desktop.png`}
-          alt={`${project.name} Banner`}
-          fill
-          className="object-cover object-top opacity-80"
-          priority
-        />
-        <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent"></div>
-      </div>
+          <div className="mt-10 flex flex-wrap gap-2">
+            <Pill tone={project.projectType === "live-client" ? "lime" : "paper"}>
+              {project.projectType === "live-client" ? "Live client work" : "Concept build"}
+            </Pill>
+            <Pill tone="paper">{project.category}</Pill>
+          </div>
+          <h1 className="mt-6 max-w-4xl text-5xl font-medium leading-[1.02] tracking-[-0.04em] sm:text-7xl">
+            {project.name}
+          </h1>
+          <p className="mt-6 max-w-2xl text-xl leading-relaxed text-body">{project.summary}</p>
 
-      {/* Main Details Grid */}
-      <section className="py-24 px-6 lg:px-8">
-        <div className="mx-auto max-w-7xl">
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-16">
-            
-            {/* Sidebar Column (Metadata) */}
-            <div className="flex flex-col gap-8 lg:sticky lg:top-24 h-fit">
-              <div>
-                <div className="flex flex-wrap items-center gap-2 mb-4">
-                  <span className="text-xs font-bold text-accent uppercase tracking-widest bg-accent-glow px-3 py-1 rounded border border-accent/20">
-                    {project.category}
-                  </span>
-                  {project.projectType === "live-client" ? (
-                    <span className="text-xs font-bold tracking-wider text-emerald-400 bg-emerald-500/10 border border-emerald-500/25 px-2.5 py-1 rounded uppercase">
-                      Live Client Work
-                    </span>
-                  ) : (
-                    <span className="text-xs font-bold tracking-wider text-zinc-400 bg-zinc-900 border border-zinc-800 px-2.5 py-1 rounded uppercase">
-                      Concept Build
-                    </span>
-                  )}
-                </div>
-                <h1 className="font-display text-3xl font-extrabold tracking-tight text-foreground sm:text-4xl leading-tight">
-                  {project.name}
-                </h1>
-              </div>
+          <a
+            href={project.url}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="group mt-10 inline-flex items-center gap-6 rounded-full bg-ink-soft py-2 pl-6 pr-2 text-base font-medium tracking-tight text-white transition-transform hover:scale-[1.02]"
+          >
+            Visit live site
+            <span className="flex h-10 w-10 items-center justify-center rounded-full bg-white text-ink">
+              <ExternalLink className="h-5 w-5" aria-hidden="true" />
+            </span>
+          </a>
 
-              {/* Action Buttons */}
-              <div className="flex flex-col gap-3">
-                <a
-                  href={project.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="rounded-lg bg-accent text-zinc-950 px-5 py-3 text-sm font-bold tracking-wide hover:bg-accent/90 transition-all duration-300 flex items-center justify-center gap-2 hover:scale-[1.01] hover:shadow-[0_0_15px_rgba(212,165,39,0.2)]"
-                >
-                  Visit Live Site
-                  <ExternalLink className="h-4 w-4" />
-                </a>
-              </div>
-
-              {/* Tech Stack */}
-              <div className="border-t border-zinc-900 pt-6">
-                <h3 className="text-xs font-bold uppercase tracking-wider text-foreground-muted mb-4">
-                  Tech Stack
-                </h3>
-                <div className="flex flex-wrap gap-2">
-                  {project.techStack.map((tech) => (
-                    <span
-                      key={tech}
-                      className="rounded bg-zinc-900 border border-zinc-800/80 px-3 py-1.5 text-xs font-semibold text-foreground"
-                    >
-                      {tech}
-                    </span>
-                  ))}
-                </div>
-              </div>
-
-              {/* Next Project Card */}
-              <div className="border-t border-zinc-900 pt-6 mt-4">
-                <h3 className="text-xs font-bold uppercase tracking-wider text-foreground-muted mb-4">
-                  Next Project
-                </h3>
-                <Link
-                  href={`/projects/${nextProject.slug}`}
-                  className="group block rounded-xl border border-zinc-850 bg-[#0c0c0d] p-5 hover:border-accent/30 transition-all duration-300"
-                >
-                  <div className="flex items-center justify-between">
-                    <div>
-                      <span className="text-[10px] text-accent font-bold uppercase tracking-wider">
-                        {nextProject.category}
-                      </span>
-                      <p className="text-sm font-bold text-foreground mt-1 group-hover:text-accent transition-colors">
-                        {nextProject.name}
-                      </p>
-                    </div>
-                    <div className="rounded-lg bg-zinc-900 border border-zinc-800 p-2 text-foreground group-hover:text-accent group-hover:border-accent/20 transition-all">
-                      <ArrowRight className="h-4 w-4 group-hover:translate-x-0.5 transition-transform" />
-                    </div>
-                  </div>
-                </Link>
-              </div>
-            </div>
-
-            {/* Content Column (Case Study Narrative) */}
-            <div className="lg:col-span-2 flex flex-col gap-16">
-              
-              {/* Problem */}
-              <div className="flex flex-col gap-4">
-                <h2 className="font-display text-lg font-bold uppercase tracking-widest text-accent flex items-center gap-2">
-                  <span className="h-1.5 w-1.5 rounded-full bg-accent"></span>
-                  The Problem
-                </h2>
-                <p className="text-base text-foreground-muted leading-relaxed font-sans">
-                  {project.problem}
-                </p>
-              </div>
-
-              {/* Approach */}
-              <div className="flex flex-col gap-4">
-                <h2 className="font-display text-lg font-bold uppercase tracking-widest text-accent flex items-center gap-2">
-                  <span className="h-1.5 w-1.5 rounded-full bg-accent"></span>
-                  The Approach
-                </h2>
-                <p className="text-base text-foreground-muted leading-relaxed font-sans">
-                  {project.approach}
-                </p>
-              </div>
-
-              {/* Outcome */}
-              <div className="flex flex-col gap-4">
-                <h2 className="font-display text-lg font-bold uppercase tracking-widest text-accent flex items-center gap-2">
-                  <span className="h-1.5 w-1.5 rounded-full bg-accent"></span>
-                  The Outcome
-                </h2>
-                <p className="text-base text-foreground-muted leading-relaxed font-sans">
-                  {project.outcome}
-                </p>
-              </div>
-
-              {/* Device Gallery */}
-              <div className="border-t border-zinc-900 pt-16 flex flex-col gap-8">
-                <h3 className="font-display text-xl font-extrabold text-foreground tracking-tight">
-                  Interface Showcase
-                </h3>
-                
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-8 items-start">
-                  
-                  {/* Desktop Preview (Wider) */}
-                  <div className="md:col-span-2 flex flex-col gap-3">
-                    <span className="text-xs font-bold uppercase tracking-wider text-foreground-muted">
-                      Desktop Viewport (1440px)
-                    </span>
-                    <div className="relative aspect-[16/10] w-full rounded-xl overflow-hidden border border-zinc-800 bg-zinc-950">
-                      <Image
-                        src={`/projects/${project.slug}/desktop.png`}
-                        alt={`${project.name} Desktop Interface`}
-                        fill
-                        className="object-cover object-top"
-                        sizes="(max-width: 768px) 100vw, 66vw"
-                      />
-                    </div>
-                  </div>
-
-                  {/* Mobile Preview (Taller) */}
-                  <div className="flex flex-col gap-3">
-                    <span className="text-xs font-bold uppercase tracking-wider text-foreground-muted">
-                      Mobile Viewport (375px)
-                    </span>
-                    <div className="relative aspect-[9/16] w-full max-w-[280px] mx-auto md:max-w-none rounded-xl overflow-hidden border border-zinc-800 bg-zinc-950">
-                      <Image
-                        src={`/projects/${project.slug}/mobile.png`}
-                        alt={`${project.name} Mobile Interface`}
-                        fill
-                        className="object-cover object-top"
-                        sizes="(max-width: 768px) 50vw, 33vw"
-                      />
-                    </div>
-                  </div>
-
-                </div>
-              </div>
-
-            </div>
-
+          <div className="relative mt-16 aspect-[16/10] w-full overflow-hidden rounded-2xl bg-paper">
+            <Image
+              src={`/projects/${project.slug}/desktop.png`}
+              alt={`${project.name} desktop preview`}
+              fill
+              priority
+              sizes="(max-width: 1440px) 100vw, 1440px"
+              className="object-cover object-top"
+            />
           </div>
         </div>
       </section>
-    </div>
+
+      <section className="bg-paper">
+        <div className="mx-auto grid max-w-[1440px] gap-16 px-6 py-24 lg:grid-cols-[1fr_2fr] lg:px-9 lg:py-32">
+          <aside className="h-fit lg:sticky lg:top-28">
+            <h2 className="text-sm uppercase tracking-widest text-body">Tech stack</h2>
+            <div className="mt-4 flex flex-wrap gap-2">
+              {project.techStack.map((t, i) => (
+                <Pill key={t} tone={(["sky", "lime", "grape", "mist"] as const)[i % 4]}>
+                  {t}
+                </Pill>
+              ))}
+            </div>
+          </aside>
+
+          <div className="flex flex-col gap-14">
+            {sections.map((s, i) => (
+              <div key={s.label} className="border-t border-ink/15 pt-6">
+                <p className="text-lg text-body">0{i + 1}</p>
+                <h2 className="mt-1 text-3xl font-medium tracking-tight">{s.label}</h2>
+                <p className="mt-4 max-w-2xl text-xl leading-relaxed text-body">{s.text}</p>
+              </div>
+            ))}
+
+            <div className="border-t border-ink/15 pt-10">
+              <h2 className="text-3xl font-medium tracking-tight">On mobile</h2>
+              <div className="relative mt-6 aspect-[9/16] w-full max-w-[280px] overflow-hidden rounded-2xl bg-mist">
+                <Image
+                  src={`/projects/${project.slug}/mobile.png`}
+                  alt={`${project.name} mobile preview`}
+                  fill
+                  sizes="280px"
+                  className="object-cover object-top"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="bg-mist">
+        <div className="mx-auto max-w-[1440px] px-6 py-16 lg:px-9">
+          <p className="text-lg text-body">Next project</p>
+          <Link href={`/projects/${next.slug}`} className="group mt-2 flex items-center justify-between gap-6">
+            <span className="text-4xl font-medium tracking-[-0.03em] sm:text-6xl">{next.name}</span>
+            <span className="flex h-14 w-14 shrink-0 items-center justify-center rounded-full bg-ink-soft text-white transition-transform group-hover:translate-x-1">
+              <ArrowRight className="h-6 w-6" aria-hidden="true" />
+            </span>
+          </Link>
+        </div>
+      </section>
+
+      <ContactSection />
+    </>
   );
 }

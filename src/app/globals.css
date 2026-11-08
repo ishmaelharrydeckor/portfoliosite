@@ -1,53 +1,73 @@
 @import "tailwindcss";
 
+/* Palette sampled from the Prolens reference: white / cool grey / near-black,
+   with three soft tag colours used only for pills and dots. */
 @theme {
-  --color-background: #050505;
-  --color-surface: #0d0d0e;
-  --color-surface-muted: #161618;
-  --color-foreground: #f4f4f5;
-  --color-foreground-muted: #a1a1aa;
-  
-  --color-accent: #d4a527;
-  --color-accent-glow: rgba(212, 165, 39, 0.15);
-  
-  --font-sans: var(--font-sans), sans-serif;
-  --font-display: var(--font-display), sans-serif;
+  --color-paper: #ffffff;
+  --color-mist: #e8eaed;
+  --color-ink: #101010;
+  --color-ink-soft: #191919;
+  --color-body: #3b3b3b;
+  --color-sky: #96b7c8;
+  --color-lime: #daea56;
+  --color-grape: #885fa8;
+
+  --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
 }
 
-:root {
-  --background: #050505;
-  --foreground: #f4f4f5;
+html {
+  scroll-behavior: smooth;
 }
 
 body {
-  background-color: var(--background);
-  color: var(--foreground);
-  font-family: var(--font-sans), sans-serif;
+  background-color: var(--color-paper);
+  color: var(--color-ink);
+  font-family: var(--font-sans);
   overflow-x: hidden;
 }
 
-/* Custom scrollbar */
-::-webkit-scrollbar {
-  width: 8px;
-}
-::-webkit-scrollbar-track {
-  background: #050505;
-}
-::-webkit-scrollbar-thumb {
-  background: #1c1c1e;
-  border-radius: 4px;
-}
-::-webkit-scrollbar-thumb:hover {
-  background: #d4a527;
-}
-
-/* Selection color */
 ::selection {
-  background-color: rgba(212, 165, 39, 0.2);
-  color: #f4f4f5;
+  background-color: var(--color-lime);
+  color: var(--color-ink);
 }
 
-/* Smooth scrolling */
-html {
-  scroll-behavior: smooth;
+/* Faint dot grid texture */
+.dot-grid {
+  background-image: radial-gradient(rgba(16, 16, 16, 0.16) 1px, transparent 1px);
+  background-size: 30px 30px;
+}
+.dot-grid-dark {
+  background-image: radial-gradient(rgba(255, 255, 255, 0.12) 1px, transparent 1px);
+  background-size: 30px 30px;
+}
+
+/* Infinite marquee */
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+.marquee-track {
+  display: flex;
+  width: max-content;
+  animation: marquee 40s linear infinite;
+}
+.marquee:hover .marquee-track {
+  animation-play-state: paused;
+}
+
+/* Gentle float for the hero tags */
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+.float-slow { animation: float 6s ease-in-out infinite; }
+.float-slower { animation: float 8s ease-in-out infinite; animation-delay: -2s; }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .marquee-track,
+  .float-slow,
+  .float-slower {
+    animation: none;
+  }
 }
