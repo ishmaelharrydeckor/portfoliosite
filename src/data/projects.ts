@@ -35,7 +35,7 @@ export const projects: Project[] = [
     url: "https://estateguard-azure.vercel.app/",
     category: "Housing & Fintech",
     projectType: "concept",
-    summary: "A rental platform concept where verified government employees find approved homes and pay rent by approving a prompt on their phone.",
+    summary: "A rental platform concept where government employees find approved homes and pay rent by approving a prompt on their phone.",
     problem: "Renters face high upfront demands and unverified landlords, landlords struggle with late payment, and none of it is recorded.",
     approach: "Designed the product story and built a landing page, plus a React prototype of the platform covering verified listings, digital tenancy agreements and receipts.",
     outcome: "A clear pitch site and demo prototype that explain the idea to renters, landlords and stakeholders.",
