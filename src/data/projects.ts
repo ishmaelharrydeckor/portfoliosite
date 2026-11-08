@@ -130,7 +130,7 @@ export const projects: Project[] = [
     approach: "Engineered a Next.js interactive development portal with real-time floorplan filtering, 3D architectural showcases, and a dynamic ROI investment calculator.",
     outcome: "A concept build showing how an off-plan developer could let buyers explore units and model returns on their own, instead of waiting on a sales call.",
     techStack: ["Next.js", "Tailwind CSS", "TypeScript", "Framer Motion"],
-    showcase: true
+    showcase: false
   },
   {
     slug: "aura-audio",
@@ -143,7 +143,7 @@ export const projects: Project[] = [
     approach: "Designed a minimalist visual showcase emphasizing oak and aluminum elements, paired with fluid scroll entrances and clear acoustic specifications grids.",
     outcome: "Delivered an elegant product display page that successfully builds brand positioning, converting visitor curiosity into pre-orders.",
     techStack: ["Next.js", "Tailwind CSS", "TypeScript", "GSAP", "Framer Motion"],
-    showcase: true
+    showcase: false
   },
   {
     slug: "real-estate-catalog",
@@ -156,7 +156,7 @@ export const projects: Project[] = [
     approach: "Developed a clean, card-based layout featuring client-side filtering, fast search caching, and responsive media optimization for instant page loads.",
     outcome: "Achieved seamless property discovery with intuitive filters, resulting in high user engagement and near-instant load speeds across all screen sizes.",
     techStack: ["Next.js", "Tailwind CSS", "TypeScript", "Framer Motion", "GSAP"],
-    showcase: true
+    showcase: false
   },
   {
     slug: "aether-studio",
