@@ -253,6 +253,9 @@ export default function Home() {
               </blockquote>
               <p className="mt-6 text-base font-bold">Client name, Company</p>
               <p className="mt-1 text-sm text-body">Placeholder: replace with a real quote and photo.</p>
+              <Link href="/testimonial" className="mt-6 inline-block text-base font-bold underline decoration-accent decoration-2 underline-offset-8 hover:text-body">
+                Worked with me? Share your experience
+              </Link>
             </Reveal>
           </div>
         </div>
