@@ -15,28 +15,28 @@ import { whatsappLink } from "@/data/site";
 const services = [
   {
     title: "Business websites",
-    body: "A website that looks like your brand and sounds like your business. Built to load fast, rank on Google, show up in AI answers and turn visitors into enquiries.",
+    body: "A website that matches your brand and your business. It loads fast, is set up to rank on Google and show in AI answers, and is built to bring in enquiries.",
     slug: "samuel-adanuvo",
     projectName: "Samuel Adanuvo",
     host: "sammyadanuvo.com",
   },
   {
     title: "Landing pages & waitlists",
-    body: "One page, one goal: sign-ups, bookings or leads. Sharp messaging and a design that earns trust in the first few seconds.",
+    body: "One page for one goal: sign-ups, bookings or leads.",
     slug: "estateguard",
     projectName: "EstateGuard",
     host: "estateguard-azure.vercel.app",
   },
   {
     title: "Web apps & portals",
-    body: "Dashboards, booking flows and portals for businesses that need their website to do real work, not just sit there.",
+    body: "Dashboards, booking systems and portals, for when you need more than a brochure site.",
     slug: "checin",
     projectName: "ChecIN",
     host: "checin-6982.vercel.app",
   },
   {
     title: "Redesigns & rebuilds",
-    body: "A site that no longer matches your brand, or is not bringing in enquiries? I rebuild it to look right, load fast and be found.",
+    body: "If your site looks dated or is not bringing in enquiries, I rebuild it so it matches your brand and gets found.",
     slug: "paa-kwesi-folson",
     projectName: "Paa Kwesi Folson",
     host: "pkf-pink.vercel.app",
@@ -46,23 +46,23 @@ const services = [
 const faqs = [
   {
     title: "How does it work?",
-    body: "We start with a call so I understand your business. You send me your images and any details you have. I take it from there, and you see the site come together before it goes live.",
+    body: "We start with a call so I understand your business. You send me your images, and I build the site. You look it over before it goes live.",
   },
   {
     title: "How long does it take?",
-    body: "I work fast, and I give you a clear timeline on our call, once I know the pages and content involved.",
+    body: "I work fast. Once we have spoken and I know what the site needs, I give you a timeline.",
   },
   {
     title: "What do I need to provide?",
-    body: "Your images, your logo if you have one, and a conversation about your business. Everything else is on me.",
+    body: "Your images, your logo if you have one, and a call to talk about your business. I handle the rest.",
   },
   {
     title: "Will my site show up on Google and in AI answers?",
-    body: "I build every site to compete: clear structure, proper page titles, structured data and fast loading, so search engines and AI tools can understand your business. No one can honestly promise a ranking position, but I set your site up properly from day one.",
+    body: "I build every site so search engines and AI tools can understand your business: clear structure, proper page titles, structured data and fast loading. Nobody can honestly promise a ranking position, but your site is set up to compete.",
   },
   {
     title: "Do you do the design as well as the build?",
-    body: "Yes. I design and build together, so what you get is a finished website that matches your brand and works.",
+    body: "Yes. I do both, so you get a finished website that matches your brand.",
   },
   {
     title: "What do you build with?",
@@ -74,7 +74,7 @@ const faqs = [
   },
   {
     title: "How much does it cost?",
-    body: "It depends on what you need. Tell me, and I'll send you a quote.",
+    body: "Tell me what you need and I will send you a quote.",
   },
 ];
 
@@ -107,9 +107,9 @@ export default function Home() {
               that <Mark>win customers</Mark>.
             </h1>
             <p className="mt-8 max-w-xl text-xl leading-relaxed text-paper/70">
-              Your website should match your brand, get found on Google and in AI
-              answers, and bring in enquiries. I design and build it, fast, from
-              the first call to launch.
+              I build websites that match your brand, get found on Google and in
+              AI answers, and bring in enquiries. I work fast and I handle the
+              whole job, from the first call to launch.
             </p>
             <div className="mt-10 flex flex-wrap gap-4">
               {whatsappLink ? (
@@ -151,7 +151,7 @@ export default function Home() {
       <section id="services" className="scroll-mt-20 bg-paper">
         <div className="mx-auto max-w-[1440px] px-6 py-24 lg:px-9 lg:py-32">
           <Reveal className="mx-auto max-w-3xl text-center">
-            <h2 className={h2}>Everything your <Mark>business</Mark> needs online</h2>
+            <h2 className={h2}>What I <Mark>build</Mark></h2>
           </Reveal>
           <Reveal delay={0.1} className="mt-16">
             <ServicesShowcase items={services} />
@@ -165,14 +165,14 @@ export default function Home() {
           <Reveal className="max-w-3xl">
             <Eyebrow className="text-accent">How it works</Eyebrow>
             <h2 className={`mt-5 ${h2}`}>
-              One call. Your images. <Mark>Your site.</Mark>
+              It starts with a <Mark>call</Mark>
             </h2>
           </Reveal>
           <div className="mt-14 grid gap-10 md:grid-cols-3">
             {[
-              ["01", "We talk", "A call to understand your business, your customers and what your site needs to do."],
-              ["02", "You send your images", "Your photos, logo and details. Nothing more is needed from you."],
-              ["03", "I build and launch", "I design and build it, you see it take shape, and it goes live ready to be found."],
+              ["01", "We talk", "We get on a call so I understand your business and what you want from your site."],
+              ["02", "You send your images", "Your photos and your logo. That is all I need from you."],
+              ["03", "I build it", "I design and build the site, you check it, and it goes live."],
             ].map(([n, t, b], i) => (
               <Reveal key={n} delay={i * 0.08}>
                 <div className="border-t-2 border-accent pt-6">
@@ -192,8 +192,8 @@ export default function Home() {
           <Reveal className="flex flex-wrap items-end justify-between gap-6">
             <div>
               <Eyebrow>Selected work</Eyebrow>
-              <h2 className={`mt-5 ${h2}`}>Proof, not <Mark>promises</Mark></h2>
-              <p className="mt-4 max-w-md text-lg text-body">Real sites for real businesses. Hover a project to scroll through it.</p>
+              <h2 className={`mt-5 ${h2}`}>Some of my <Mark>work</Mark></h2>
+              <p className="mt-4 max-w-md text-lg text-body">Hover over a project to scroll through the site.</p>
             </div>
             <Button href="/projects" variant="dark">View all projects</Button>
           </Reveal>
@@ -213,7 +213,7 @@ export default function Home() {
           <Reveal className="flex flex-wrap items-end justify-between gap-6">
             <div>
               <Eyebrow className="text-accent">Background</Eyebrow>
-              <h2 className={`mt-5 ${h2}`}>Building, leading, <Mark>delivering</Mark></h2>
+              <h2 className={`mt-5 ${h2}`}>My <Mark>background</Mark></h2>
             </div>
             <Link href="/about" className="text-base font-bold underline decoration-accent decoration-2 underline-offset-8 hover:text-accent">
               Full background
