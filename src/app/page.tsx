@@ -64,10 +64,6 @@ const faqs = [
     body: "Yes. I do both, so you get a finished website that matches your brand.",
   },
   {
-    title: "Can you make changes after launch?",
-    body: "Yes. Message me any time for text changes, new pages or new features.",
-  },
-  {
     title: "How much does it cost?",
     body: "Tell me what you need and I will send you a quote.",
   },
