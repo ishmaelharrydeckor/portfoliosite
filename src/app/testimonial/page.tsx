@@ -5,6 +5,7 @@ import TestimonialForm from "@/components/TestimonialForm";
 export const metadata: Metadata = {
   title: "Share your experience",
   description: "Worked with Ishmael? Leave a short testimonial and a photo.",
+  alternates: { canonical: "/testimonial" },
   robots: { index: false, follow: false },
 };
 

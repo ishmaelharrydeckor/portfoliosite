@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { Quote } from "lucide-react";
@@ -9,7 +10,12 @@ import ServicesShowcase from "@/components/ServicesShowcase";
 import ContactSection from "@/components/ContactSection";
 import { showcaseProjects, totalCount, liveClientCount } from "@/data/projects";
 import { experience } from "@/data/experience";
-import { whatsappLink } from "@/data/site";
+import { whatsappLink, site, siteUrl, tagline } from "@/data/site";
+import JsonLd from "@/components/JsonLd";
+
+export const metadata: Metadata = {
+  alternates: { canonical: "/" },
+};
 
 const services = [
   {
@@ -80,8 +86,41 @@ export default function Home() {
     ["Availability", "Open"],
   ];
 
+  const structuredData = {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Person",
+        "@id": `${siteUrl}/#person`,
+        name: site.name,
+        jobTitle: "Web developer",
+        url: siteUrl,
+        image: `${siteUrl}/headshot.jpg`,
+        sameAs: [site.linkedin, site.github, site.twitter],
+      },
+      {
+        "@type": "ProfessionalService",
+        "@id": `${siteUrl}/#service`,
+        name: `${site.name}: websites for businesses`,
+        description: tagline,
+        url: siteUrl,
+        founder: { "@id": `${siteUrl}/#person` },
+        serviceType: ["Business websites", "Landing pages", "Web apps and portals", "Website redesigns"],
+      },
+      {
+        "@type": "FAQPage",
+        mainEntity: faqs.map((f) => ({
+          "@type": "Question",
+          name: f.title,
+          acceptedAnswer: { "@type": "Answer", text: f.body },
+        })),
+      },
+    ],
+  };
+
   return (
     <>
+      <JsonLd data={structuredData} />
       {/* HERO */}
       <section className="overflow-hidden bg-ink text-paper">
         <div className="mx-auto grid max-w-[1440px] lg:grid-cols-2">

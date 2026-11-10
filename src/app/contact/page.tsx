@@ -3,7 +3,8 @@ import ContactSection from "@/components/ContactSection";
 
 export const metadata: Metadata = {
   title: "Contact",
-  description: "Tell me about your business and the website you need.",
+  description: "Tell Ishmael about your business and the website you need, and get a quote.",
+  alternates: { canonical: "/contact" },
 };
 
 export default function ContactPage() {

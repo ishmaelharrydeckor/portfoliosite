@@ -68,3 +68,18 @@ npm run dev
 ```bash
 npm run build
 ```
+
+---
+
+## 🔎 SEO and going live on a domain
+
+Search engines are **blocked by default** (`noindex` on every page, `robots.txt` disallows everything, empty sitemap). Two environment variables in the host (Vercel → Settings → Environment Variables) control this; they are read at build time, so **redeploy after changing them**:
+
+| Variable | What it does |
+| :-- | :-- |
+| `NEXT_PUBLIC_SITE_URL` | The public address, e.g. `https://yourdomain.com` (no trailing slash). Used for canonical links, the sitemap, share cards and structured data. |
+| `NEXT_PUBLIC_ALLOW_INDEXING` | Set to `true` only when the real domain is live. Turns on `index, follow`, a real `robots.txt` and the sitemap. |
+
+What is built in: a title, description and canonical link on every page, a sitemap and robots file (`src/app/sitemap.ts`, `src/app/robots.ts`), a share image for WhatsApp/LinkedIn/X (`src/app/opengraph-image.tsx`), and structured data on the home page (Person, ProfessionalService and the FAQ, built from the visible FAQ in `src/app/page.tsx`). `/testimonial` is never indexed.
+
+After going live: submit `https://yourdomain.com/sitemap.xml` in Google Search Console and Bing Webmaster Tools.

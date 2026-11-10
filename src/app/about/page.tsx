@@ -6,7 +6,8 @@ import { experience } from "@/data/experience";
 
 export const metadata: Metadata = {
   title: "About",
-  description: "Developer building modern websites for businesses, and founder of Sena Academy.",
+  description: "Why Ishmael Harry-Deckor builds websites for businesses, how he works, and his background as founder of Sena Academy.",
+  alternates: { canonical: "/about" },
 };
 
 
