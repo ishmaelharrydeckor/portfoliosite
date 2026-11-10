@@ -64,10 +64,6 @@ const faqs = [
     body: "Yes. I do both, so you get a finished website that matches your brand.",
   },
   {
-    title: "What do you build with?",
-    body: "Next.js, React, TypeScript and Tailwind CSS, with motion where it helps. Sites are hosted on Vercel.",
-  },
-  {
     title: "Can you make changes after launch?",
     body: "Yes. Message me any time for text changes, new pages or new features.",
   },
