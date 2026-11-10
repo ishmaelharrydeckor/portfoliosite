@@ -32,27 +32,48 @@ export default function AboutPage() {
             <h1 className="mt-5 text-5xl font-extrabold leading-[1.02] tracking-[-0.035em] sm:text-7xl">
               Ishmael <Mark>Harry-Deckor</Mark>
             </h1>
-            <p className="mt-3 text-xl text-body">Website builder · Founder, Sena Academy</p>
+            <p className="mt-3 text-xl text-body">I build websites for businesses · Founder, Sena Academy</p>
 
             <div className="mt-10 space-y-6 text-xl leading-relaxed text-body">
               <p>
-                I&apos;m Ishmael Harry-Deckor, a software developer and the founder of Sena Academy, where we&apos;re helping the next generation of builders learn AI and software development by creating real projects, not just watching tutorials. I engineered our live{" "}
-                <a href="https://sena-academy-lms-ten.vercel.app/" target="_blank" rel="noopener noreferrer" className="font-medium text-ink underline underline-offset-4">
+                I started building websites because I saw businesses doing amazing work that
+                people could not see. Others had a website that did not match their brand. You
+                could feel it as you scrolled: it did not feel like them. I wanted to fix both.
+              </p>
+              <p>
+                I focus on businesses because so many good ones in Ghana go unnoticed. In today&apos;s
+                attention economy, you can&apos;t do well if your work is not out there. A website that
+                looks like your brand and can be found is how people get to see it.
+              </p>
+              <p>
+                Every project starts with a call. I learn your business and the problem you are
+                trying to solve, and we build the site around that. My Petroleum Engineering degree
+                taught me to break a problem down and plan it step by step, and I bring that to
+                every project.
+              </p>
+              <p>
+                I started Sena Academy because I saw a lot of people falling behind in AI. They did
+                not know how to use it to get real work done, and they struggled. Today the
+                community has more than 700 people. Members are building amazing things, and many
+                of them build websites for other businesses and for their own. People from our first
+                cohort are doing great work too. I built the{" "}
+                <a
+                  href="https://sena-academy-lms-ten.vercel.app/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="font-medium text-ink underline underline-offset-4"
+                >
                   Sena Academy LMS
                 </a>{" "}
-                from the ground up as the core of our student hub.
+                myself.
               </p>
               <p>
-                I build modern, high-performance websites and web apps that combine thoughtful design with AI-powered development workflows. To me, AI isn&apos;t a shortcut. It&apos;s a productivity multiplier that lets me build faster while keeping quality high.
-              </p>
-              <p>
-                My experience spans frontend development, prompt engineering, machine learning fundamentals and practical AI implementation. Through my internship at Erudite Africa Network, I applied AI to real business problems, which taught me how technology creates value beyond writing code.
-              </p>
-              <p>
-                Alongside building products, I&apos;m passionate about helping others become builders by shipping projects, building portfolios and preparing for opportunities in today&apos;s AI-driven world.
+                I am resilient and dedicated, and I hold to my values. When I take your project, it
+                is done for you, with no stress on your side. I respect your time, I deliver within
+                the timeline we agree, and I work fast.
               </p>
               <p className="border-l-4 border-accent pl-5 font-bold text-ink">
-                &ldquo;I don&apos;t just build websites. I build products, create opportunities, and help others become builders.&rdquo;
+                Businesses are doing amazing work. People should be able to see it.
               </p>
             </div>
 
