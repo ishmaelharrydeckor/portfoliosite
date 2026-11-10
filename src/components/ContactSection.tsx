@@ -20,8 +20,7 @@ export default function ContactSection({
               Let&apos;s <Mark>talk</Mark>.
             </Heading>
             <p className="mt-6 max-w-md text-xl leading-relaxed text-paper/70">
-              Tell me about your business and the website you need, and I&apos;ll
-              reply with next steps.
+              Tell me what you need and I&apos;ll send you a quote.
             </p>
           </div>
 
