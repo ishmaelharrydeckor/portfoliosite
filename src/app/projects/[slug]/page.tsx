@@ -3,7 +3,7 @@ import Image from "next/image";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import { ArrowLeft, ArrowRight, ExternalLink } from "lucide-react";
-import { Tag, Eyebrow } from "@/components/ui";
+import { Tag } from "@/components/ui";
 import ContactSection from "@/components/ContactSection";
 import { showcaseProjects as projects } from "@/data/projects";
 
@@ -86,19 +86,8 @@ export default async function ProjectDetailPage({ params }: PageProps) {
       </section>
 
       <section className="bg-paper">
-        <div className="mx-auto grid max-w-[1440px] gap-16 px-6 py-24 lg:grid-cols-[1fr_2fr] lg:px-9 lg:py-32">
-          <aside className="h-fit lg:sticky lg:top-28">
-            <Eyebrow>Tech stack</Eyebrow>
-            <div className="mt-4 flex flex-wrap gap-2">
-              {project.techStack.map((t, i) => (
-                <Tag key={t} tone={i === 0 ? "accent" : "outline"}>
-                  {t}
-                </Tag>
-              ))}
-            </div>
-          </aside>
-
-          <div className="flex flex-col gap-14">
+        <div className="mx-auto max-w-[1440px] px-6 py-24 lg:px-9 lg:py-32">
+          <div className="flex max-w-3xl flex-col gap-14">
             {sections.map((s, i) => (
               <div key={s.label} className="border-t-2 border-ink pt-6">
                 <p className="text-lg font-semibold text-body">0{i + 1}</p>

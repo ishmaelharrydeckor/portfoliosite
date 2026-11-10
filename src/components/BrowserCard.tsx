@@ -51,7 +51,6 @@ export default function BrowserCard({ project: p }: { project: Project }) {
           </h3>
           <p className="mt-1.5 max-w-md text-base leading-relaxed text-body">{p.summary}</p>
         </div>
-        <p className="hidden shrink-0 text-sm text-body sm:block">{p.techStack.slice(0, 2).join(" · ")}</p>
       </div>
     </Link>
   );
