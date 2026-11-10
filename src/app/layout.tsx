@@ -11,11 +11,11 @@ export const metadata: Metadata = {
     template: "%s | Ishmael Harry-Deckor",
   },
   description:
-    "I build websites for businesses that match your brand, get found on Google and in AI answers, and bring in customers.",
+    "I build websites for businesses that match your brand, show up when people search for your business, and bring in customers.",
   openGraph: {
     title: "Ishmael Harry-Deckor | Websites for Businesses",
     description:
-      "I build websites for businesses that match your brand, get found on Google and in AI answers, and bring in customers.",
+      "I build websites for businesses that match your brand, show up when people search for your business, and bring in customers.",
     url: "https://ishmaelharrydeckor.dev",
     siteName: "Ishmael Harry-Deckor",
     type: "website",
@@ -24,7 +24,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Ishmael Harry-Deckor | Websites for Businesses",
     description:
-      "I build websites for businesses that match your brand, get found on Google and in AI answers, and bring in customers.",
+      "I build websites for businesses that match your brand, show up when people search for your business, and bring in customers.",
   },
 };
 

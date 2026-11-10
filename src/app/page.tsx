@@ -14,7 +14,7 @@ import { whatsappLink } from "@/data/site";
 const services = [
   {
     title: "Business websites",
-    body: "A website that matches your brand and your business. It loads fast, is set up to rank on Google and show in AI answers, and is built to bring in enquiries.",
+    body: "A website that matches your brand and your business. It loads fast, shows up when people search for what you do, and is built to bring in enquiries.",
     slug: "samuel-adanuvo",
     projectName: "Samuel Adanuvo",
     host: "sammyadanuvo.com",
@@ -56,8 +56,8 @@ const faqs = [
     body: "Your images, your logo if you have one, and a call to talk about your business. I handle the rest.",
   },
   {
-    title: "Will my site show up on Google and in AI answers?",
-    body: "I build every site so search engines and AI tools can understand your business: clear structure, proper page titles, structured data and fast loading. Nobody can honestly promise a ranking position, but your site is set up to compete.",
+    title: "Will people find my site when they search?",
+    body: "Yes, that is part of the build. I set up every site so Google and tools like ChatGPT can understand what your business does: clear page titles, a clean structure and fast loading. Nobody can honestly promise a ranking position, but your site is set up to be found.",
   },
   {
     title: "Do you do the design as well as the build?",
@@ -106,9 +106,9 @@ export default function Home() {
               that <Mark>win customers</Mark>.
             </h1>
             <p className="mt-8 max-w-xl text-xl leading-relaxed text-paper/70">
-              I build websites that match your brand, get found on Google and in
-              AI answers, and bring in enquiries. I work fast and I handle the
-              whole job, from the first call to launch.
+              I build websites that match your brand, show up when people search
+              for what you do, and bring in enquiries. I work fast and I handle
+              the whole job, from the first call to launch.
             </p>
             <div className="mt-10 flex flex-wrap gap-4">
               {whatsappLink ? (

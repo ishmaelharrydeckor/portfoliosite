@@ -1,9 +1,7 @@
 import Image from "next/image";
 import type { Metadata } from "next";
-import { Tag, Eyebrow, Button, Mark } from "@/components/ui";
+import { Eyebrow, Button, Mark } from "@/components/ui";
 import ContactSection from "@/components/ContactSection";
-import { certifications } from "@/data/certifications";
-import { skills } from "@/data/skills";
 import { experience } from "@/data/experience";
 
 export const metadata: Metadata = {
@@ -11,12 +9,6 @@ export const metadata: Metadata = {
   description: "Developer building modern websites for businesses, and founder of Sena Academy.",
 };
 
-const skillGroups = ["Frontend", "Design & Creative"] as const;
-const certGroups = [
-  { key: "AI & ML", label: "AI & Machine Learning", tone: "accent" },
-  { key: "Software & Tools", label: "Software & Tools", tone: "solid" },
-  { key: "Soft Skills", label: "Leadership", tone: "outline" },
-] as const;
 
 export default function AboutPage() {
   return (
@@ -80,47 +72,6 @@ export default function AboutPage() {
             <div className="mt-10">
               <Button href="/contact" variant="dark">Start a project</Button>
             </div>
-          </div>
-        </div>
-      </section>
-
-      <section className="bg-mist">
-        <div className="mx-auto max-w-[1440px] px-6 py-24 lg:px-9 lg:py-28">
-          <Eyebrow>Expertise</Eyebrow>
-          <h2 className="mt-5 text-4xl font-extrabold tracking-[-0.03em] sm:text-5xl">What I work with</h2>
-          <div className="mt-12 grid gap-4 md:grid-cols-2">
-            {skillGroups.map((g) => (
-              <div key={g} className="rounded-md bg-paper p-6">
-                <h3 className="text-xl font-extrabold tracking-tight">{g}</h3>
-                <ul className="mt-4 flex flex-wrap gap-2">
-                  {skills.filter((s) => s.category === g).map((s) => (
-                    <li key={s.name} className="rounded-sm bg-mist px-3 py-1.5 text-sm">{s.name}</li>
-                  ))}
-                </ul>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="bg-paper">
-        <div className="mx-auto max-w-[1440px] px-6 py-24 lg:px-9 lg:py-28">
-          <Eyebrow>Credentials</Eyebrow>
-          <h2 className="mt-5 text-4xl font-extrabold tracking-[-0.03em] sm:text-5xl">Certifications</h2>
-          <div className="mt-12 grid gap-4 md:grid-cols-3">
-            {certGroups.map((g) => (
-              <div key={g.key} className="rounded-md bg-mist p-6">
-                <Tag tone={g.tone}>{g.label}</Tag>
-                <ul className="mt-6 space-y-4">
-                  {certifications.filter((c) => c.category === g.key).map((c) => (
-                    <li key={c.name}>
-                      <p className="text-base font-bold leading-snug">{c.name}</p>
-                      <p className="text-sm text-body">{c.issuer}</p>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            ))}
           </div>
         </div>
       </section>
