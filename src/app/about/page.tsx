@@ -11,7 +11,7 @@ export const metadata: Metadata = {
   description: "Developer building modern websites for businesses, and founder of Sena Academy.",
 };
 
-const skillGroups = ["Frontend", "AI & Systems", "Design & Creative", "Operations & Growth"] as const;
+const skillGroups = ["Frontend", "Design & Creative"] as const;
 const certGroups = [
   { key: "AI & ML", label: "AI & Machine Learning", tone: "accent" },
   { key: "Software & Tools", label: "Software & Tools", tone: "solid" },
@@ -88,7 +88,7 @@ export default function AboutPage() {
         <div className="mx-auto max-w-[1440px] px-6 py-24 lg:px-9 lg:py-28">
           <Eyebrow>Expertise</Eyebrow>
           <h2 className="mt-5 text-4xl font-extrabold tracking-[-0.03em] sm:text-5xl">What I work with</h2>
-          <div className="mt-12 grid gap-4 md:grid-cols-2 lg:grid-cols-4">
+          <div className="mt-12 grid gap-4 md:grid-cols-2">
             {skillGroups.map((g) => (
               <div key={g} className="rounded-md bg-paper p-6">
                 <h3 className="text-xl font-extrabold tracking-tight">{g}</h3>
