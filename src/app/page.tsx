@@ -5,7 +5,6 @@ import { Eyebrow, Button, Mark } from "@/components/ui";
 import Reveal from "@/components/Reveal";
 import Accordion from "@/components/Accordion";
 import BrowserCard from "@/components/BrowserCard";
-import LocalTime from "@/components/LocalTime";
 import ServicesShowcase from "@/components/ServicesShowcase";
 import ContactSection from "@/components/ContactSection";
 import { showcaseProjects, totalCount, liveClientCount } from "@/data/projects";
@@ -85,7 +84,7 @@ export default function Home() {
   const stats = [
     ["Projects built", String(totalCount)],
     ["Live client sites", String(liveClientCount)],
-    ["Based in", "Kumasi, GH"],
+    ["Sena Academy members", "700+"],
     ["Availability", "Open"],
   ];
 
@@ -97,7 +96,7 @@ export default function Home() {
           <div className="flex flex-col justify-center px-6 py-16 lg:px-9 lg:py-28">
             <p className="flex items-center gap-3 text-sm font-semibold uppercase tracking-[0.16em] text-paper/70">
               <span className="h-2 w-2 rounded-full bg-accent motion-safe:animate-pulse" aria-hidden="true" />
-              Kumasi, Ghana · <LocalTime />
+              Open for new projects
             </p>
             <h1 className="mt-6 text-[clamp(2.5rem,4.5vw,4.4rem)] font-extrabold leading-[1.04] tracking-[-0.035em]">
               Hi, I&apos;m Ishmael.

@@ -30,9 +30,10 @@ export default async function ProjectDetailPage({ params }: PageProps) {
   const next = projects[(index + 1) % projects.length];
 
   const sections = [
-    { label: "The problem", text: project.problem },
-    { label: "The approach", text: project.approach },
-    { label: "The outcome", text: project.outcome },
+    { label: "The brief", text: project.problem },
+    { label: "What I did", text: project.approach },
+    ...(project.challenge ? [{ label: "The hardest part", text: project.challenge }] : []),
+    { label: "How it went", text: project.outcome },
   ];
 
   return (

@@ -41,7 +41,7 @@ export default function AboutPage() {
                 could feel it as you scrolled: it did not feel like them. I wanted to fix both.
               </p>
               <p>
-                I focus on businesses because so many good ones in Ghana go unnoticed. In today&apos;s
+                I focus on businesses because so many good ones go unnoticed. In today&apos;s
                 attention economy, you can&apos;t do well if your work is not out there. A website that
                 looks like your brand and can be found is how people get to see it.
               </p>
@@ -70,7 +70,7 @@ export default function AboutPage() {
               <p>
                 I am resilient and dedicated, and I hold to my values. When I take your project, it
                 is done for you, with no stress on your side. I respect your time, I deliver within
-                the timeline we agree, and I work fast.
+                the timeline we agree, and I work fast. Every client so far has come to me after seeing my work.
               </p>
               <p className="border-l-4 border-accent pl-5 font-bold text-ink">
                 Businesses are doing amazing work. People should be able to see it.
