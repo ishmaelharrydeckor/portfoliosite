@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Link from "next/link";
 import { ArrowRight, CheckCircle2, ChevronDown } from "lucide-react";
 
 const projectOptions = [
@@ -136,8 +137,9 @@ export default function ContactForm() {
           {sending ? "Sending…" : "Send message"}
           <ArrowRight className="h-5 w-5" aria-hidden="true" />
         </button>
-        <p className="max-w-[220px] text-sm text-paper/50">
-          Your information stays private and is never shared.
+        <p className="max-w-[240px] text-sm text-paper/50">
+          I only use your details to reply to you. See the{" "}
+          <Link href="/privacy" className="underline underline-offset-2 hover:text-accent">privacy policy</Link>.
         </p>
       </div>
     </form>

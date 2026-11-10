@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useMemo, useState } from "react";
+import Link from "next/link";
 import { ArrowRight, CheckCircle2, ImagePlus } from "lucide-react";
 
 const MAX_BYTES = 4 * 1024 * 1024;
@@ -142,7 +143,7 @@ export default function TestimonialForm() {
           className="mt-1.5 h-5 w-5 accent-ink"
         />
         <span className="text-base text-body">
-          I give Ishmael permission to publish my words, name, role, company and photo on his website. I can ask him to remove them at any time. *
+          I give Ishmael permission to publish my words, name, role, company and photo on his website. I can ask him to remove them at any time. See the <Link href="/privacy" className="underline underline-offset-2">privacy policy</Link>. *
         </span>
       </label>
 

@@ -5,7 +5,7 @@ import { showcaseProjects } from "@/data/projects";
 export default function sitemap(): MetadataRoute.Sitemap {
   if (!indexable) return [];
   const now = new Date();
-  const pages = ["", "/projects", "/about", "/contact"].map((path) => ({
+  const pages = ["", "/projects", "/about", "/contact", "/privacy", "/terms"].map((path) => ({
     url: `${siteUrl}${path}`,
     lastModified: now,
     changeFrequency: "monthly" as const,

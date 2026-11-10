@@ -27,7 +27,13 @@ export default function Footer() {
             {whatsappLink && <a href={whatsappLink} target="_blank" rel="noopener noreferrer" className="hover:text-accent">WhatsApp</a>}
           </div>
         </div>
-        <p className="pb-8 text-sm text-paper/50">© {new Date().getFullYear()} Ishmael Harry-Deckor. All rights reserved.</p>
+        <div className="flex flex-wrap items-center justify-between gap-x-6 gap-y-2 pb-8 text-sm text-paper/50">
+          <p>© {new Date().getFullYear()} Ishmael Harry-Deckor. All rights reserved.</p>
+          <p className="flex gap-6">
+            <Link href="/privacy" className="hover:text-accent">Privacy Policy</Link>
+            <Link href="/terms" className="hover:text-accent">Terms of Service</Link>
+          </p>
+        </div>
       </div>
     </footer>
   );
