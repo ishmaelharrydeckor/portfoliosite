@@ -3,7 +3,7 @@ import ContactSection from "@/components/ContactSection";
 
 export const metadata: Metadata = {
   title: "Contact",
-  description: "Tell Ishmael about your business and the website you need, and get a quote.",
+  description: "Ask Ishmael for a free look-up, or tell him what you need and get a quote.",
   alternates: { canonical: "/contact" },
 };
 

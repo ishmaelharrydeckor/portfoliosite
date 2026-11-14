@@ -5,6 +5,7 @@ import Link from "next/link";
 import { ArrowRight, CheckCircle2, ChevronDown } from "lucide-react";
 
 const projectOptions = [
+  "Free look-up",
   "Business website",
   "Landing page / waitlist",
   "Web app or portal",

@@ -16,6 +16,8 @@ export interface Project {
   techStack: string[];
   /** Shown on the home page and the Projects page. Hidden projects still count in the totals. */
   showcase: boolean;
+  /** True only for real, live client work. Drives the "Live client sites" count. */
+  countsAsClient?: boolean;
 }
 
 export const projects: Project[] = [
@@ -31,7 +33,8 @@ export const projects: Project[] = [
     challenge: "Finding a direction that fit his brand and spoke for itself. When someone lands on the site and reads the first lines, it has to communicate his value.",
     outcome: "Samuel loved the result, especially the colour theme, the design and how everything is directed at his brand. What I am proudest of is that the site matches his brand and his position, so it feels like him.",
     techStack: ["Next.js", "Vercel"],
-    showcase: true
+    showcase: true,
+    countsAsClient: true
   },
   {
     slug: "daniel",
@@ -45,7 +48,8 @@ export const projects: Project[] = [
     challenge: "Getting a look that fit him: an oil and gas analyst, and a personal brand he can put his work and writing into.",
     outcome: "He liked it from the first draft and did not need many changes.",
     techStack: ["HTML", "CSS", "JavaScript", "GitHub Pages"],
-    showcase: true
+    showcase: true,
+    countsAsClient: true
   },
   {
     slug: "paa-kwesi-folson",
@@ -288,4 +292,4 @@ export const allProjects = projects;
 export const showcaseProjects = projects.filter((p) => p.showcase);
 
 export const totalCount = projects.length;
-export const liveClientCount = projects.filter((p) => p.projectType === "live-client").length;
+export const liveClientCount = projects.filter((p) => p.countsAsClient).length;

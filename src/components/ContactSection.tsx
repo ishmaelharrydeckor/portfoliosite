@@ -1,7 +1,7 @@
 import { Eyebrow, Button, Mark } from "@/components/ui";
 import ContactForm from "@/components/ContactForm";
 import Reveal from "@/components/Reveal";
-import { site, whatsappLink } from "@/data/site";
+import { site, lookupLink } from "@/data/site";
 
 export default function ContactSection({
   as: Heading = "h2",
@@ -15,12 +15,11 @@ export default function ContactSection({
           <div>
             <Eyebrow className="text-accent">Contact</Eyebrow>
             <Heading className="mt-5 font-display text-5xl font-extrabold leading-[1.04] tracking-[-0.035em] sm:text-7xl">
-              Got a project?
-              <br />
-              Let&apos;s <Mark>talk</Mark>.
+              Not sure where you stand? Ask for a <Mark>free look-up</Mark>.
             </Heading>
             <p className="mt-6 max-w-md text-xl leading-relaxed text-paper/70">
-              Tell me what you need and I&apos;ll send you a quote.
+              Send me your name and I will tell you what a prospect finds when
+              they search it. Or tell me what you need and I will send you a quote.
             </p>
           </div>
 
@@ -33,7 +32,7 @@ export default function ContactSection({
               {site.email}
             </a>
             <div className="mt-6 flex flex-wrap gap-3">
-              {whatsappLink && <Button href={whatsappLink} external>WhatsApp</Button>}
+              {lookupLink && <Button href={lookupLink} external>WhatsApp</Button>}
               {[
                 ["LinkedIn", site.linkedin],
                 ["GitHub", site.github],

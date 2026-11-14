@@ -37,7 +37,7 @@ export default function Header() {
         </div>
 
         <Link href="/#contact" className="hidden rounded-md bg-accent px-5 py-2.5 text-sm font-bold text-ink transition-colors hover:bg-paper md:inline-block">
-          Start a project
+          Free look-up
         </Link>
 
         <button
@@ -60,7 +60,7 @@ export default function Header() {
               </Link>
             ))}
             <Link href="/#contact" onClick={() => setOpen(false)} className="mt-2 inline-block w-fit rounded-md bg-accent px-5 py-3 text-base font-bold text-ink">
-              Start a project
+              Free look-up
             </Link>
           </div>
         </div>

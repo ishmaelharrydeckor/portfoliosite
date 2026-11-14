@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
-import { Quote } from "lucide-react";
 import { Eyebrow, Button, Mark } from "@/components/ui";
 import Reveal from "@/components/Reveal";
 import Accordion from "@/components/Accordion";
@@ -10,7 +9,7 @@ import ServicesShowcase from "@/components/ServicesShowcase";
 import ContactSection from "@/components/ContactSection";
 import { showcaseProjects, totalCount, liveClientCount } from "@/data/projects";
 import { experience } from "@/data/experience";
-import { whatsappLink, site, siteUrl, tagline } from "@/data/site";
+import { lookupLink, site, siteUrl, tagline } from "@/data/site";
 import JsonLd from "@/components/JsonLd";
 
 export const metadata: Metadata = {
@@ -19,39 +18,39 @@ export const metadata: Metadata = {
 
 const services = [
   {
-    title: "Business websites",
-    body: "A website that matches your brand and your business. It loads fast, shows up when people search for what you do, and is built to bring in enquiries.",
+    title: "A site that matches your brand",
+    body: "Built new or rebuilt, so it looks and sounds like you and works properly on a phone.",
     slug: "samuel-adanuvo",
     projectName: "Samuel Adanuvo",
     host: "sammyadanuvo.com",
   },
   {
-    title: "Landing pages & waitlists",
-    body: "One page for one goal: sign-ups, bookings or leads.",
-    slug: "estateguard",
-    projectName: "EstateGuard",
-    host: "estateguard-azure.vercel.app",
-  },
-  {
-    title: "Web apps & portals",
-    body: "Dashboards, booking systems and portals, for when you need more than a brochure site.",
-    slug: "checin",
-    projectName: "ChecIN",
-    host: "checin-6982.vercel.app",
-  },
-  {
-    title: "Redesigns & rebuilds",
-    body: "If your site looks dated or is not bringing in enquiries, I rebuild it so it matches your brand and gets found.",
+    title: "A page that gets you booked",
+    body: "A clear next step on every page: book a call, book you to speak, or send an enquiry.",
     slug: "paa-kwesi-folson",
     projectName: "Paa Kwesi Folson",
     host: "pkf-pink.vercel.app",
+  },
+  {
+    title: "A site you update yourself",
+    body: "An admin page where you edit your pages, add events and write posts. You do not need a developer, and your site never goes stale.",
+    slug: "daniel",
+    projectName: "Daniel Avudzivi",
+    host: "ishmaelharrydeckor.github.io/Daniel",
+  },
+  {
+    title: "Found when people search your name",
+    body: "Set up so Google shows your site when a prospect looks you up.",
+    slug: "samuel-adanuvo",
+    projectName: "Samuel Adanuvo",
+    host: "sammyadanuvo.com",
   },
 ];
 
 const faqs = [
   {
     title: "How does it work?",
-    body: "We start with a call so I understand your business. You send me your images, and I build the site. You look it over before it goes live.",
+    body: "We start with a call so I understand you and your work. You send me your photos and your logo, and I build the site. You look it over before it goes live.",
   },
   {
     title: "How long does it take?",
@@ -59,15 +58,23 @@ const faqs = [
   },
   {
     title: "What do I need to provide?",
-    body: "Your images, your logo if you have one, and a call to talk about your business. I handle the rest.",
+    body: "Your photos and your logo, and a call to talk about your work. I handle the rest.",
   },
   {
-    title: "Will people find my site when they search?",
-    body: "Yes, that is part of the build. I set up every site so Google and tools like ChatGPT can understand what your business does: clear page titles, a clean structure and fast loading. Nobody can honestly promise a ranking position, but your site is set up to be found.",
+    title: "Can I update it myself?",
+    body: "Yes. I build you an admin page where you can edit your pages, add events and write posts. You do not need a developer.",
+  },
+  {
+    title: "Will people find my site when they search your name?",
+    body: "That is what I set it up for. I build every site so Google and tools like ChatGPT can understand who you are and what you do: clear page titles, a clean structure and fast loading. Nobody can honestly promise a ranking position, but your site is set up to be found.",
   },
   {
     title: "Do you do the design as well as the build?",
     body: "Yes. I do both, so you get a finished website that matches your brand.",
+  },
+  {
+    title: "What is the free look-up?",
+    body: "Message me \"look me up\". I search your name the way a prospect would, and I tell you what they find. It is free, with no obligation.",
   },
   {
     title: "How much does it cost?",
@@ -76,7 +83,7 @@ const faqs = [
 ];
 
 export default function Home() {
-  const featured = showcaseProjects.slice(0, 4);
+  const featured = showcaseProjects.slice(0, 3);
   const h2 = "text-4xl font-extrabold leading-[1.05] tracking-[-0.03em] sm:text-6xl";
 
   const stats = [
@@ -93,7 +100,7 @@ export default function Home() {
         "@type": "Person",
         "@id": `${siteUrl}/#person`,
         name: site.name,
-        jobTitle: "Web developer",
+        jobTitle: "Web developer for consultants, coaches and speakers",
         url: siteUrl,
         image: `${siteUrl}/headshot.jpg`,
         sameAs: [site.linkedin, site.github, site.twitter],
@@ -101,11 +108,11 @@ export default function Home() {
       {
         "@type": "ProfessionalService",
         "@id": `${siteUrl}/#service`,
-        name: `${site.name}: websites for businesses`,
+        name: `${site.name}: websites for consultants, coaches and speakers`,
         description: tagline,
         url: siteUrl,
         founder: { "@id": `${siteUrl}/#person` },
-        serviceType: ["Business websites", "Landing pages", "Web apps and portals", "Website redesigns"],
+        serviceType: ["Websites for consultants, coaches and speakers", "Website redesigns", "Personal-brand websites with an admin page"],
       },
       {
         "@type": "FAQPage",
@@ -127,28 +134,27 @@ export default function Home() {
           <div className="flex flex-col justify-center px-6 py-16 lg:px-9 lg:py-28">
             <p className="flex items-center gap-3 text-sm font-semibold uppercase tracking-[0.16em] text-paper/70">
               <span className="h-2 w-2 rounded-full bg-accent motion-safe:animate-pulse" aria-hidden="true" />
-              Open for new projects
+              Websites for consultants, coaches and speakers
             </p>
             <h1 className="mt-6 text-[clamp(2.5rem,4.5vw,4.4rem)] font-extrabold leading-[1.04] tracking-[-0.035em]">
-              Hi, I&apos;m Ishmael.
-              <br />
-              I build websites
-              <br />
-              that <Mark>win customers</Mark>.
+              What do people find when they <Mark>search your name</Mark>?
             </h1>
             <p className="mt-8 max-w-xl text-xl leading-relaxed text-paper/70">
-              I build websites that match your brand, show up when people search
-              for what you do, and bring in enquiries. I work fast and I handle
-              the whole job, from the first call to launch.
+              I build the website they land on after your LinkedIn post. It
+              matches your brand, works on every phone and makes you easy to
+              book. Done for you, from the first call to launch.
             </p>
             <div className="mt-10 flex flex-wrap gap-4">
-              {whatsappLink ? (
-                <Button href={whatsappLink} external>Message me on WhatsApp</Button>
+              {lookupLink ? (
+                <Button href={lookupLink} external>Get a free look-up</Button>
               ) : (
-                <Button href="/#contact">Start a project</Button>
+                <Button href="/#contact">Get a free look-up</Button>
               )}
-              <Button href="/projects" variant="ghost">View projects</Button>
+              <Button href="/projects" variant="ghost">See my work</Button>
             </div>
+            <p className="mt-6 max-w-md text-base text-paper/60">
+              Free, no obligation. I will tell you what a prospect sees when they search your name.
+            </p>
           </div>
 
           <div className="relative min-h-[520px] lg:min-h-[740px]">
@@ -177,11 +183,47 @@ export default function Home() {
         </div>
       </section>
 
+      {/* PROBLEM */}
+      <section className="bg-paper">
+        <div className="mx-auto max-w-[1440px] px-6 py-24 lg:px-9 lg:py-28">
+          <Reveal className="max-w-3xl">
+            <Eyebrow>The problem</Eyebrow>
+            <h2 className={`mt-5 ${h2}`}>
+              LinkedIn gets people interested. What they find <Mark>next</Mark> decides whether they book.
+            </h2>
+            <p className="mt-6 max-w-2xl text-xl leading-relaxed text-body">
+              So what would a stranger find if they searched your name tonight?
+            </p>
+          </Reveal>
+          <div className="mt-12 grid gap-4 md:grid-cols-3">
+            {[
+              "No website at all.",
+              "An old one that does not match how good you are.",
+              "One that breaks on their phone.",
+            ].map((t, i) => (
+              <Reveal key={t} delay={i * 0.08}>
+                <div className="h-full rounded-md border-2 border-ink/15 p-8">
+                  <p className="font-display text-2xl font-extrabold leading-snug tracking-tight">{t}</p>
+                </div>
+              </Reveal>
+            ))}
+          </div>
+          <Reveal className="mt-10">
+            <p className="max-w-2xl text-xl leading-relaxed text-body">
+              You would never know it happened, and it quietly costs you. Most
+              people do want a website. The hesitation is that building one
+              sounds complicated, costly and one more thing on a full week.
+              That is why mine is done for you.
+            </p>
+          </Reveal>
+        </div>
+      </section>
+
       {/* SERVICES */}
       <section id="services" className="scroll-mt-20 bg-paper">
         <div className="mx-auto max-w-[1440px] px-6 py-24 lg:px-9 lg:py-32">
           <Reveal className="mx-auto max-w-3xl text-center">
-            <h2 className={h2}>What I <Mark>build</Mark></h2>
+            <h2 className={h2}>What <Mark>you get</Mark></h2>
           </Reveal>
           <Reveal delay={0.1} className="mt-16">
             <ServicesShowcase items={services} />
@@ -198,11 +240,12 @@ export default function Home() {
               It starts with a <Mark>call</Mark>
             </h2>
           </Reveal>
-          <div className="mt-14 grid gap-10 md:grid-cols-3">
+          <div className="mt-14 grid gap-10 md:grid-cols-2 lg:grid-cols-4">
             {[
-              ["01", "We talk", "We get on a call so I understand your business and what you want from your site."],
-              ["02", "You send your images", "Your photos and your logo. That is all I need from you."],
-              ["03", "I build it", "I design and build the site, you check it, and it goes live."],
+              ["01", "We talk", "We get on a call so I understand you, your work and who you want to reach."],
+              ["02", "You send your photos and logo", "That is all I need from you."],
+              ["03", "I build it", "I design and build the site, you look it over, and it goes live."],
+              ["04", "You run it yourself", "Edit your pages, add events and write posts from your admin page."],
             ].map(([n, t, b], i) => (
               <Reveal key={n} delay={i * 0.08}>
                 <div className="border-t-2 border-accent pt-6">
@@ -227,9 +270,9 @@ export default function Home() {
             </div>
             <Button href="/projects" variant="dark">View all projects</Button>
           </Reveal>
-          <div className="mt-14 grid gap-x-10 gap-y-14 md:grid-cols-2">
-            {featured.map((p, i) => (
-              <Reveal key={p.slug} className={i % 2 ? "md:mt-20" : ""}>
+          <div className="mt-14 grid gap-x-8 gap-y-14 md:grid-cols-2 lg:grid-cols-3">
+            {featured.map((p) => (
+              <Reveal key={p.slug}>
                 <BrowserCard project={p} />
               </Reveal>
             ))}
@@ -260,33 +303,6 @@ export default function Home() {
                 <p className="text-base text-paper/70 md:text-right">{r.dates}</p>
               </div>
             ))}
-          </div>
-        </div>
-      </section>
-
-      {/* TESTIMONIAL (placeholder until there is a real quote) */}
-      <section className="bg-paper">
-        <div className="mx-auto max-w-[1440px] px-6 py-24 lg:px-9 lg:py-32">
-          <Reveal className="text-center">
-            <h2 className={h2}>What clients <Mark>say</Mark></h2>
-          </Reveal>
-          <div className="mt-14 grid items-center gap-10 md:grid-cols-[0.8fr_1.2fr] md:gap-16">
-            <Reveal>
-              <div className="mx-auto flex aspect-square w-full max-w-sm -rotate-3 items-center justify-center rounded-md border-2 border-dashed border-ink/25 bg-mist">
-                <span className="font-display text-7xl font-extrabold text-ink/20" aria-hidden="true">?</span>
-              </div>
-            </Reveal>
-            <Reveal delay={0.1}>
-              <Quote className="h-9 w-9 fill-ink/20 text-ink/20" aria-hidden="true" />
-              <blockquote className="mt-4 font-display text-3xl font-bold leading-snug tracking-[-0.02em] sm:text-4xl">
-                Your first client testimonial goes here. A couple of sentences on the project and the result.
-              </blockquote>
-              <p className="mt-6 text-base font-bold">Client name, Company</p>
-              <p className="mt-1 text-sm text-body">Placeholder: replace with a real quote and photo.</p>
-              <Link href="/testimonial" className="mt-6 inline-block text-base font-bold underline decoration-accent decoration-2 underline-offset-8 hover:text-body">
-                Worked with me? Share your experience
-              </Link>
-            </Reveal>
           </div>
         </div>
       </section>

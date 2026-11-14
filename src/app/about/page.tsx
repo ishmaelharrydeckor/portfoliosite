@@ -6,7 +6,7 @@ import { experience } from "@/data/experience";
 
 export const metadata: Metadata = {
   title: "About",
-  description: "Why Ishmael Harry-Deckor builds websites for businesses, how he works, and his background as founder of Sena Academy.",
+  description: "Why Ishmael Harry-Deckor builds websites for consultants, coaches and speakers, how he works, and his background as founder of Sena Academy.",
   alternates: { canonical: "/about" },
 };
 
@@ -25,31 +25,32 @@ export default function AboutPage() {
             <h1 className="mt-5 text-5xl font-extrabold leading-[1.02] tracking-[-0.035em] sm:text-7xl">
               Ishmael <Mark>Harry-Deckor</Mark>
             </h1>
-            <p className="mt-3 text-xl text-body">I build websites for businesses · Founder, Sena Academy</p>
+            <p className="mt-3 text-xl text-body">Websites for consultants, coaches and speakers · Founder, Sena Academy</p>
 
             <div className="mt-10 space-y-6 text-xl leading-relaxed text-body">
               <p>
-                I started building websites because I saw businesses doing amazing work that
-                people could not see. Others had a website that did not match their brand. You
-                could feel it as you scrolled: it did not feel like them. I wanted to fix both.
+                LinkedIn gets people interested. What they find when they look you up decides
+                whether they book. Many consultants, coaches and speakers lose bookings quietly:
+                no website, an old one that does not match how good they are, or one that breaks
+                on a phone. You never find out it happened.
               </p>
               <p>
-                I focus on businesses because so many good ones go unnoticed. In today&apos;s
-                attention economy, you can&apos;t do well if your work is not out there. A website that
-                looks like your brand and can be found is how people get to see it.
+                Most of them do want a website. The hesitation is that building one sounds
+                complicated, costly and one more thing on a full week. That is why mine is done
+                for you. You send your photos and your logo, and I handle the rest, from the first
+                call to launch. Once it is live, you can update it yourself.
               </p>
               <p>
-                Every project starts with a call. I learn your business and the problem you are
-                trying to solve, and we build the site around that. My Petroleum Engineering degree
-                taught me to break a problem down and plan it step by step, and I bring that to
-                every project.
+                Every project starts with a call. I learn your work and who you want to reach, and
+                we build the site around that. I am a petroleum engineering student at KNUST, and
+                that training taught me to break a problem down and plan it step by step. My rule
+                is to find the easiest route that will not cost you later, which is why I keep the
+                sites simple.
               </p>
               <p>
-                I started Sena Academy because I saw a lot of people falling behind in AI. They did
-                not know how to use it to get real work done, and they struggled. Today the
-                community has more than 700 people. Members are building amazing things, and many
-                of them build websites for other businesses and for their own. People from our first
-                cohort are doing great work too. I built the{" "}
+                I also run Sena Academy, where I teach beginners to build their own sites. The
+                community has more than 700 people, and members from our first cohort are building
+                sites for other people and for themselves. I built the{" "}
                 <a
                   href="https://sena-academy-lms-ten.vercel.app/"
                   target="_blank"
@@ -61,17 +62,17 @@ export default function AboutPage() {
                 myself.
               </p>
               <p>
-                I am resilient and dedicated, and I hold to my values. When I take your project, it
-                is done for you, with no stress on your side. I respect your time, I deliver within
-                the timeline we agree, and I work fast. Every client so far has come to me after seeing my work.
+                I respect your time, I deliver within the timeline we agree, and I work fast. Every
+                client so far has come to me after seeing my work.
               </p>
               <p className="border-l-4 border-accent pl-5 font-bold text-ink">
-                Businesses are doing amazing work. People should be able to see it.
+                Not sure where yours stands? Ask for a free look-up and I will tell you what a
+                prospect sees when they search your name.
               </p>
             </div>
 
             <div className="mt-10">
-              <Button href="/contact" variant="dark">Start a project</Button>
+              <Button href="/contact" variant="dark">Get a free look-up</Button>
             </div>
           </div>
         </div>

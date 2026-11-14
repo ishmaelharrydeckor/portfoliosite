@@ -1,6 +1,6 @@
 import { ImageResponse } from "next/og";
 
-export const alt = "Ishmael Harry-Deckor: websites for businesses";
+export const alt = "Ishmael Harry-Deckor: websites for consultants, coaches and speakers";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
@@ -24,13 +24,12 @@ export default function OpengraphImage() {
           Ishmael<span style={{ color: "#f2d230" }}>.</span>
         </div>
         <div style={{ display: "flex", flexDirection: "column" }}>
-          <div style={{ fontSize: 88, fontWeight: 800, lineHeight: 1.05, letterSpacing: -2 }}>I build websites</div>
-          <div style={{ display: "flex", fontSize: 88, fontWeight: 800, lineHeight: 1.05, letterSpacing: -2 }}>
-            that&nbsp;
-            <span style={{ background: "#f2d230", color: "#0e0e0d", padding: "0 16px" }}>win customers</span>
+          <div style={{ fontSize: 76, fontWeight: 800, lineHeight: 1.08, letterSpacing: -2 }}>Websites for consultants,</div>
+          <div style={{ display: "flex", fontSize: 76, fontWeight: 800, lineHeight: 1.08, letterSpacing: -2 }}>
+            <span style={{ background: "#f2d230", color: "#0e0e0d", padding: "0 16px" }}>coaches and speakers</span>
           </div>
         </div>
-        <div style={{ fontSize: 32, color: "#b9b6ad" }}>Ishmael Harry-Deckor · Websites for businesses</div>
+        <div style={{ fontSize: 32, color: "#b9b6ad" }}>Ishmael Harry-Deckor · Done for you, easy to update</div>
       </div>
     ),
     size

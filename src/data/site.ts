@@ -17,10 +17,15 @@ export const siteUrl = (process.env.NEXT_PUBLIC_SITE_URL ?? "https://portfoliosi
 // Search engines are blocked until this is "true". Turn it on only when the real domain is live.
 export const indexable = process.env.NEXT_PUBLIC_ALLOW_INDEXING === "true";
 
-export const tagline = "I build websites for businesses that match your brand, show up when people search for your business, and bring in customers.";
+export const tagline = "Websites for consultants, coaches and speakers. Done for you: send your photos and logo, and I build the page people land on after your LinkedIn post.";
 
 export const whatsappLink = site.whatsapp
   ? `https://wa.me/${site.whatsapp}?text=${encodeURIComponent("Hi Ishmael, I'd like a website for my business.")}`
+  : null;
+
+// The free look-up offer: opens WhatsApp with "look me up" already typed.
+export const lookupLink = site.whatsapp
+  ? `https://wa.me/${site.whatsapp}?text=${encodeURIComponent("Hi Ishmael, look me up.")}`
   : null;
 
 export const stack = [

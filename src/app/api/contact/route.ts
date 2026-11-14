@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 import { esc, oneLine, isEmail, getMailer } from "@/lib/mail";
 
 const PROJECT_TYPES = [
+  "Free look-up",
   "Business website",
   "Landing page / waitlist",
   "Web app or portal",
