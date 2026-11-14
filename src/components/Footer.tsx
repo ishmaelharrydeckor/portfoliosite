@@ -1,77 +1,37 @@
 import Link from "next/link";
+import { site, whatsappLink } from "@/data/site";
 
 export default function Footer() {
   const links = [
-    { name: "Home", href: "/" },
-    { name: "Projects", href: "/projects" },
-    { name: "About", href: "/about" },
-    { name: "Contact", href: "/contact" },
-  ];
-
-  const socialLinks = [
-    { name: "GitHub", href: "https://github.com/ishmaelharrydeckor", handle: "@ishmaelharrydeckor" },
-    { name: "LinkedIn", href: "https://www.linkedin.com/in/ishmaelharrydeckor", handle: "@ishmaelharrydeckor" },
-    { name: "Twitter", href: "https://x.com/DeckorHarry", handle: "@DeckorHarry" },
-    { name: "Email", href: "mailto:ishmaelharrydeckor@gmail.com", handle: "ishmaelharrydeckor@gmail.com" },
-  ];
-
+    ["Work", "/projects"],
+    ["Services", "/#services"],
+    ["About", "/about"],
+    ["Contact", "/#contact"],
+  ] as const;
   return (
-    <footer className="border-t border-zinc-800/60 bg-[#050505] py-16 mt-auto">
-      <div className="mx-auto max-w-7xl px-6 lg:px-8">
-        <div className="flex flex-col md:flex-row md:justify-between md:items-start gap-12">
-          {/* Brand */}
-          <div className="flex flex-col gap-4 max-w-xs">
-            <Link href="/" className="font-display font-semibold tracking-wider text-foreground text-md">
-              ISHMAEL HARRY-DECKOR
-            </Link>
-            <p className="text-sm text-foreground-muted leading-relaxed">
-              Web Developer & AI Product Builder. Designing and engineering high-performance web experiences.
-            </p>
-          </div>
-
-          {/* Links */}
-          <div className="flex flex-col sm:flex-row gap-12 sm:gap-24">
-            <div>
-              <h4 className="text-xs font-semibold uppercase tracking-wider text-foreground mb-4">Sitemap</h4>
-              <ul className="space-y-3">
-                {links.map((link) => (
-                  <li key={link.name}>
-                    <Link
-                      href={link.href}
-                      className="text-sm text-foreground-muted hover:text-accent transition-colors duration-200"
-                    >
-                      {link.name}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </div>
-
-            <div>
-              <h4 className="text-xs font-semibold uppercase tracking-wider text-foreground mb-4">Connect</h4>
-              <ul className="space-y-3">
-                {socialLinks.map((social) => (
-                  <li key={social.name}>
-                    <a
-                      href={social.href}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-sm text-foreground-muted hover:text-accent transition-colors duration-200"
-                    >
-                      <span className="text-foreground">{social.name}:</span> {social.handle}
-                    </a>
-                  </li>
-                ))}
-              </ul>
-            </div>
+    <footer className="bg-ink text-paper/70">
+      <div className="mx-auto max-w-[1440px] px-6 lg:px-9">
+        <div className="flex flex-col gap-8 border-t border-white/15 py-10 md:flex-row md:items-center md:justify-between">
+          <Link href="/" className="font-display text-2xl font-extrabold tracking-tight text-paper">
+            Ishmael<span className="text-accent">.</span>
+          </Link>
+          <nav className="flex flex-wrap gap-x-8 gap-y-2 text-base" aria-label="Footer">
+            {links.map(([n, h]) => (
+              <Link key={n} href={h} className="hover:text-accent">{n}</Link>
+            ))}
+          </nav>
+          <div className="flex flex-wrap gap-x-6 gap-y-2 text-base">
+            <a href={site.linkedin} target="_blank" rel="noopener noreferrer" className="hover:text-accent">LinkedIn</a>
+            <a href={site.github} target="_blank" rel="noopener noreferrer" className="hover:text-accent">GitHub</a>
+            <a href={site.twitter} target="_blank" rel="noopener noreferrer" className="hover:text-accent">X</a>
+            {whatsappLink && <a href={whatsappLink} target="_blank" rel="noopener noreferrer" className="hover:text-accent">WhatsApp</a>}
           </div>
         </div>
-
-        {/* Bottom copyright */}
-        <div className="mt-12 pt-8 border-t border-zinc-900 flex flex-col sm:flex-row sm:justify-between items-center gap-4 text-xs text-foreground-muted">
+        <div className="flex flex-wrap items-center justify-between gap-x-6 gap-y-2 pb-8 text-sm text-paper/50">
           <p>© {new Date().getFullYear()} Ishmael Harry-Deckor. All rights reserved.</p>
-          <p className="flex items-center gap-1.5">
-            Designed & Built with <span className="text-accent">●</span> Technical Precision
+          <p className="flex gap-6">
+            <Link href="/privacy" className="hover:text-accent">Privacy Policy</Link>
+            <Link href="/terms" className="hover:text-accent">Terms of Service</Link>
           </p>
         </div>
       </div>

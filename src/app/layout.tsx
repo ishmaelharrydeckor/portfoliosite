@@ -1,37 +1,31 @@
 import type { Metadata } from "next";
-import { Inter, Outfit } from "next/font/google";
+import "@fontsource-variable/manrope";
+import "@fontsource-variable/bricolage-grotesque";
 import "./globals.css";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-
-const inter = Inter({
-  variable: "--font-sans",
-  subsets: ["latin"],
-});
-
-const outfit = Outfit({
-  variable: "--font-display",
-  subsets: ["latin"],
-});
+import { siteUrl, indexable, tagline } from "@/data/site";
 
 export const metadata: Metadata = {
+  metadataBase: new URL(siteUrl),
   title: {
-    default: "Ishmael Harry-Deckor | Web Developer & AI Product Builder",
-    template: "%s | Ishmael Harry-Deckor"
+    default: "Ishmael Harry-Deckor | Websites for Businesses",
+    template: "%s | Ishmael Harry-Deckor",
   },
-  description: "Portfolio of Ishmael Harry-Deckor, building premium, high-performance web experiences that combine thoughtful design with modern engineering.",
+  description: tagline,
+  robots: indexable ? { index: true, follow: true } : { index: false, follow: false },
   openGraph: {
-    title: "Ishmael Harry-Deckor | Web Developer & AI Product Builder",
-    description: "Sleek, high-converting websites built to premium standards with technical depth and modern AI workflows.",
-    url: "https://ishmaelharrydeckor.dev",
-    siteName: "Ishmael Harry-Deckor Portfolio",
+    title: "Ishmael Harry-Deckor | Websites for Businesses",
+    description: tagline,
+    url: "/",
+    siteName: "Ishmael Harry-Deckor",
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Ishmael Harry-Deckor | Web Developer & AI Product Builder",
-    description: "Sleek, high-converting websites built to premium standards with technical depth and modern AI workflows.",
-  }
+    title: "Ishmael Harry-Deckor | Websites for Businesses",
+    description: tagline,
+  },
 };
 
 export default function RootLayout({
@@ -40,15 +34,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html
-      lang="en"
-      className={`${inter.variable} ${outfit.variable} h-full antialiased dark`}
-    >
-      <body className="min-h-full flex flex-col bg-background text-foreground selection:bg-accent/20">
+    <html lang="en" className="h-full antialiased">
+      <body className="min-h-full flex flex-col bg-paper text-ink">
         <Header />
-        <main className="flex-grow flex flex-col">
-          {children}
-        </main>
+        <main className="flex-grow flex flex-col">{children}</main>
         <Footer />
       </body>
     </html>

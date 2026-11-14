@@ -1,425 +1,310 @@
-"use client";
-
-import Link from "next/link";
+import type { Metadata } from "next";
 import Image from "next/image";
-import { useEffect, useRef } from "react";
-import gsap from "gsap";
-import { useGSAP } from "@gsap/react";
-import { motion } from "framer-motion";
-import { ArrowUpRight, Award, Zap, ShieldCheck, Clock, LayoutGrid } from "lucide-react";
-import InteractiveHeroCanvas from "@/components/InteractiveHeroCanvas";
-import { projects } from "@/data/projects";
-import { certifications } from "@/data/certifications";
-import { skills } from "@/data/skills";
+import Link from "next/link";
+import { Quote } from "lucide-react";
+import { Eyebrow, Button, Mark } from "@/components/ui";
+import Reveal from "@/components/Reveal";
+import Accordion from "@/components/Accordion";
+import BrowserCard from "@/components/BrowserCard";
+import ServicesShowcase from "@/components/ServicesShowcase";
+import ContactSection from "@/components/ContactSection";
+import { showcaseProjects, totalCount, liveClientCount } from "@/data/projects";
+import { experience } from "@/data/experience";
+import { whatsappLink, site, siteUrl, tagline } from "@/data/site";
+import JsonLd from "@/components/JsonLd";
+
+export const metadata: Metadata = {
+  alternates: { canonical: "/" },
+};
+
+const services = [
+  {
+    title: "Business websites",
+    body: "A website that matches your brand and your business. It loads fast, shows up when people search for what you do, and is built to bring in enquiries.",
+    slug: "samuel-adanuvo",
+    projectName: "Samuel Adanuvo",
+    host: "sammyadanuvo.com",
+  },
+  {
+    title: "Landing pages & waitlists",
+    body: "One page for one goal: sign-ups, bookings or leads.",
+    slug: "estateguard",
+    projectName: "EstateGuard",
+    host: "estateguard-azure.vercel.app",
+  },
+  {
+    title: "Web apps & portals",
+    body: "Dashboards, booking systems and portals, for when you need more than a brochure site.",
+    slug: "checin",
+    projectName: "ChecIN",
+    host: "checin-6982.vercel.app",
+  },
+  {
+    title: "Redesigns & rebuilds",
+    body: "If your site looks dated or is not bringing in enquiries, I rebuild it so it matches your brand and gets found.",
+    slug: "paa-kwesi-folson",
+    projectName: "Paa Kwesi Folson",
+    host: "pkf-pink.vercel.app",
+  },
+];
+
+const faqs = [
+  {
+    title: "How does it work?",
+    body: "We start with a call so I understand your business. You send me your images, and I build the site. You look it over before it goes live.",
+  },
+  {
+    title: "How long does it take?",
+    body: "I work fast. Once we have spoken and I know what the site needs, I give you a timeline.",
+  },
+  {
+    title: "What do I need to provide?",
+    body: "Your images, your logo if you have one, and a call to talk about your business. I handle the rest.",
+  },
+  {
+    title: "Will people find my site when they search?",
+    body: "Yes, that is part of the build. I set up every site so Google and tools like ChatGPT can understand what your business does: clear page titles, a clean structure and fast loading. Nobody can honestly promise a ranking position, but your site is set up to be found.",
+  },
+  {
+    title: "Do you do the design as well as the build?",
+    body: "Yes. I do both, so you get a finished website that matches your brand.",
+  },
+  {
+    title: "How much does it cost?",
+    body: "Tell me what you need and I will send you a quote.",
+  },
+];
 
 export default function Home() {
-  const containerRef = useRef<HTMLDivElement>(null);
+  const featured = showcaseProjects.slice(0, 4);
+  const h2 = "text-4xl font-extrabold leading-[1.05] tracking-[-0.03em] sm:text-6xl";
 
-  useGSAP(
-    () => {
-      // Hero entrance animations
-      const tl = gsap.timeline();
-      tl.fromTo(
-        ".hero-title",
-        { opacity: 0, y: 20 },
-        { opacity: 1, y: 0, duration: 0.8, ease: "power3.out" }
-      )
-        .fromTo(
-          ".hero-subtitle",
-          { opacity: 0, y: 15 },
-          { opacity: 1, y: 0, duration: 0.6, ease: "power3.out" },
-          "-=0.5"
-        )
-        .fromTo(
-          ".hero-cta",
-          { opacity: 0, y: 10 },
-          { opacity: 1, y: 0, duration: 0.5, ease: "power3.out" },
-          "-=0.3"
-        );
-
-      // Section scroll triggers
-      gsap.utils.toArray<HTMLElement>(".scroll-section").forEach((section) => {
-        gsap.fromTo(
-          section,
-          { opacity: 0, y: 24 },
-          {
-            opacity: 1,
-            y: 0,
-            duration: 0.8,
-            ease: "power2.out",
-            scrollTrigger: {
-              trigger: section,
-              start: "top 80%",
-              toggleActions: "play none none reverse",
-            },
-          }
-        );
-      });
-    },
-    { scope: containerRef }
-  );
-
-  // Filter visual/motion-craft showcase projects
-  const featuredProjects = projects.filter((p) => p.isFeatured);
-
-  // Filter functional client-style and portal projects
-  const otherProjects = projects.filter((p) => !p.isFeatured);
-
-  // Group certifications by issuer
-  const udemyCertifications = certifications.filter((c) => c.issuer === "Udemy").slice(0, 3);
-  const datacampCertifications = certifications.filter((c) => c.issuer === "DataCamp").slice(0, 3);
-
-  // Value props mapping with icons
-  const valueProps = [
-    {
-      title: "Design Precision",
-      desc: "Every interface is crafted with tight typography, generous negative space, and micro-animations that feel premium.",
-      icon: Zap,
-    },
-    {
-      title: "Technical Grounding",
-      desc: "Certified in AI, machine learning, and Python. I understand the underlying mechanics of modern systems, not just prompting.",
-      icon: ShieldCheck,
-    },
-    {
-      title: "AI-Powered Speed",
-      desc: "Leveraging AI as a productivity multiplier to build and ship production-ready applications in days, not months.",
-      icon: Clock,
-    },
-    {
-      title: "Reliable Operations",
-      desc: "Leadership and operations experience across multiple organizations ensures transparent communication and on-time shipping.",
-      icon: Award,
-    },
+  const stats = [
+    ["Projects built", String(totalCount)],
+    ["Live client sites", String(liveClientCount)],
+    ["Sena Academy members", "700+"],
+    ["Availability", "Open"],
   ];
 
+  const structuredData = {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Person",
+        "@id": `${siteUrl}/#person`,
+        name: site.name,
+        jobTitle: "Web developer",
+        url: siteUrl,
+        image: `${siteUrl}/headshot.jpg`,
+        sameAs: [site.linkedin, site.github, site.twitter],
+      },
+      {
+        "@type": "ProfessionalService",
+        "@id": `${siteUrl}/#service`,
+        name: `${site.name}: websites for businesses`,
+        description: tagline,
+        url: siteUrl,
+        founder: { "@id": `${siteUrl}/#person` },
+        serviceType: ["Business websites", "Landing pages", "Web apps and portals", "Website redesigns"],
+      },
+      {
+        "@type": "FAQPage",
+        mainEntity: faqs.map((f) => ({
+          "@type": "Question",
+          name: f.title,
+          acceptedAnswer: { "@type": "Answer", text: f.body },
+        })),
+      },
+    ],
+  };
+
   return (
-    <div ref={containerRef} className="relative min-h-screen overflow-x-hidden bg-background">
-      {/* 3D Background Canvas */}
-      <InteractiveHeroCanvas />
+    <>
+      <JsonLd data={structuredData} />
+      {/* HERO */}
+      <section className="overflow-hidden bg-ink text-paper">
+        <div className="mx-auto grid max-w-[1440px] lg:grid-cols-2">
+          <div className="flex flex-col justify-center px-6 py-16 lg:px-9 lg:py-28">
+            <p className="flex items-center gap-3 text-sm font-semibold uppercase tracking-[0.16em] text-paper/70">
+              <span className="h-2 w-2 rounded-full bg-accent motion-safe:animate-pulse" aria-hidden="true" />
+              Open for new projects
+            </p>
+            <h1 className="mt-6 text-[clamp(2.5rem,4.5vw,4.4rem)] font-extrabold leading-[1.04] tracking-[-0.035em]">
+              Hi, I&apos;m Ishmael.
+              <br />
+              I build websites
+              <br />
+              that <Mark>win customers</Mark>.
+            </h1>
+            <p className="mt-8 max-w-xl text-xl leading-relaxed text-paper/70">
+              I build websites that match your brand, show up when people search
+              for what you do, and bring in enquiries. I work fast and I handle
+              the whole job, from the first call to launch.
+            </p>
+            <div className="mt-10 flex flex-wrap gap-4">
+              {whatsappLink ? (
+                <Button href={whatsappLink} external>Message me on WhatsApp</Button>
+              ) : (
+                <Button href="/#contact">Start a project</Button>
+              )}
+              <Button href="/projects" variant="ghost">View projects</Button>
+            </div>
+          </div>
 
-      {/* Hero Section */}
-      <section className="relative flex min-h-[90vh] flex-col justify-center px-6 py-24 sm:py-32 lg:px-8">
-        <div className="mx-auto max-w-4xl text-center">
-          <span className="hero-cta inline-flex items-center gap-1.5 rounded-full border border-accent/20 bg-accent-glow px-4 py-1.5 text-xs font-semibold uppercase tracking-wider text-accent opacity-0">
-            <span className="h-1.5 w-1.5 rounded-full bg-accent animate-ping"></span>
-            Open for Select Q3-Q4 Projects
-          </span>
-          <h1 className="hero-title mt-8 font-display text-4xl font-extrabold tracking-tight text-foreground sm:text-6xl lg:text-7xl opacity-0 leading-[1.05]">
-            Building premium, <br className="hidden sm:inline" />
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-accent via-amber-400 to-accent">
-              high-performance
-            </span>{" "}
-            web experiences.
-          </h1>
-          <p className="hero-subtitle mt-8 font-sans text-lg sm:text-xl text-foreground-muted leading-relaxed max-w-2xl mx-auto opacity-0">
-            I combine thoughtful interface design with AI-accelerated workflows to ship polished, high-conversion applications at scale.
-          </p>
-          <div className="hero-cta mt-10 flex flex-wrap justify-center gap-4 opacity-0">
-            <Link
-              href="/projects"
-              className="rounded-lg bg-accent text-zinc-950 px-6 py-3.5 text-sm font-semibold tracking-wide hover:bg-accent/90 hover:scale-[1.02] hover:shadow-[0_0_20px_rgba(212,165,39,0.25)] transition-all duration-300 flex items-center gap-2"
-            >
-              Explore Portfolio
-              <LayoutGrid className="h-4 w-4" />
-            </Link>
-            <Link
-              href="/contact"
-              className="rounded-lg bg-[#0d0d0e] border border-zinc-800 hover:border-accent/40 text-foreground px-6 py-3.5 text-sm font-semibold tracking-wide hover:text-accent hover:shadow-[0_0_15px_rgba(212,165,39,0.1)] transition-all duration-300"
-            >
-              Start Your Project
-            </Link>
+          <div className="relative min-h-[520px] lg:min-h-[740px]">
+            <Image
+              src="/headshot.jpg"
+              alt="Portrait of Ishmael Harry-Deckor"
+              fill
+              priority
+              sizes="(max-width: 1024px) 100vw, 50vw"
+              className="object-cover object-top"
+            />
+            <div className="absolute inset-0 bg-gradient-to-r from-ink/50 via-transparent to-transparent" />
           </div>
         </div>
       </section>
 
-      {/* Featured Projects Section */}
-      <section className="scroll-section border-t border-zinc-900 bg-[#070708]/60 py-32 px-6 lg:px-8">
-        <div className="mx-auto max-w-7xl">
-          <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6">
-            <div>
-              <h2 className="font-display text-xs font-semibold uppercase tracking-widest text-accent">
-                Selected Work
-              </h2>
-              <p className="mt-3 font-display text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
-                Showcase Work
-              </p>
-            </div>
-            <Link
-              href="/projects"
-              className="group flex items-center gap-1.5 text-sm font-semibold text-accent hover:text-accent/80 transition-colors"
-            >
-              View all {projects.length} projects
-              <ArrowUpRight className="h-4 w-4 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
-            </Link>
-          </div>
+      {/* STATS */}
+      <section className="bg-mist">
+        <div className="mx-auto grid max-w-[1440px] gap-y-8 px-6 py-14 sm:grid-cols-2 lg:grid-cols-4 lg:px-9">
+          {stats.map(([k, v], i) => (
+            <Reveal key={k} delay={i * 0.06} className={`lg:pl-8 ${i ? "lg:border-l lg:border-ink/15" : ""}`}>
+              <p className="text-base text-body">{k}</p>
+              <p className="mt-2 font-display text-5xl font-extrabold tracking-[-0.03em]">{v}</p>
+            </Reveal>
+          ))}
+        </div>
+      </section>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {featuredProjects.map((project, idx) => (
-              <motion.div
-                key={project.slug}
-                initial={{ opacity: 0, y: 16 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: idx * 0.1 }}
-                className="group relative overflow-hidden rounded-2xl border border-zinc-800/80 bg-[#0d0d0e] hover:border-accent/30 hover:-translate-y-1 transition-all duration-300 flex flex-col h-full"
-              >
-                {/* Desktop Screenshot Container */}
-                <div className="relative aspect-[16/9] w-full overflow-hidden border-b border-zinc-900">
-                  <Image
-                    src={`/projects/${project.slug}/desktop.png`}
-                    alt={`${project.name} Desktop Interface`}
-                    fill
-                    className="object-cover object-top group-hover:scale-[1.02] transition-transform duration-500"
-                    sizes="(max-width: 768px) 100vw, 50vw"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-zinc-950/80 via-transparent to-transparent opacity-60"></div>
-                </div>
+      {/* SERVICES */}
+      <section id="services" className="scroll-mt-20 bg-paper">
+        <div className="mx-auto max-w-[1440px] px-6 py-24 lg:px-9 lg:py-32">
+          <Reveal className="mx-auto max-w-3xl text-center">
+            <h2 className={h2}>What I <Mark>build</Mark></h2>
+          </Reveal>
+          <Reveal delay={0.1} className="mt-16">
+            <ServicesShowcase items={services} />
+          </Reveal>
+        </div>
+      </section>
 
-                <div className="p-8 flex flex-col flex-grow">
-                  <div className="flex flex-wrap items-center justify-between gap-3">
-                    <div className="flex flex-wrap items-center gap-2">
-                      <span className="text-xs font-medium text-accent uppercase tracking-wider bg-accent-glow px-2.5 py-1 rounded">
-                        {project.category}
-                      </span>
-                      {project.projectType === "live-client" ? (
-                        <span className="text-[10px] font-semibold tracking-wider text-emerald-400 bg-emerald-500/10 border border-emerald-500/25 px-2 py-0.5 rounded uppercase">
-                          Live Client Work
-                        </span>
-                      ) : (
-                        <span className="text-[10px] font-semibold tracking-wider text-zinc-400 bg-zinc-900 border border-zinc-800 px-2 py-0.5 rounded uppercase">
-                          Concept Build
-                        </span>
-                      )}
-                    </div>
-                    <span className="text-xs text-foreground-muted">
-                      {project.techStack.slice(0, 3).join(" · ")}
-                    </span>
-                  </div>
-                  <h3 className="mt-4 font-display text-xl font-bold text-foreground">
-                    {project.name}
-                  </h3>
-                  <p className="mt-3 text-sm text-foreground-muted leading-relaxed flex-grow">
-                    {project.summary}
-                  </p>
-                  <div className="mt-6 pt-6 border-t border-zinc-900/60 flex items-center justify-between">
-                    <Link
-                      href={`/projects/${project.slug}`}
-                      className="group flex items-center gap-1 text-sm font-semibold text-foreground hover:text-accent transition-colors"
-                    >
-                      Read Case Study
-                      <ArrowUpRight className="h-4 w-4 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
-                    </Link>
-                  </div>
+      {/* PROCESS */}
+      <section className="bg-ink text-paper">
+        <div className="mx-auto max-w-[1440px] px-6 py-24 lg:px-9 lg:py-28">
+          <Reveal className="max-w-3xl">
+            <Eyebrow className="text-accent">How it works</Eyebrow>
+            <h2 className={`mt-5 ${h2}`}>
+              It starts with a <Mark>call</Mark>
+            </h2>
+          </Reveal>
+          <div className="mt-14 grid gap-10 md:grid-cols-3">
+            {[
+              ["01", "We talk", "We get on a call so I understand your business and what you want from your site."],
+              ["02", "You send your images", "Your photos and your logo. That is all I need from you."],
+              ["03", "I build it", "I design and build the site, you check it, and it goes live."],
+            ].map(([n, t, b], i) => (
+              <Reveal key={n} delay={i * 0.08}>
+                <div className="border-t-2 border-accent pt-6">
+                  <p className="font-display text-5xl font-extrabold tracking-[-0.03em] text-accent">{n}</p>
+                  <h3 className="mt-5 text-2xl font-extrabold tracking-tight">{t}</h3>
+                  <p className="mt-3 text-lg leading-relaxed text-paper/70">{b}</p>
                 </div>
-              </motion.div>
+              </Reveal>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Other Projects / Client Work Section */}
-      <section className="scroll-section border-t border-zinc-900 bg-zinc-950/20 py-32 px-6 lg:px-8">
-        <div className="mx-auto max-w-7xl">
-          <div className="mb-16">
-            <h2 className="font-display text-xs font-semibold uppercase tracking-widest text-accent">
-              SaaS & Web Applications
-            </h2>
-            <p className="mt-3 font-display text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
-              Other Selected Work
-            </p>
-            <p className="mt-4 text-base text-foreground-muted max-w-3xl leading-relaxed">
-              A collection of functional client solutions, administrative portals, learning systems, and dashboards built with robust state management and responsive styling.
-            </p>
+      {/* SHOWCASE */}
+      <section id="work" className="scroll-mt-20 bg-mist">
+        <div className="mx-auto max-w-[1440px] px-6 py-24 lg:px-9 lg:py-32">
+          <Reveal className="flex flex-wrap items-end justify-between gap-6">
+            <div>
+              <Eyebrow>Selected work</Eyebrow>
+              <h2 className={`mt-5 ${h2}`}>Some of my <Mark>work</Mark></h2>
+              <p className="mt-4 max-w-md text-lg text-body">Hover over a project to scroll through the site.</p>
+            </div>
+            <Button href="/projects" variant="dark">View all projects</Button>
+          </Reveal>
+          <div className="mt-14 grid gap-x-10 gap-y-14 md:grid-cols-2">
+            {featured.map((p, i) => (
+              <Reveal key={p.slug} className={i % 2 ? "md:mt-20" : ""}>
+                <BrowserCard project={p} />
+              </Reveal>
+            ))}
           </div>
+        </div>
+      </section>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {otherProjects.map((project, idx) => (
-              <motion.div
-                key={project.slug}
-                initial={{ opacity: 0, y: 12 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.4, delay: idx * 0.05 }}
-                className="group relative overflow-hidden rounded-xl border border-zinc-850 bg-[#0c0c0d] p-6 hover:border-accent/25 hover:-translate-y-0.5 transition-all duration-300 flex flex-col justify-between h-full"
-              >
+      {/* BACKGROUND */}
+      <section className="bg-ink text-paper">
+        <div className="mx-auto max-w-[1440px] px-6 py-24 lg:px-9 lg:py-28">
+          <Reveal className="flex flex-wrap items-end justify-between gap-6">
+            <div>
+              <Eyebrow className="text-accent">Background</Eyebrow>
+              <h2 className={`mt-5 ${h2}`}>My <Mark>background</Mark></h2>
+            </div>
+            <Link href="/about" className="text-base font-bold underline decoration-accent decoration-2 underline-offset-8 hover:text-accent">
+              Full background
+            </Link>
+          </Reveal>
+          <div className="mt-12 border-t border-paper/20">
+            {experience.slice(0, 4).map((r) => (
+              <div key={r.org} className="grid gap-2 border-b border-paper/20 py-6 md:grid-cols-[1.1fr_1.2fr_0.8fr] md:gap-8">
                 <div>
-                  <div className="flex flex-wrap items-center justify-between gap-3">
-                    <div className="flex flex-wrap items-center gap-1.5">
-                      <span className="text-[10px] font-bold text-accent uppercase tracking-wider bg-accent-glow px-2 py-0.5 rounded border border-accent/10">
-                        {project.category}
-                      </span>
-                      {project.projectType === "live-client" ? (
-                        <span className="text-[9px] font-bold tracking-wider text-emerald-400 bg-emerald-500/10 border border-emerald-500/25 px-1.5 py-0.5 rounded uppercase">
-                          Live Client
-                        </span>
-                      ) : (
-                        <span className="text-[9px] font-bold tracking-wider text-zinc-400 bg-zinc-900 border border-zinc-800 px-1.5 py-0.5 rounded uppercase">
-                          Concept
-                        </span>
-                      )}
-                    </div>
-                    <span className="text-[10px] text-foreground-muted font-mono">
-                      {project.techStack.slice(0, 2).join(" · ")}
-                    </span>
-                  </div>
-                  <h3 className="mt-4 font-display text-base font-bold text-foreground group-hover:text-accent transition-colors">
-                    {project.name}
-                  </h3>
-                  <p className="mt-2.5 text-xs text-foreground-muted leading-relaxed">
-                    {project.summary}
-                  </p>
+                  <p className="text-xl font-bold tracking-tight">{r.org}</p>
+                  <p className="mt-1 text-base text-paper/70">{r.role}</p>
                 </div>
-                <div className="mt-6 pt-4 border-t border-zinc-900/50 flex items-center justify-between">
-                  <Link
-                    href={`/projects/${project.slug}`}
-                    className="inline-flex items-center gap-1.5 text-xs font-semibold text-foreground hover:text-accent transition-colors"
-                  >
-                    View Details
-                    <ArrowUpRight className="h-3.5 w-3.5" />
-                  </Link>
-                </div>
-              </motion.div>
+                <p className="text-base leading-relaxed text-paper/65">{r.note}</p>
+                <p className="text-base text-paper/70 md:text-right">{r.dates}</p>
+              </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* "Why Work With Me" Section */}
-      <section className="scroll-section py-32 px-6 lg:px-8 bg-background border-t border-zinc-900">
-        <div className="mx-auto max-w-7xl">
-          <div className="text-center mb-20">
-            <h2 className="font-display text-xs font-semibold uppercase tracking-widest text-accent">
-              Core Value
-            </h2>
-            <p className="mt-3 font-display text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
-              Why Work With Me
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {valueProps.map((prop, idx) => {
-              const Icon = prop.icon;
-              return (
-                <div
-                  key={idx}
-                  className="rounded-xl border border-zinc-800/80 bg-[#0d0d0e] p-8 flex flex-col gap-5 hover:border-accent/20 transition-all duration-300"
-                >
-                  <div className="rounded-lg bg-accent-glow border border-accent/20 p-2.5 w-11 h-11 flex items-center justify-center text-accent">
-                    <Icon className="h-5 w-5" />
-                  </div>
-                  <h3 className="font-display text-lg font-bold text-foreground leading-tight">
-                    {prop.title}
-                  </h3>
-                  <p className="text-sm text-foreground-muted leading-relaxed">
-                    {prop.desc}
-                  </p>
-                </div>
-              );
-            })}
-          </div>
-        </div>
-      </section>
-
-      {/* Tech Stack Strip */}
-      <section className="scroll-section py-20 bg-[#070708]/60 border-t border-b border-zinc-900 overflow-hidden">
-        <div className="mx-auto max-w-7xl px-6 lg:px-8">
-          <div className="text-center mb-10">
-            <h3 className="text-xs font-semibold uppercase tracking-widest text-foreground-muted">
-              Premium Tech Stack & Integration Capabilities
-            </h3>
-          </div>
-          <div className="flex flex-wrap justify-center gap-x-8 gap-y-4 text-sm font-medium text-foreground-muted">
-            {skills.map((skill) => (
-              <span
-                key={skill.name}
-                className="px-4 py-2 rounded-lg bg-zinc-900 border border-zinc-800/60 hover:border-accent/30 text-xs font-bold uppercase tracking-wider text-foreground hover:text-accent transition-colors duration-200"
-              >
-                {skill.name}
-              </span>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Certifications & Training Strip */}
-      <section className="scroll-section py-32 px-6 lg:px-8 bg-background">
-        <div className="mx-auto max-w-7xl">
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-12 items-center">
-            <div>
-              <h2 className="font-display text-xs font-semibold uppercase tracking-widest text-accent">
-                Credibility
-              </h2>
-              <h3 className="mt-3 font-display text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
-                Certified Technical Grounding
-              </h3>
-              <p className="mt-4 text-sm text-foreground-muted leading-relaxed">
-                Rather than prompting blindly, I’ve completed formal training across prompt engineering, machine learning, Python scripting, and visual design to deliver rock-solid, production-grade applications.
-              </p>
-              <Link
-                href="/about"
-                className="mt-6 inline-flex items-center gap-1 text-sm font-semibold text-accent hover:text-accent/80 transition-colors"
-              >
-                See all certifications
-                <ArrowUpRight className="h-4 w-4" />
+      {/* TESTIMONIAL (placeholder until there is a real quote) */}
+      <section className="bg-paper">
+        <div className="mx-auto max-w-[1440px] px-6 py-24 lg:px-9 lg:py-32">
+          <Reveal className="text-center">
+            <h2 className={h2}>What clients <Mark>say</Mark></h2>
+          </Reveal>
+          <div className="mt-14 grid items-center gap-10 md:grid-cols-[0.8fr_1.2fr] md:gap-16">
+            <Reveal>
+              <div className="mx-auto flex aspect-square w-full max-w-sm -rotate-3 items-center justify-center rounded-md border-2 border-dashed border-ink/25 bg-mist">
+                <span className="font-display text-7xl font-extrabold text-ink/20" aria-hidden="true">?</span>
+              </div>
+            </Reveal>
+            <Reveal delay={0.1}>
+              <Quote className="h-9 w-9 fill-ink/20 text-ink/20" aria-hidden="true" />
+              <blockquote className="mt-4 font-display text-3xl font-bold leading-snug tracking-[-0.02em] sm:text-4xl">
+                Your first client testimonial goes here. A couple of sentences on the project and the result.
+              </blockquote>
+              <p className="mt-6 text-base font-bold">Client name, Company</p>
+              <p className="mt-1 text-sm text-body">Placeholder: replace with a real quote and photo.</p>
+              <Link href="/testimonial" className="mt-6 inline-block text-base font-bold underline decoration-accent decoration-2 underline-offset-8 hover:text-body">
+                Worked with me? Share your experience
               </Link>
-            </div>
-
-            <div className="lg:col-span-2 grid grid-cols-1 sm:grid-cols-2 gap-6">
-              <div className="rounded-xl border border-zinc-800/80 bg-[#0d0d0e] p-6">
-                <span className="text-[10px] font-bold uppercase tracking-widest text-accent bg-accent-glow px-2 py-0.5 rounded border border-accent/10">
-                  DataCamp Certified
-                </span>
-                <ul className="mt-4 space-y-3">
-                  {datacampCertifications.map((cert) => (
-                    <li key={cert.name} className="text-xs font-medium text-foreground flex items-start gap-2">
-                      <span className="text-accent mt-0.5">•</span>
-                      <span>{cert.name}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-
-              <div className="rounded-xl border border-zinc-800/80 bg-[#0d0d0e] p-6">
-                <span className="text-[10px] font-bold uppercase tracking-widest text-accent bg-accent-glow px-2 py-0.5 rounded border border-accent/10">
-                  Udemy Certified
-                </span>
-                <ul className="mt-4 space-y-3">
-                  {udemyCertifications.map((cert) => (
-                    <li key={cert.name} className="text-xs font-medium text-foreground flex items-start gap-2">
-                      <span className="text-accent mt-0.5">•</span>
-                      <span>{cert.name}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            </div>
+            </Reveal>
           </div>
         </div>
       </section>
 
-      {/* CTA Section */}
-      <section className="scroll-section border-t border-zinc-900 bg-[#070708]/80 py-32 px-6 lg:px-8 relative overflow-hidden">
-        {/* Glow Element */}
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-80 h-80 rounded-full bg-accent-glow blur-[100px] pointer-events-none"></div>
-
-        <div className="relative mx-auto max-w-4xl text-center">
-          <h2 className="font-display text-4xl font-extrabold tracking-tight text-foreground sm:text-5xl">
-            Let's build something serious.
-          </h2>
-          <p className="mt-6 text-base text-foreground-muted leading-relaxed max-w-xl mx-auto">
-            Ready to upgrade your web presence with agency-tier aesthetics at AI-accelerated speeds? Let’s map out your launch timeline.
-          </p>
-          <div className="mt-10 flex justify-center gap-4">
-            <Link
-              href="/contact"
-              className="rounded-lg bg-accent text-zinc-950 px-6 py-3.5 text-sm font-semibold tracking-wide hover:bg-accent/90 hover:scale-[1.02] hover:shadow-[0_0_20px_rgba(212,165,39,0.25)] transition-all duration-300"
-            >
-              Get In Touch
-            </Link>
-          </div>
+      {/* FAQ */}
+      <section className="bg-mist">
+        <div className="mx-auto grid max-w-[1440px] gap-12 px-6 py-24 lg:grid-cols-2 lg:px-9 lg:py-32">
+          <Reveal>
+            <Eyebrow>FAQ</Eyebrow>
+            <h2 className={`mt-5 ${h2}`}>Common <Mark>questions</Mark></h2>
+          </Reveal>
+          <Reveal delay={0.1}>
+            <Accordion items={faqs} />
+          </Reveal>
         </div>
       </section>
-    </div>
+
+      <ContactSection />
+    </>
   );
 }
