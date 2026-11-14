@@ -83,3 +83,22 @@ Search engines are **blocked by default** (`noindex` on every page, `robots.txt`
 What is built in: a title, description and canonical link on every page, a sitemap and robots file (`src/app/sitemap.ts`, `src/app/robots.ts`), a share image for WhatsApp/LinkedIn/X (`src/app/opengraph-image.tsx`), and structured data on the home page (Person, ProfessionalService and the FAQ, built from the visible FAQ in `src/app/page.tsx`). `/testimonial` is never indexed.
 
 After going live: submit `https://yourdomain.com/sitemap.xml` in Google Search Console and Bing Webmaster Tools.
+
+
+---
+
+## ✉️ Contact form email
+
+The contact form (`/api/contact`) and the testimonial form (`/api/testimonial`) send mail through SMTP, using the variables in [`.env.example`](.env.example). Set them in Vercel (Settings → Environment Variables), then **redeploy**.
+
+| Variable | Gmail value |
+| :-- | :-- |
+| `SMTP_HOST` | `smtp.gmail.com` |
+| `SMTP_PORT` | `465` |
+| `SMTP_USER` | your Gmail address |
+| `SMTP_PASS` | a Google **App Password** (Google Account → Security → 2-Step Verification → App passwords). Not your normal password. |
+| `SMTP_TO` | where messages should arrive (defaults to `SMTP_USER`) |
+
+Messages arrive from your own address with the visitor in **Reply-To**, so pressing Reply answers them. Until these are set, the forms show "Sending is not set up yet. Please email me directly instead."
+
+**When you move to a domain email** (for example Cloudflare Email Routing for receiving), keep sending through an SMTP service, since Email Routing cannot send. Only the five variables above change; no code change is needed.

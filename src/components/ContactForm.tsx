@@ -21,6 +21,7 @@ export default function ContactForm() {
     email: "",
     projectType: projectOptions[0],
     message: "",
+    website: "", // honeypot: hidden from people, often filled by bots
   });
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [sending, setSending] = useState(false);
@@ -59,7 +60,7 @@ export default function ContactForm() {
       const result = await res.json();
       if (!res.ok) throw new Error(result.error || "Failed to send message.");
       setSent(true);
-      setData({ name: "", email: "", projectType: projectOptions[0], message: "" });
+      setData({ name: "", email: "", projectType: projectOptions[0], message: "", website: "" });
     } catch (err) {
       setError(
         err instanceof Error
@@ -90,6 +91,12 @@ export default function ContactForm() {
 
   return (
     <form onSubmit={submit} noValidate className="flex flex-col gap-2">
+      <div className="absolute -left-[9999px]" aria-hidden="true">
+        <label>
+          Website
+          <input type="text" name="website" tabIndex={-1} autoComplete="off" value={data.website} onChange={change} />
+        </label>
+      </div>
       <p className="text-xl text-paper/60">Message me:</p>
 
       <label className="block">

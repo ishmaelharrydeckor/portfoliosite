@@ -1,12 +1,8 @@
 import { NextResponse } from "next/server";
-import nodemailer from "nodemailer";
+import { esc, oneLine, isEmail, getMailer } from "@/lib/mail";
 
 // Vercel serverless functions accept request bodies up to about 4.5 MB, so keep the photo under that.
 const MAX_PHOTO_BYTES = 4 * 1024 * 1024;
-
-const esc = (s: string) =>
-  s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
-const oneLine = (s: string) => s.replace(/[\r\n]+/g, " ").trim();
 
 /** Identify the real image type from the file's first bytes, not from its name or declared type. */
 function sniffImage(buf: Buffer): { ext: string; type: string } | null {
@@ -38,7 +34,7 @@ export async function POST(request: Request) {
       return NextResponse.json({ error: "Please write between 20 and 2000 characters." }, { status: 400 });
     if (role.length > 120 || company.length > 120 || email.length > 200)
       return NextResponse.json({ error: "One of the fields is too long." }, { status: 400 });
-    if (email && !/^\S+@\S+\.\S+$/.test(email))
+    if (email && !isEmail(email))
       return NextResponse.json({ error: "That email address doesn't look right." }, { status: 400 });
     if (!consent)
       return NextResponse.json({ error: "Please tick the box to give permission to publish." }, { status: 400 });
@@ -54,17 +50,11 @@ export async function POST(request: Request) {
       attachment = { filename: `${safeName}.${kind.ext}`, content: buf, contentType: kind.type };
     }
 
-    const host = process.env.SMTP_HOST;
-    const port = Number(process.env.SMTP_PORT) || 587;
-    const user = process.env.SMTP_USER;
-    const pass = process.env.SMTP_PASS;
-    const toEmail = process.env.SMTP_TO || "ishmaelharrydeckor@gmail.com";
-    if (!host || !user || !pass) {
+    const mailer = getMailer();
+    if (!mailer) {
       console.warn("SMTP environment variables are not fully configured.");
       return NextResponse.json({ error: "Email is not set up on the server yet." }, { status: 500 });
     }
-
-    const transporter = nodemailer.createTransport({ host, port, secure: port === 465, auth: { user, pass } });
 
     const who = [role, company].filter(Boolean).join(", ");
     const textLines = [`Name: ${name}`];
@@ -72,10 +62,9 @@ export async function POST(request: Request) {
     if (email) textLines.push(`Email: ${email}`);
     textLines.push("Permission to publish: yes", `Photo: ${attachment ? "attached" : "none"}`, "", quote);
 
-    await transporter.sendMail({
-      from: `"Portfolio testimonials" <${user}>`,
+    await mailer.send({
+      fromName: "Portfolio testimonials",
       replyTo: email || undefined,
-      to: toEmail,
       subject: `New testimonial from ${name}`,
       text: textLines.join("\n"),
       html: `
