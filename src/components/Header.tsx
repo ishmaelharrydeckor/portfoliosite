@@ -19,7 +19,7 @@ export default function Header() {
   return (
     <header className="sticky top-0 z-50 w-full border-b border-white/10 bg-ink text-paper">
       <nav className="mx-auto flex h-20 max-w-[1440px] items-center justify-between px-6 lg:px-9" aria-label="Global">
-        <Link href="/" onClick={() => setOpen(false)} className="font-display text-2xl font-extrabold tracking-tight">
+        <Link href="/" onClick={() => setOpen(false)} className="inline-flex min-h-11 items-center font-display text-2xl font-extrabold tracking-tight">
           Ishmael<span className="text-accent">.</span>
         </Link>
 
@@ -29,7 +29,7 @@ export default function Header() {
               key={item.name}
               href={item.href}
               aria-current={pathname === item.href ? "page" : undefined}
-              className={`text-base font-semibold transition-colors hover:text-accent ${pathname === item.href ? "text-accent" : ""}`}
+              className={`inline-flex min-h-11 items-center text-base font-semibold transition-colors hover:text-accent ${pathname === item.href ? "text-accent" : ""}`}
             >
               {item.name}
             </Link>
@@ -42,7 +42,7 @@ export default function Header() {
 
         <button
           type="button"
-          className="inline-flex items-center justify-center rounded-md p-2 md:hidden"
+          className="inline-flex h-11 w-11 items-center justify-center rounded-md md:hidden"
           aria-expanded={open}
           onClick={() => setOpen(!open)}
         >

@@ -20,7 +20,7 @@ export default function ServicesShowcase({ items }: { items: ServiceItem[] }) {
   const cur = items[active];
 
   return (
-    <div className="grid gap-10 lg:grid-cols-[1fr_auto_1fr] lg:gap-14">
+    <div className="grid grid-cols-1 gap-10 lg:grid-cols-[1fr_auto_1fr] lg:gap-14">
       <div>
         <div className="overflow-hidden rounded-xl bg-white shadow-[0_24px_50px_-30px_rgba(0,0,0,0.45)] ring-1 ring-ink/10">
           <div className="flex items-center gap-3 border-b border-ink/10 bg-mist px-4 py-2.5">
@@ -45,7 +45,7 @@ export default function ServicesShowcase({ items }: { items: ServiceItem[] }) {
             ))}
           </div>
         </div>
-        <Link href={`/projects/${cur.slug}`} className="mt-4 inline-flex items-center gap-1 text-base font-bold hover:underline">
+        <Link href={`/projects/${cur.slug}`} className="mt-2 inline-flex min-h-11 items-center gap-1 text-base font-bold hover:underline">
           Example: {cur.projectName} <ArrowUpRight className="h-4 w-4" aria-hidden="true" />
         </Link>
       </div>

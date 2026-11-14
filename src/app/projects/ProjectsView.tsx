@@ -48,7 +48,8 @@ export default function ProjectsView() {
             ))}
           </div>
 
-          <div className="mt-14 grid gap-x-10 gap-y-14 md:grid-cols-2">
+          <h2 className="sr-only">All projects</h2>
+          <div className="mt-14 grid grid-cols-1 gap-x-10 gap-y-14 md:grid-cols-2">
             {visible.map((p) => (
               <BrowserCard key={p.slug} project={p} />
             ))}

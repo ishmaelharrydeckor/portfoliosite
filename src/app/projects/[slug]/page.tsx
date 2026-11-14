@@ -5,6 +5,8 @@ import type { Metadata } from "next";
 import { ArrowLeft, ArrowRight, ExternalLink } from "lucide-react";
 import { Tag } from "@/components/ui";
 import ContactSection from "@/components/ContactSection";
+import JsonLd from "@/components/JsonLd";
+import { siteUrl } from "@/data/site";
 import { showcaseProjects as projects } from "@/data/projects";
 
 interface PageProps {
@@ -15,17 +17,20 @@ export function generateStaticParams() {
   return projects.map((p) => ({ slug: p.slug }));
 }
 
+/** Keep descriptions within what search results show (about 155 characters). */
+const clip = (s: string, max = 155) => (s.length <= max ? s : s.slice(0, max - 1).replace(/\s+\S*$/, "") + "…");
+
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { slug } = await params;
   const project = projects.find((p) => p.slug === slug);
   if (!project) return {};
   return {
     title: project.name,
-    description: project.summary,
+    description: clip(project.summary),
     alternates: { canonical: `/projects/${project.slug}` },
     openGraph: {
       title: project.name,
-      description: project.summary,
+      description: clip(project.summary),
       images: [{ url: `/projects/${project.slug}/desktop.png`, width: 1440, height: 900 }],
     },
   };
@@ -46,8 +51,19 @@ export default async function ProjectDetailPage({ params }: PageProps) {
     { label: "How it went", text: project.outcome },
   ];
 
+  const breadcrumbs = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "Home", item: siteUrl },
+      { "@type": "ListItem", position: 2, name: "Work", item: `${siteUrl}/projects` },
+      { "@type": "ListItem", position: 3, name: project.name, item: `${siteUrl}/projects/${project.slug}` },
+    ],
+  };
+
   return (
     <>
+      <JsonLd data={breadcrumbs} />
       <section className="bg-paper">
         <div className="mx-auto max-w-[1440px] px-6 pb-24 pt-8 lg:px-9">
           <Link href="/projects" className="inline-flex items-center gap-2 text-lg hover:opacity-60">

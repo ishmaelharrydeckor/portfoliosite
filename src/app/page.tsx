@@ -106,6 +106,13 @@ export default function Home() {
         sameAs: [site.linkedin, site.github, site.twitter],
       },
       {
+        "@type": "WebSite",
+        "@id": `${siteUrl}/#website`,
+        url: siteUrl,
+        name: site.name,
+        publisher: { "@id": `${siteUrl}/#person` },
+      },
+      {
         "@type": "ProfessionalService",
         "@id": `${siteUrl}/#service`,
         name: `${site.name}: websites for consultants, coaches and speakers`,
@@ -130,13 +137,13 @@ export default function Home() {
       <JsonLd data={structuredData} />
       {/* HERO */}
       <section className="overflow-hidden bg-ink text-paper">
-        <div className="mx-auto grid max-w-[1440px] lg:grid-cols-2">
+        <div className="mx-auto grid max-w-[1440px] grid-cols-1 lg:grid-cols-2">
           <div className="flex flex-col justify-center px-6 py-16 lg:px-9 lg:py-28">
             <p className="flex items-center gap-3 text-sm font-semibold uppercase tracking-[0.16em] text-paper/70">
               <span className="h-2 w-2 rounded-full bg-accent motion-safe:animate-pulse" aria-hidden="true" />
               Websites for consultants, coaches and speakers
             </p>
-            <h1 className="mt-6 text-[clamp(2.5rem,4.5vw,4.4rem)] font-extrabold leading-[1.04] tracking-[-0.035em]">
+            <h1 className="mt-6 text-[clamp(2rem,4.5vw,4.4rem)] font-extrabold leading-[1.04] tracking-[-0.035em]">
               What do people find when they <Mark>search your name</Mark>?
             </h1>
             <p className="mt-8 max-w-xl text-xl leading-relaxed text-paper/70">
@@ -195,7 +202,7 @@ export default function Home() {
               So what would a stranger find if they searched your name tonight?
             </p>
           </Reveal>
-          <div className="mt-12 grid gap-4 md:grid-cols-3">
+          <div className="mt-12 grid grid-cols-1 gap-4 md:grid-cols-3">
             {[
               "No website at all.",
               "An old one that does not match how good you are.",
@@ -240,7 +247,7 @@ export default function Home() {
               It starts with a <Mark>call</Mark>
             </h2>
           </Reveal>
-          <div className="mt-14 grid gap-10 md:grid-cols-2 lg:grid-cols-4">
+          <div className="mt-14 grid grid-cols-1 gap-10 md:grid-cols-2 lg:grid-cols-4">
             {[
               ["01", "We talk", "We get on a call so I understand you, your work and who you want to reach."],
               ["02", "You send your photos and logo", "That is all I need from you."],
@@ -270,7 +277,7 @@ export default function Home() {
             </div>
             <Button href="/projects" variant="dark">View all projects</Button>
           </Reveal>
-          <div className="mt-14 grid gap-x-8 gap-y-14 md:grid-cols-2 lg:grid-cols-3">
+          <div className="mt-14 grid grid-cols-1 gap-x-8 gap-y-14 md:grid-cols-2 lg:grid-cols-3">
             {featured.map((p) => (
               <Reveal key={p.slug}>
                 <BrowserCard project={p} />
@@ -288,7 +295,7 @@ export default function Home() {
               <Eyebrow className="text-accent">Background</Eyebrow>
               <h2 className={`mt-5 ${h2}`}>My <Mark>background</Mark></h2>
             </div>
-            <Link href="/about" className="text-base font-bold underline decoration-accent decoration-2 underline-offset-8 hover:text-accent">
+            <Link href="/about" className="inline-flex min-h-11 items-center text-base font-bold underline decoration-accent decoration-2 underline-offset-8 hover:text-accent">
               Full background
             </Link>
           </Reveal>
